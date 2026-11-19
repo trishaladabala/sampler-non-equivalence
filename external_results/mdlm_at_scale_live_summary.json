@@ -1,0 +1,410 @@
+{
+  "num_samples_per_cell": 256,
+  "seq_len": 1024,
+  "micro_batch_size": 32,
+  "scorer_model": "gpt2-large",
+  "mdlm_130m_cells": [
+    {
+      "N": 4,
+      "temp": 0.0,
+      "gen_ppl_all": 1.26,
+      "dedup_ppl": 1.59,
+      "rep4": 0.916,
+      "degen": 1.0
+    },
+    {
+      "N": 4,
+      "temp": 0.5,
+      "gen_ppl_all": 13.71,
+      "dedup_ppl": 16.33,
+      "rep4": 0.036,
+      "degen": 0.07
+    },
+    {
+      "N": 4,
+      "temp": 0.7,
+      "gen_ppl_all": 48.93,
+      "dedup_ppl": 57.52,
+      "rep4": 0.003,
+      "degen": 0.0
+    },
+    {
+      "N": 4,
+      "temp": 0.8,
+      "gen_ppl_all": 152.4,
+      "dedup_ppl": 181.86,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 4,
+      "temp": 0.9,
+      "gen_ppl_all": 546.15,
+      "dedup_ppl": 631.08,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 4,
+      "temp": 1.0,
+      "gen_ppl_all": 1966.18,
+      "dedup_ppl": 2155.15,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 4,
+      "temp": 1.2,
+      "gen_ppl_all": 11964.02,
+      "dedup_ppl": 12235.69,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 8,
+      "temp": 0.0,
+      "gen_ppl_all": 1.08,
+      "dedup_ppl": 1.08,
+      "rep4": 0.0,
+      "degen": 1.0
+    },
+    {
+      "N": 8,
+      "temp": 0.5,
+      "gen_ppl_all": 6.91,
+      "dedup_ppl": 12.45,
+      "rep4": 0.149,
+      "degen": 0.42
+    },
+    {
+      "N": 8,
+      "temp": 0.7,
+      "gen_ppl_all": 24.77,
+      "dedup_ppl": 37.6,
+      "rep4": 0.014,
+      "degen": 0.0
+    },
+    {
+      "N": 8,
+      "temp": 0.8,
+      "gen_ppl_all": 74.68,
+      "dedup_ppl": 104.26,
+      "rep4": 0.001,
+      "degen": 0.0
+    },
+    {
+      "N": 8,
+      "temp": 0.9,
+      "gen_ppl_all": 223.51,
+      "dedup_ppl": 276.75,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 8,
+      "temp": 1.0,
+      "gen_ppl_all": 810.21,
+      "dedup_ppl": 934.13,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 8,
+      "temp": 1.2,
+      "gen_ppl_all": 8958.63,
+      "dedup_ppl": 9312.34,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 16,
+      "temp": 0.0,
+      "gen_ppl_all": 1.04,
+      "dedup_ppl": 602.64,
+      "rep4": 0.994,
+      "degen": 1.0
+    },
+    {
+      "N": 16,
+      "temp": 0.5,
+      "gen_ppl_all": 4.43,
+      "dedup_ppl": 10.46,
+      "rep4": 0.31,
+      "degen": 0.46
+    },
+    {
+      "N": 16,
+      "temp": 0.7,
+      "gen_ppl_all": 16.01,
+      "dedup_ppl": 27.44,
+      "rep4": 0.032,
+      "degen": 0.04
+    },
+    {
+      "N": 16,
+      "temp": 0.8,
+      "gen_ppl_all": 41.56,
+      "dedup_ppl": 56.55,
+      "rep4": 0.003,
+      "degen": 0.0
+    },
+    {
+      "N": 16,
+      "temp": 0.9,
+      "gen_ppl_all": 104.83,
+      "dedup_ppl": 127.36,
+      "rep4": 0.001,
+      "degen": 0.0
+    },
+    {
+      "N": 16,
+      "temp": 1.0,
+      "gen_ppl_all": 343.7,
+      "dedup_ppl": 401.29,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 16,
+      "temp": 1.2,
+      "gen_ppl_all": 5988.86,
+      "dedup_ppl": 6337.81,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 32,
+      "temp": 0.0,
+      "gen_ppl_all": 1.04,
+      "dedup_ppl": 602.64,
+      "rep4": 0.994,
+      "degen": 1.0
+    },
+    {
+      "N": 32,
+      "temp": 0.5,
+      "gen_ppl_all": 3.41,
+      "dedup_ppl": 9.55,
+      "rep4": 0.455,
+      "degen": 0.64
+    },
+    {
+      "N": 32,
+      "temp": 0.7,
+      "gen_ppl_all": 12.2,
+      "dedup_ppl": 19.76,
+      "rep4": 0.049,
+      "degen": 0.02
+    },
+    {
+      "N": 32,
+      "temp": 0.8,
+      "gen_ppl_all": 28.01,
+      "dedup_ppl": 35.84,
+      "rep4": 0.005,
+      "degen": 0.0
+    },
+    {
+      "N": 32,
+      "temp": 0.9,
+      "gen_ppl_all": 65.97,
+      "dedup_ppl": 78.63,
+      "rep4": 0.001,
+      "degen": 0.0
+    },
+    {
+      "N": 32,
+      "temp": 1.0,
+      "gen_ppl_all": 194.25,
+      "dedup_ppl": 227.47,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 32,
+      "temp": 1.2,
+      "gen_ppl_all": 3844.26,
+      "dedup_ppl": 4148.53,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 64,
+      "temp": 0.0,
+      "gen_ppl_all": 1.04,
+      "dedup_ppl": 602.64,
+      "rep4": 0.994,
+      "degen": 1.0
+    },
+    {
+      "N": 64,
+      "temp": 0.5,
+      "gen_ppl_all": 2.9,
+      "dedup_ppl": 8.86,
+      "rep4": 0.56,
+      "degen": 0.71
+    },
+    {
+      "N": 64,
+      "temp": 0.7,
+      "gen_ppl_all": 10.55,
+      "dedup_ppl": 16.94,
+      "rep4": 0.056,
+      "degen": 0.03
+    },
+    {
+      "N": 64,
+      "temp": 0.8,
+      "gen_ppl_all": 22.99,
+      "dedup_ppl": 28.72,
+      "rep4": 0.007,
+      "degen": 0.0
+    },
+    {
+      "N": 64,
+      "temp": 0.9,
+      "gen_ppl_all": 50.14,
+      "dedup_ppl": 59.38,
+      "rep4": 0.001,
+      "degen": 0.0
+    },
+    {
+      "N": 64,
+      "temp": 1.0,
+      "gen_ppl_all": 139.04,
+      "dedup_ppl": 163.72,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 64,
+      "temp": 1.2,
+      "gen_ppl_all": 2842.62,
+      "dedup_ppl": 3084.75,
+      "rep4": 0.0,
+      "degen": 0.0
+    }
+  ],
+  "elf_b_105m_cells": [
+    {
+      "N": 4,
+      "gamma": 0.0,
+      "gen_ppl_all": 351.35,
+      "dedup_ppl": 346.91,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 4,
+      "gamma": 1.0,
+      "gen_ppl_all": 11.34,
+      "dedup_ppl": 13.49,
+      "rep4": 0.101,
+      "degen": 0.04
+    },
+    {
+      "N": 4,
+      "gamma": 1.5,
+      "gen_ppl_all": 2.82,
+      "dedup_ppl": 6.17,
+      "rep4": 0.644,
+      "degen": 1.0
+    },
+    {
+      "N": 8,
+      "gamma": 0.0,
+      "gen_ppl_all": 181.37,
+      "dedup_ppl": 180.79,
+      "rep4": 0.0,
+      "degen": 0.0
+    },
+    {
+      "N": 8,
+      "gamma": 1.0,
+      "gen_ppl_all": 36.44,
+      "dedup_ppl": 38.6,
+      "rep4": 0.023,
+      "degen": 0.0
+    },
+    {
+      "N": 8,
+      "gamma": 1.5,
+      "gen_ppl_all": 2.99,
+      "dedup_ppl": 5.3,
+      "rep4": 0.501,
+      "degen": 0.86
+    },
+    {
+      "N": 16,
+      "gamma": 0.0,
+      "gen_ppl_all": 79.64,
+      "dedup_ppl": 82.3,
+      "rep4": 0.004,
+      "degen": 0.0
+    },
+    {
+      "N": 16,
+      "gamma": 1.0,
+      "gen_ppl_all": 44.59,
+      "dedup_ppl": 47.49,
+      "rep4": 0.008,
+      "degen": 0.0
+    },
+    {
+      "N": 16,
+      "gamma": 1.5,
+      "gen_ppl_all": 8.98,
+      "dedup_ppl": 14.58,
+      "rep4": 0.247,
+      "degen": 0.2
+    },
+    {
+      "N": 32,
+      "gamma": 0.0,
+      "gen_ppl_all": 41.93,
+      "dedup_ppl": 49.11,
+      "rep4": 0.022,
+      "degen": 0.0
+    },
+    {
+      "N": 32,
+      "gamma": 1.0,
+      "gen_ppl_all": 26.03,
+      "dedup_ppl": 32.31,
+      "rep4": 0.031,
+      "degen": 0.0
+    },
+    {
+      "N": 32,
+      "gamma": 1.5,
+      "gen_ppl_all": 49.91,
+      "dedup_ppl": 59.85,
+      "rep4": 0.032,
+      "degen": 0.0
+    },
+    {
+      "N": 64,
+      "gamma": 0.0,
+      "gen_ppl_all": 26.37,
+      "dedup_ppl": 40.49,
+      "rep4": 0.073,
+      "degen": 0.0
+    },
+    {
+      "N": 64,
+      "gamma": 1.0,
+      "gen_ppl_all": 18.4,
+      "dedup_ppl": 29.79,
+      "rep4": 0.088,
+      "degen": 0.0
+    },
+    {
+      "N": 64,
+      "gamma": 1.5,
+      "gen_ppl_all": 19.04,
+      "dedup_ppl": 31.75,
+      "rep4": 0.092,
+      "degen": 0.0
+    }
+  ]
+}

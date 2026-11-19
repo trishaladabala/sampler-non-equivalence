@@ -1,0 +1,17 @@
+{
+  "run_id": "R1b_ELF-B_official_sde32_g1.5_sc3_s0",
+  "model": "ELF-B",
+  "kind": "uncond_official",
+  "method": "sde",
+  "steps": 32,
+  "gamma": 1.5,
+  "sc_cfg": 3.0,
+  "seed": 0,
+  "n": 1000,
+  "gen_ppl": 24.04364590778695,
+  "entropy": 5.162721634127189,
+  "wall_s": 117.79906630516052,
+  "status": "done",
+  "timestamp": "2026-10-21T06:36:28",
+  "elfx_rescored_ppl": 24.043594575722572
+}

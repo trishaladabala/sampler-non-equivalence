@@ -1,0 +1,30 @@
+{
+  "run_id": "ecp_s5_deen_baseline",
+  "model": "ELF-B-de-en",
+  "kind": "cond",
+  "method": "ode",
+  "steps": 64,
+  "gamma": 0.0,
+  "cfg": 2,
+  "sc_cfg": 1,
+  "seed": 42,
+  "n": 1000,
+  "rouge1": 59.19468618422716,
+  "rouge2": 33.45628392573939,
+  "rougeL": 53.94342158823735,
+  "bleu": 25.912605964437034,
+  "all_results": [
+    {
+      "name": "ode-steps64-cfg2-ts_logit_normal-cond",
+      "epoch": 100,
+      "step": 880600,
+      "bleu": 25.912605964437034,
+      "rouge1": 59.19468618422716,
+      "rouge2": 33.45628392573939,
+      "rougeL": 53.94342158823735
+    }
+  ],
+  "wall_s": 57.1138699054718,
+  "status": "done",
+  "timestamp": "2026-10-21T16:18:28"
+}

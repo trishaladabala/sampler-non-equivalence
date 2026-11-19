@@ -1,0 +1,7 @@
+{
+  "timestamp": "2026-11-06T14:31:33Z",
+  "clean_ref_a_sha256": "99943a3f61e1ce69f9c2d9af3dcd3fc6cc4f791db16460234cc34a52dc738d49",
+  "clean_ref_b_sha256": "e0fdfa32c8c64d9d014031077b3837f18afa80c68dc8a906cd83b5c695b21f7d",
+  "n_pilot_runs_evaluated": 30,
+  "n_replication_runs_evaluated": 6
+}

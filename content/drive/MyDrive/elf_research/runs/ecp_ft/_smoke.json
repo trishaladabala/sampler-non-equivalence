@@ -1,0 +1,11 @@
+{
+  "all_pass": true,
+  "tests": {
+    "T1 Equivalence (q=0 vs reference train_step)": true,
+    "T2 Overfit (loss drop >= 40%)": true,
+    "T3 Gradient flow (finite, non-zero)": true,
+    "T4 Projection path active (q=0.5, delta > 0)": true,
+    "T5 Checkpoint round-trip": true
+  },
+  "timestamp": "2026-10-21T16:32:42"
+}

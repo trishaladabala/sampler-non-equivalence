@@ -1,0 +1,13 @@
+{
+  "run_id": "cmlc_eval/T2_ELFB_inpaint_K32",
+  "method": "ELF-B Inpainting (Baseline)",
+  "steps": 32,
+  "policy": "adaptive-stab",
+  "cont_nll": 4.194619367376832,
+  "cont_ppl": 66.32847998848175,
+  "coherence": 0.7260244140625,
+  "rep4": 0.13153105880626145,
+  "mauve": 0.025993722521436224,
+  "nfe_elf": 33.0,
+  "wall_s": 38.82307481765747
+}

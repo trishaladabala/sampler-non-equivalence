@@ -1,0 +1,12 @@
+{
+  "run_id": "ecp_ft/ft_q0",
+  "model": "ELF-B",
+  "q": 0.0,
+  "t_on": 0.4,
+  "total_steps": 10000,
+  "global_batch": 64,
+  "wall_s": 8713.738515138626,
+  "status": "done",
+  "last_checkpoint": "/content/drive/MyDrive/elf_research/runs/ecp_ft/ft_q0/ckpt/last.pt",
+  "timestamp": "2026-10-22T06:32:18"
+}

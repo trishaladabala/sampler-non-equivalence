@@ -1,0 +1,26 @@
+{
+  "total_tokens": 322387,
+  "x_512_shape": [
+    322387,
+    512
+  ],
+  "x_128_shape": [
+    322387,
+    128
+  ],
+  "norm_512_mean": 3.7561609745025635,
+  "norm_512_std": 0.6117331981658936,
+  "norm_512_min": 0.9365713596343994,
+  "norm_512_max": 5.0029168128967285,
+  "norm_128_mean": 2.8869876861572266,
+  "norm_128_std": 0.40700453519821167,
+  "norm_128_min": 1.2055776119232178,
+  "norm_128_max": 4.287204742431641,
+  "pairwise_dist_128_mean": 4.106909615019744,
+  "pairwise_dist_128_std": 0.4883312437110583,
+  "pairwise_dist_128_min": 0.02047479701919644,
+  "pairwise_dist_128_max": 5.815446135699294,
+  "collapsed": false,
+  "exploding": false,
+  "non_degenerate": true
+}

@@ -1,0 +1,11 @@
+{
+  "run_id": "p4_elfb_s32_g3.0_sc1.0_seed1",
+  "model": "ELF-B",
+  "steps": 32,
+  "method": "sde",
+  "gamma": 3.0,
+  "sc_cfg": 1.0,
+  "n": 1000,
+  "seed": 1,
+  "mauve": true
+}

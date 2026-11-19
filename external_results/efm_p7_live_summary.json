@@ -1,0 +1,45 @@
+{
+  "experiment": "elf_p7_efm_scaleup_sweep",
+  "part_a_phase1_wxk_sweep": [
+    {"W": 1, "mode": "ELF_global", "K": 1, "final_loss": 0.4206, "tf_acc": 0.887, "non_degenerate_rule_accuracy": 0.000, "degeneracy_rate": 0.000},
+    {"W": 4, "mode": "continuous", "K": 8, "final_loss": 1.1393, "tf_acc": 0.584, "non_degenerate_rule_accuracy": 0.000, "degeneracy_rate": 0.000},
+    {"W": 4, "mode": "quantized", "K": 1, "final_loss": 1.2126, "tf_acc": 0.572, "non_degenerate_rule_accuracy": 0.008, "degeneracy_rate": 0.000},
+    {"W": 4, "mode": "quantized", "K": 2, "final_loss": 1.1774, "tf_acc": 0.574, "non_degenerate_rule_accuracy": 0.008, "degeneracy_rate": 0.000},
+    {"W": 4, "mode": "quantized", "K": 4, "final_loss": 1.1534, "tf_acc": 0.607, "non_degenerate_rule_accuracy": 0.000, "degeneracy_rate": 0.000},
+    {"W": 4, "mode": "quantized", "K": 8, "final_loss": 1.1352, "tf_acc": 0.605, "non_degenerate_rule_accuracy": 0.004, "degeneracy_rate": 0.000},
+    {"W": 4, "mode": "lowrank", "K": 4, "final_loss": 1.1301, "tf_acc": 0.598, "non_degenerate_rule_accuracy": 0.000, "degeneracy_rate": 0.000},
+    {"W": 8, "mode": "continuous", "K": 8, "final_loss": 1.2111, "tf_acc": 0.559, "non_degenerate_rule_accuracy": 0.004, "degeneracy_rate": 0.000},
+    {"W": 8, "mode": "quantized", "K": 1, "final_loss": 1.2412, "tf_acc": 0.570, "non_degenerate_rule_accuracy": 0.016, "degeneracy_rate": 0.000},
+    {"W": 8, "mode": "quantized", "K": 2, "final_loss": 1.2349, "tf_acc": 0.561, "non_degenerate_rule_accuracy": 0.000, "degeneracy_rate": 0.000},
+    {"W": 8, "mode": "quantized", "K": 4, "final_loss": 1.2114, "tf_acc": 0.584, "non_degenerate_rule_accuracy": 0.004, "degeneracy_rate": 0.000},
+    {"W": 8, "mode": "quantized", "K": 8, "final_loss": 1.1957, "tf_acc": 0.566, "non_degenerate_rule_accuracy": 0.000, "degeneracy_rate": 0.000},
+    {"W": 8, "mode": "lowrank", "K": 4, "final_loss": 1.2094, "tf_acc": 0.570, "non_degenerate_rule_accuracy": 0.004, "degeneracy_rate": 0.000},
+    {"W": 16, "mode": "continuous", "K": 8, "final_loss": 1.2508, "tf_acc": 0.549, "non_degenerate_rule_accuracy": 0.000, "degeneracy_rate": 0.000},
+    {"W": 16, "mode": "quantized", "K": 1, "final_loss": 1.2834, "tf_acc": 0.541, "non_degenerate_rule_accuracy": 0.004, "degeneracy_rate": 0.000},
+    {"W": 16, "mode": "quantized", "K": 2, "final_loss": 1.2567, "tf_acc": 0.543, "non_degenerate_rule_accuracy": 0.023, "degeneracy_rate": 0.000},
+    {"W": 16, "mode": "quantized", "K": 4, "final_loss": 1.2326, "tf_acc": 0.549, "non_degenerate_rule_accuracy": 0.016, "degeneracy_rate": 0.000},
+    {"W": 16, "mode": "quantized", "K": 8, "final_loss": 1.2304, "tf_acc": 0.555, "non_degenerate_rule_accuracy": 0.008, "degeneracy_rate": 0.000},
+    {"W": 16, "mode": "lowrank", "K": 4, "final_loss": 1.2427, "tf_acc": 0.566, "non_degenerate_rule_accuracy": 0.004, "degeneracy_rate": 0.000}
+  ],
+  "part_b_second_synthetic": {
+    "option_a_kv_copy": [
+      {"variant": "ELF_Global_W1", "W": 1, "mode": "none", "K": 1, "tf_acc": 0.916, "kv_copy_accuracy": 0.168},
+      {"variant": "EFM_Quantized_W8_K4", "W": 8, "mode": "quantized", "K": 4, "tf_acc": 0.918, "kv_copy_accuracy": 1.000},
+      {"variant": "EFM_LowRank_W8_K4", "W": 8, "mode": "lowrank", "K": 4, "tf_acc": 0.832, "kv_copy_accuracy": 0.355},
+      {"variant": "EFM_Continuous_W8", "W": 8, "mode": "continuous", "K": 8, "tf_acc": 0.836, "kv_copy_accuracy": 0.359}
+    ],
+    "option_c_sorted_seq": [
+      {"variant": "ELF_Global_W1", "W": 1, "mode": "none", "K": 1, "monotonicity_rate": 0.109, "elementwise_sorted_acc": 0.223, "multiset_exact_match": 0.000},
+      {"variant": "EFM_Quantized_W8_K4", "W": 8, "mode": "quantized", "K": 4, "monotonicity_rate": 0.625, "elementwise_sorted_acc": 0.570, "multiset_exact_match": 0.000},
+      {"variant": "EFM_LowRank_W8_K4", "W": 8, "mode": "lowrank", "K": 4, "monotonicity_rate": 0.609, "elementwise_sorted_acc": 0.484, "multiset_exact_match": 0.000},
+      {"variant": "EFM_Continuous_W8", "W": 8, "mode": "continuous", "K": 8, "monotonicity_rate": 0.625, "elementwise_sorted_acc": 0.555, "multiset_exact_match": 0.000}
+    ]
+  },
+  "part_c_scaleup_runs": [
+    {"experiment": "base_elf_global", "params": 3303808, "loss": 0.6264, "N4_ent": 3.97, "N4_rep4": 0.000},
+    {"experiment": "base_continuous_efm", "params": 3402624, "loss": 1.5236, "N4_ent": 1.65, "N4_rep4": 0.116},
+    {"experiment": "base_quantized_K4", "params": 3436416, "loss": 1.5201, "N4_ent": 0.65, "N4_rep4": 0.557},
+    {"experiment": "base_quantized_K8", "params": 3437440, "loss": 1.5235, "N4_ent": 1.39, "N4_rep4": 0.158},
+    {"experiment": "base_lowrank_fourier_K4", "params": 3306116, "loss": 1.5109, "N4_ent": 0.26, "N4_rep4": 0.818}
+  ]
+}

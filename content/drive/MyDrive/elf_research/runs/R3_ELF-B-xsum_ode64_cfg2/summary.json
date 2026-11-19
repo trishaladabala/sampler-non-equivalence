@@ -1,0 +1,30 @@
+{
+  "run_id": "R3_ELF-B-xsum_ode64_cfg2",
+  "model": "ELF-B-xsum",
+  "kind": "cond",
+  "method": "ode",
+  "steps": 64,
+  "gamma": 0.0,
+  "cfg": 2,
+  "sc_cfg": 1,
+  "seed": 42,
+  "n": 1000,
+  "rouge1": 36.32526326257112,
+  "rouge2": 12.433112284018977,
+  "rougeL": 28.296613310799696,
+  "bleu": 8.16085706765746,
+  "all_results": [
+    {
+      "name": "ode-steps64-cfg2-ts_logit_normal-cond",
+      "epoch": 100,
+      "step": 39800,
+      "bleu": 8.16085706765746,
+      "rouge1": 36.32526326257112,
+      "rouge2": 12.433112284018977,
+      "rougeL": 28.296613310799696
+    }
+  ],
+  "wall_s": 408.28015184402466,
+  "status": "done",
+  "timestamp": "2026-10-21T07:21:46"
+}

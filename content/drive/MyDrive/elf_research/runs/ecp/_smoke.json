@@ -1,0 +1,22 @@
+{
+  "T1 shapes (hard, samp, soft, nc, rand)": {
+    "pass_": true,
+    "wall_s": 0.7
+  },
+  "T2 idempotence on real OWT data": {
+    "pass_": true,
+    "wall_s": 1.03
+  },
+  "T3 identity check (SC lambda=0)": {
+    "pass_": true,
+    "wall_s": 13.35
+  },
+  "T4 NFE counters (16 ELF, 7 ENC)": {
+    "pass_": true,
+    "wall_s": 13.28
+  },
+  "T5 runtime sanity (<60s across modes)": {
+    "pass_": true,
+    "wall_s": 0.41
+  }
+}

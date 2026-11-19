@@ -1,0 +1,28 @@
+{
+  "T1_zero_init": {
+    "status": "PASS",
+    "max_diff": 0.0
+  },
+  "T2_gap_targets": {
+    "status": "PASS",
+    "expected_del": 16
+  },
+  "T3_poisson_overfit": {
+    "status": "PASS",
+    "drop_pct": 60.7870399195383
+  },
+  "T4_expand_cme": {
+    "status": "PASS",
+    "expanded_shape": [
+      2,
+      10,
+      16
+    ]
+  },
+  "T5_variable_length_gen": {
+    "status": "PASS",
+    "final_len": 16
+  },
+  "total_time_sec": 0.33531832695007324,
+  "all_pass": true
+}

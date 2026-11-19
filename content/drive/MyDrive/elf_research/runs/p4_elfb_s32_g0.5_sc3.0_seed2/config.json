@@ -1,0 +1,12 @@
+{
+  "run_id": "p4_elfb_s32_g0.5_sc3.0_seed2",
+  "model": "ELF-B",
+  "steps": 32,
+  "method": "sde",
+  "gamma": 0.5,
+  "sc_cfg": 3.0,
+  "n": 1000,
+  "seed": 2,
+  "mauve": true,
+  "output_dir": "/content/drive/MyDrive/elf_research/runs/p4_elfb_s32_g0.5_sc3.0_seed2"
+}

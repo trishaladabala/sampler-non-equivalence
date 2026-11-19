@@ -1,0 +1,415 @@
+\documentclass[11pt,a4paper]{article}
+
+\makeatletter
+\let\real@font\font
+\def\font#1#2={\ifx#1\aclhv\real@font\aclhv=cmss8 \expandafter\eat@until@pt\else\real@font#1#2=\fi}
+\def\eat@until@pt#1pt{}
+\makeatother
+\usepackage[review]{acl}
+\makeatletter
+\let\font\real@font
+\renewcommand{\bibliographystyle}[1]{}
+\makeatother
+\usepackage{times}
+\renewcommand{\ttdefault}{cmtt}
+\usepackage{latexsym}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\title{Same Perplexity, Same Entropy, Different Text:\\
+Operating-Point Non-Equivalence of Sampler Controls in Continuous-Latent Flow Language Models}
+
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Continuous-latent flow language models are evaluated primarily on generative perplexity (Gen-PPL) and per-sample entropy ($H_{\mathrm{ps}}$), presuming sampler operating points with matched primary metrics produce equivalent text distributions.
+We calibrate operating points across self-conditioning guidance (SC-CFG) and Langevin back-noising ($\gamma$) and evaluate them across both a 5-seed held-out pilot ($201\text{--}205$) and a preregistered 20-seed confirmatory replication ($401\text{--}420$, $120$ GPU runs, $M=1{,}000$/seed) under paired Two One-Sided Tests (TOST) equivalence.
+First, calibrated pairs passing Strict Tier-I Joint TOST Equivalence ($\pm 2.5\%$ Gen-PPL, $\pm 0.015$~nats $H_{\mathrm{ps}}$, $p_{\mathrm{Holm}} \le 3.40\times 10^{-8}$) exhibit large, reproducible divergence across all 9/9 confirmatory secondary tests in within-sample repetition (\texttt{rep-4}), cross-sample lexical dispersion ($\mathrm{JSD}_\pi$), and distributional alignment (MAUVE) ($p_{\mathrm{Holm}} \le 5.13\times 10^{-12}$, exact $2^{20}$ sign-flip $p = 1.91\times 10^{-6}$), with coding divergence persisting on 13-gram decontaminated held-out references ($p \le 0.0097$).
+Second, secondary metric variations are non-zero along iso-frontier manifolds ($\kappa_m \neq 0$), predicting out-of-sample structural shifts on \texttt{rep-4} and $\mathrm{JSD}_\pi$ within $2.5\%\text{--}6.7\%$ absolute relative error on the 5-seed pilot and $3.5\%\text{--}10.1\%$ on the 20-seed replication.
+Third, while uncompensated Attractor-Contrast-Escape (ACE) steering shifts operating points outside equivalence bounds ($+7.5\%\text{--}10.5\%$ PPL), our $\gamma$-compensated matched-ACE protocol ($\gamma^*=1.1699$, $p_{\mathrm{joint}}=0.0009$) isolates genuine subspace repetition suppression ($-0.39$~pp, $p_{\mathrm{emp}}=0.0476$ vs.\ 20 orthogonal null directions on $S^{510}$) from frontier drift.
+We recommend that sampler benchmarks report within- and cross-sample secondary metrics (\texttt{rep-4}, $\mathrm{JSD}_\pi$, Self-BLEU, CTW JCD, Vendi Score) alongside primary frontiers rather than treating $(\text{Gen-PPL}, H_{\mathrm{ps}})$ as an identifying coordinate.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Continuous-latent diffusion and flow-matching language models generate text by integrating a learned velocity field in continuous representation space before decoding into discrete tokens~\citep{li2022diffusionlm,lovelace2023ld4lg,hu2026elf}. Unlike autoregressive decoders controlled by temperature or nucleus thresholds, continuous-latent samplers expose multiple inference-time controls. In the Embedded Language Flow (ELF) family~\citep{hu2026elf}, generation is governed jointly by Langevin back-noising ($\gamma$, which injects Gaussian perturbations and rescales drift) and self-conditioning classifier-free guidance ($\text{SC-CFG} = s_{\mathrm{cfg}}$, which extrapolates the velocity field using guidance-distilled conditioning tokens)~\citep{ho2022classifier}.
+
+Standard benchmarking evaluates these models along a two-dimensional quality--diversity frontier: generative perplexity (Gen-PPL) scored under an external autoregressive model and mean per-sample token entropy ($H_{\mathrm{ps}}$)~\citep{pynadath2026generative}. A foundational presumption underlying this protocol is \emph{frontier identifiability}: if two configurations of a model achieve the same $(\text{Gen-PPL}, H_{\mathrm{ps}})$ operating point at fixed neural function evaluations ($\text{NFE}$), they are presumed to produce interchangeable text distributions.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{paper_figures/fig1_forest_and_samples.pdf}
+    \caption{The ``Same Frontier, Different Text'' paradox on ELF-B (pilot seeds $201\text{--}205$, paired CRN $df=4$; replication seeds $401\text{--}420$, paired CRN $df=19$, $M=1{,}000$/seed; all error bars on observed shifts plot seed-level paired CRN 95\% CIs $d_s = Y_{B,s} - Y_{A,s}$). \textbf{(a)} Primary Equivalence: \textbf{C1}--\textbf{C3} pass Tier-I Joint TOST ($\pm 2.5\%$ Gen-PPL, $\pm 0.015$ nats $H_{\mathrm{ps}}$; $p_{\mathrm{Holm}} \le 0.0030$ pilot, $\le 3.40\times 10^{-8}$ replication). \textbf{(b)} Secondary Divergence: $9/9$ Family 2 tests pass step-down Holm ($p_{\mathrm{Holm}} \le 5.13\times 10^{-12}$ on 20-seed replication). \textbf{(c)} Out-of-Sample Iso-Frontier Line-Integral Validation: Stage-1 predictions $\Delta_{\mathrm{pred}} = \int_{\mathcal{C}} \kappa_m\,d\ell$ (open diamonds: seeds $0\text{--}1$ with $B=500$ bootstrap 95\% CIs over 2 seeds/cell for \texttt{rep-4}; 40-run Stage-1 response surface across 11 operating points, seeds $0\text{--}4$, quadratic $R^2=0.980$ with residual SD for $\mathrm{JSD}_\pi$) vs.\ 5-seed pilot (circles) and 20-seed replication (squares) shifts ($+2.5\%\text{--}+5.1\%$ error on \texttt{rep-4}, $-6.1\%\text{--}-6.7\%$ on $\mathrm{JSD}_\pi$; nonlinear MAUVE exhibits $+66.0\%$ curvature error on C3, Table~\ref{tab:iso_frontier_validation}).}
+    \label{fig:teaser}
+\end{figure*}
+
+In this paper, we provide empirical evidence that this identifiability assumption does not hold in continuous-latent flow models (Claim A, Figure~\ref{fig:teaser}). By tuning $\gamma$ to compensate for $\text{SC-CFG}$ scaling, we identify pairs of sampler configurations that achieve formal \textbf{Two One-Sided Tests (TOST) equivalence}~\citep{schuirmann1987comparison} on both Gen-PPL ($\pm 2.5\%$) and $H_{\mathrm{ps}}$ ($\pm 0.015$ nats). Yet, at these statistically indistinguishable operating points, the generated text distributions diverge sharply across within-sample and cross-sample axes: \textbf{(1)} trading Langevin back-noising for higher self-conditioning guidance drives local repetition (\texttt{rep-4}) upward by $+1.10$ to $+2.11$~percentage points (pp), closely matching out-of-sample line-integral predictions $\Delta_{\mathrm{pred}} = \int_{\mathcal{C}} \kappa_m\,d\ell$ across the iso-frontier (Figure~\ref{fig:teaser}c); and \textbf{(2)} concurrently, cross-sample lexical dispersion ($\mathrm{JSD}_{\pi} = H_{\mathrm{pool}} - H_{\mathrm{ps,weighted}}$), embedding-space Vendi diversity, and distributional alignment (MAUVE) \emph{increase}, while cross-sample $n$-gram overlap (Self-BLEU) and byte-level coding divergence (CTW JCD) decrease.
+
+\paragraph{Claim A vs.\ Claim B Differentiation.}
+To prevent misinterpretation, we sharply differentiate our empirical finding from mathematical trivialities. \textbf{Claim A (Empirical Non-Equivalence Along Sampler Iso-Frontiers):} On real, trained continuous-latent flow language models, inference-time sampler controls trace non-degenerate iso-frontier manifolds where primary metrics $(\text{Gen-PPL}, H_{\mathrm{ps}})$ are matched, but the augmented primary--secondary matrix $[\nabla\mathrm{Gen\text{-}PPL}, \nabla m]^\top$ has rank 2 ($\kappa_m \neq 0$). Consequently, legitimate and widely used control configurations produce large, reproducible text divergences. \textbf{Claim B (Refuted Overclaim):} We do \emph{not} claim a general mathematical impossibility theorem asserting that no finite set of scalar metrics could ever identify a generative distribution across all conceivable architectures. Rather, our empirical findings demonstrate that the specific primary frontier universally deployed in current diffusion and flow LM benchmarks is blind to substantial structural trade-offs driven by common sampler controls.
+
+\paragraph{Contributions.}
+\textbf{(1) The Calibrate-then-Held-Out Protocol and Iso-Frontier Diagnostic ($\kappa_m$):} We formalize a rigorous protocol establishing Strict Tier-I Joint TOST Equivalence ($\pm 2.5\%$ Gen-PPL, $\pm 0.015$ nats $H_{\mathrm{ps}}$) across both a 5-seed pilot ($201\text{--}205$) and a 20-seed preregistered confirmatory replication ($401\text{--}420$, $120$ runs), paired Common Random Numbers (CRN), and hierarchical gatekeeping. We formulate an elementary differential diagnostic $\kappa_m = \frac{dm}{d\ell}\big|_{\mathcal{C}}$ quantifying sensitivity along iso-frontier curves and package it as an open-source diagnostic.
+\textbf{(2) Multi-Scale Persistence up to 652.1M and Cross-Architecture Audit on Plaid-1B:} Evaluating ELF-B (104.6M), ELF-M (342.5M), and ELF-L (652.1M, $6.2\times$ scale) across multi-seed $2\times 2$ factorials establishes that the $\text{SC-CFG} \times \gamma$ divergence persists across scale ($\Delta_{\mathrm{SC}}\texttt{rep-4} \approx +3.3\text{--}+3.7$~pp, $p_{\mathrm{block}} \le 0.00086$). Evaluating Plaid-1B (1.28B) across a $4\times 4$ $(T_{\mathrm{score}}, K)$ grid reveals $+148\%$ \texttt{rep-4} divergence along 1D iso-perplexity contours while demonstrating how distinct primary gradient slopes separate $H_{\mathrm{ps}}$ by $+0.070$~nats.
+\textbf{(3) Mechanistic Probing via $\gamma$-Compensated Matched ACE:} Evaluating Attractor-Contrast-Escape (ACE)~\citep{zhang2026selfcond}, we show that uncompensated steering shifts operating points outside Tier-I TOST bounds ($+7.5\%\text{--}10.5\%$ PPL). Using $\gamma$-compensated matched ACE ($\gamma^*=1.1699$, $p_{\mathrm{joint}}=0.0009$) and a 20-direction orthogonal null distribution on $S^{510}$, we isolate genuine directional attractor mitigation ($-0.39$~pp \texttt{rep-4}, $p_{\mathrm{emp}}=0.0476$) from perplexity-drift confounding.
+
+\section{The Calibrate-then-Held-Out Protocol and Iso-Frontier Diagnostic}
+\label{sec:protocol}
+
+\subsection{Model Architecture and Parameter Count Convention}
+All primary evaluations are conducted on the Embedded Language Flow (ELF) family~\citep{hu2026elf}, which maps discrete token sequences $w_{1:T} \in \mathcal{V}_{\mathrm{T5}}^T$ ($|\mathcal{V}_{\mathrm{T5}}| = 32{,}100$, \texttt{t5-small} SentencePiece~\citep{raffel2020exploring}, native sequence length $T=1024$ T5 tokens, yielding $\approx 933\text{--}968$ GPT-2 tokens across the full ELF-B/M/L grids, $934\text{--}943$ on C1--C3, and $943.3\text{--}954.8$ at matched $H_{\mathrm{ps}}=5.20$ on ELF-B; whereas Plaid-1B operates at $T=256$, and our preregistration text nominally wrote $L=256$ while executing \texttt{elfx.sample.generate} at the native $T=1024$ checkpoint configuration; see \path{reports/PREREGISTRATION_DEVIATIONS.md}) into continuous representations ($d_{\mathrm{enc}}=512$) via a frozen \texttt{t5-small} encoder. A continuous flow-matching transformer $v_\theta(z_t, t, \mathbf{u}_t; s_{\mathrm{cfg}})$ is integrated over $t \in [0,1]$ with self-conditioning $\mathbf{u}_t = \mathbf{x}_{\mathrm{pred}}$~\citep{lipman2023flow}.
+
+\paragraph{Parameter Count Convention.}
+All model parameter counts reported in this manuscript---$104{,}579{,}940$ for ELF-B (104.6M; 105M nominal), $342{,}540{,}036$ for ELF-M (342.5M; 342M nominal), and $652{,}103{,}332$ for ELF-L (652.1M; 652M nominal)---quantify the trainable continuous flow transformer backbone and unembedding layer in \texttt{eval\_model}. These counts \textbf{strictly exclude the separate frozen T5-small text encoder} ($35{,}330{,}816$ parameters; HuggingFace \texttt{google-t5/t5-small}), which is loaded as an independent frozen module under \texttt{torch.float32} and evaluated without gradient tracking (\path{elfx/load.py}, lines 109--113). If the frozen encoder were included, total parameters would be 139.9M (ELF-B), 377.8M (ELF-M), and 687.4M (ELF-L).
+
+\subsection{Sampler Controls and Exact NFE Invariance}
+Sampling is governed by two continuous controls: (1) \textbf{Self-Conditioning Guidance ($\text{SC-CFG} = s_{\mathrm{cfg}} \in [1.0, 4.0]$)}, where distilled guidance tokens embed continuous guidance weight into a 4-token prefix alongside self-conditioning predictions; and (2) \textbf{Langevin Back-Noising ($\gamma \ge 0$)}, which injects Gaussian noise and rescales drift by $1 + \gamma c(t_k)$ during active rollout steps. Every sequence executes $\text{NFE}_{\mathrm{sample}} = K+1$ transformer forward passes ($K$ distilled rollout passes plus 1 terminal decode pass at $t=1$). Hardware-synchronized GPU benchmarks confirm that wall-clock latency is invariant within $\le 0.56\%$ ($3.373\text{--}3.392$~s for $B=64, K=32$) and Peak GPU VRAM is identical at $9021.9\text{ MiB}$ across baseline settings (Appendix~\ref{app:cuda_semantic}, Table~\ref{tab:cuda_benchmark}).
+
+\subsection{The Calibrate-then-Held-Out TOST Protocol}
+Matching a 2D $(\text{Gen-PPL}, H_{\mathrm{ps}})$ target by adjusting a single scalar control $\gamma_A$ exhibits an empirical root-gap $\Delta\gamma^*(\gamma_B) = \gamma_{\mathrm{PPL}}^* - \gamma_H^*$ that crosses zero near $\gamma_B \approx 1.0$ (Section~\ref{sec:non_equivalence}; Appendix~\ref{app:gamma_sweep}, Figure~\ref{fig:matched_entropy}). We exploit this locus to calibrate root-matched pairs on calibration seeds ($0\text{--}4$):
+\textbf{C1} ($\text{SC}=1.0, \gamma^*=1.346$ vs.\ $\text{SC}=2.0, \gamma=1.000$),
+\textbf{C2} ($\text{SC}=1.0, \gamma^*=1.547$ vs.\ $\text{SC}=3.0, \gamma=1.000$), and
+\textbf{C3} ($\text{SC}=1.0, \gamma^*=1.651$ vs.\ $\text{SC}=4.0, \gamma=1.000$).
+Confirmatory evaluation is executed across independent held-out pilot seeds $201\text{--}205$ and replication seeds $401\text{--}420$ ($M=1{,}000$ passages/seed). Two One-Sided Tests (TOST) equivalence~\citep{schuirmann1987comparison} is evaluated against \textbf{Strict Tier-I margins}: $\delta_{\mathrm{PPL}} = \pm 2.5\%$ ($\pm 0.69\text{--}0.81$ PPL across C1--C3; $\pm 0.72$ PPL at Gen-PPL $\approx 28.9$) and $\delta_H = \pm 0.015$ nats, representing $\approx 2.5\text{--}4.5\times$ the empirical pilot seed-to-seed standard deviation ($\mathrm{SD}_{\mathrm{pilot}} \approx 0.15\text{--}0.28$ PPL, $s_{\mathrm{seed}} \approx 0.0055$ nats across seeds $201\text{--}205$; \path{analysis/out/c1_c3_per_seed_recovered.json}).
+
+\subsection{Multiplicity Hierarchy and Gatekeeping}
+To resolve multiplicity ambiguities across multiple secondary metrics, we enforce a strict \textbf{Hierarchical Gatekeeping} architecture: \textbf{(1) Family 1 (Operating-Point Equivalence Gate):} 3 Joint Tier-I TOSTs on pairs \textbf{C1}, \textbf{C2}, \textbf{C3}. Primary analysis uses seed-level paired Common Random Numbers (CRN) differences $d_s = Y_{B,s} - Y_{A,s}$ ($df=4$ on the 5-seed pilot; $df=19$ on the 20-seed confirmatory replication); unpaired Welch TOST serves as sensitivity. Gate opens only if all 3 pairs pass Joint TOST under step-down Holm correction at $\alpha=0.05$ ($m=3$). \textbf{(2) Family 2 (Confirmatory Secondary Gate):} Tested \emph{only} if Family 1 gate opens. Comprises 3 representative, functionally distinct metrics: within-sample repetition (\texttt{rep-4}), cross-sample lexical dispersion ($\mathrm{JSD}_\pi$), and distributional alignment (MAUVE) across the 3 pairs ($3 \times 3 = 9$ tests). Multiplicity is controlled via Holm correction at $\alpha=0.05$ ($m=9$), reported explicitly as $p_{\mathrm{Holm}}(\text{Family 2}, m=9, \alpha=0.05)$, supplemented by exact $2^{20}$ sign-flip permutation tests across the 20 replication seeds ($401\text{--}420$). \textbf{(3) Family 3 (Exploratory Metrics):} All remaining secondary metrics (\texttt{within-distinct-2}, corpus \texttt{distinct-2}, Self-BLEU, CTW JCD, Vendi Scores) are reported descriptively without confirmatory significance claims.
+
+\subsection{Iso-Frontier Curves and Sensitivity Diagnostic (\texorpdfstring{$\kappa_m$}{kappa})}
+Let $\theta = (s, \gamma) \in \Theta \subset \mathbb{R}^2$ denote sampler controls and $F(\theta) = (\mathrm{Gen\text{-}PPL}(\theta), H_{\mathrm{ps}}(\theta))^\top \in \mathbb{R}^2$. Empirically, the primary Jacobian $J_F(\theta) \in \mathbb{R}^{2 \times 2}$ is near-rank-1 with singular values $\sigma_1 \approx 10\text{--}19$ vs.\ $\sigma_2 \approx 0.004\text{--}0.009$ (empirical condition number $\kappa(J_F) \approx 1{,}300\text{--}4{,}000$, $\cos(\nabla P, \nabla H) > 0.997$). Under finite tolerances ($\pm 2.5\%$ Gen-PPL, $\pm 0.015$ nats $H_{\mathrm{ps}}$), matched operating points form a thin 1D band around the level curve $\mathcal{C} = \{\theta \in \Theta : \mathrm{Gen\text{-}PPL}(\theta) = P_0\}$ with unit tangent $\mathbf{t}_{\mathcal{C}} \perp \nabla\mathrm{Gen\text{-}PPL}$.
+
+\paragraph{Proposition (Local Invariance Condition Along the Matched Band).}
+\emph{Let $\theta = (s, \gamma) \in \Theta \subset \mathbb{R}^2$ denote sampler controls, and let $F(\theta) = (\mathrm{Gen\text{-}PPL}(\theta), H_{\mathrm{ps}}(\theta))^\top$. Suppose the primary Jacobian $J_F(\theta)$ is near-rank-1 with dominant singular value $\sigma_1 \gg \sigma_2$ (empirical condition number $\kappa(J_F) \approx 1{,}300\text{--}4{,}000$), so that $\mathrm{row}(J_F)$ is approximately spanned by $\nabla \mathrm{Gen\text{-}PPL}(\theta)$. Let $\mathcal{C} = \{\theta \in \Theta : \mathrm{Gen\text{-}PPL}(\theta) = P_0\}$ be the level curve with unit tangent $\mathbf{t}_{\mathcal{C}} \perp \nabla\mathrm{Gen\text{-}PPL}$. Then, for any continuously differentiable secondary metric $m: \Theta \to \mathbb{R}$, $m$ is locally invariant along the matched band if and only if $\nabla m(\theta)$ is collinear with $\nabla\mathrm{Gen\text{-}PPL}(\theta)$, i.e.:}
+\begin{equation}
+    \kappa_m = \left.\frac{dm}{d\ell}\right|_{\mathcal{C}} = \nabla m \cdot \mathbf{t}_{\mathcal{C}} = 0.
+    \label{eq:kappa}
+\end{equation}
+\emph{Conversely, whenever $\kappa_m \neq 0$, the augmented matrix $[\nabla\mathrm{Gen\text{-}PPL}, \nabla m]^\top \in \mathbb{R}^{2 \times 2}$ has full rank 2, establishing that the secondary statistic $m$ varies along the matched band and cannot be determined by $(\text{Gen-PPL}, H_{\mathrm{ps}})$.}
+
+\begin{table*}[t]
+    \centering
+    \caption{Out-of-sample validation of the continuous iso-frontier model across \textbf{C1}--\textbf{C3}: Stage-1 predictions $\Delta_{\mathrm{pred}} = \int_{\mathcal{C}} \kappa_m d\ell$ (seeds $\{0,1\}$ for \texttt{rep-4}/MAUVE; 40-run Stage-1 surface across 11 operating points, seeds $0\text{--}4$, quadratic $R^2=0.980$ with residual SD for $\mathrm{JSD}_\pi$) vs.\ held-out pilot $\Delta_{\mathrm{obs}}$ (seeds $201\text{--}205$, paired CRN 95\% CIs, $df=4$).}
+    \label{tab:iso_frontier_validation}
+    \resizebox{0.92\textwidth}{!}{\input{tables/tab_iso_frontier_validation.tex}}
+\end{table*}
+
+We define the \textbf{tangent projection ratio} $\rho_m = |\kappa_m| / \|\nabla m\|_2 \in [0, 1]$. Non-zero $\kappa_m \neq 0$ (verified via seed-level bootstrap 95\% confidence intervals strictly excluding zero on C1 and C2, Family 3 exploratory) shows that along the tested iso-frontier, secondary text structure is not determined by $(\text{Gen-PPL}, H_{\mathrm{ps}})$. Integrating $\kappa_m$ on Stage-1 data (56 runs, seeds $\{0, 1\}$ for \texttt{rep-4}/MAUVE; 40 Stage-1 runs across 11 operating points, seeds $0\text{--}4$, quadratic fit $R^2=0.980$ with residual SD for $\mathrm{JSD}_{\pi}$) predicts held-out pilot shifts $\Delta_{\mathrm{obs}}$ on disjoint seeds $201\text{--}205$ ($M=1{,}000$/seed, paired CRN 95\% CIs, $df=4$; Table~\ref{tab:iso_frontier_validation}) within $2.5\%\text{--}6.7\%$ absolute relative error ($+2.5\%\text{--}+5.1\%$ on \texttt{rep-4} [$+0.0114$ / $+0.0191$ / $+0.0221$ vs.\ $+0.0110$ / $+0.0186$ / $+0.0210$] and $-6.1\%\text{--}-6.7\%$ on $\mathrm{JSD}_\pi$ [$+0.0660$ / $+0.1055$ / $+0.1217$ vs.\ $+0.0708$ / $+0.1126$ / $+0.1296$]). On the 20-seed replication ($df=19$), observed errors span $3.5\%\text{--}10.1\%$ ($+3.5\%\text{--}+4.7\%$ on \texttt{rep-4}; $-7.2\%\text{--}-10.1\%$ on $\mathrm{JSD}_\pi$). These observed discrepancies represent empirical out-of-sample prediction errors for the calibrated pairs rather than statistical confidence bounds or uniform manifold guarantees, whereas linear integration over-predicts nonlinear MAUVE on C3 by $+66.0\%$ ($+0.201$ vs.\ $+0.121$).
+
+\section{Operating-Point Non-Equivalence on ELF-B}
+\label{sec:non_equivalence}
+
+\begin{table*}[t]
+    \centering
+    \caption{Operating-point equivalence (Tier-I Joint TOST) and secondary divergence across \textbf{C1}--\textbf{C3} on ELF-B for the 5-seed pilot (seeds $201\text{--}205$, paired CRN $df=4$) and 20-seed confirmatory replication (seeds $401\text{--}420$, paired CRN $df=19$, $120$ GPU runs, $M=1{,}000$/seed; all 95\% CIs are paired CRN intervals $d_s = Y_{B,s} - Y_{A,s}$). Full panel with unpaired Welch sensitivity intervals in Appendix~\ref{app:full_tables}, Table~\ref{tab:confirmatory_tost_full}.}
+    \label{tab:confirmatory_tost}
+    \resizebox{\textwidth}{!}{\input{tables/tab_confirmatory_tost.tex}}
+\end{table*}
+
+\subsection{Confirmatory Joint TOST Equivalence on Held-Out Seeds}
+Table~\ref{tab:confirmatory_tost} reports both the 30-run held-out pilot (seeds $201\text{--}205$, $df=4$) and the 120-run preregistered confirmatory replication (seeds $401\text{--}420$, $df=19$, $M=1{,}000$/seed; \path{runs/replication_c1_c3/replication_c1_c3_summary.json}). All three pairs pass \textbf{Tier-I Joint TOST Equivalence} ($\pm 2.5\%$ Gen-PPL, $\pm 0.015$ nats $H_{\mathrm{ps}}$) in both cohorts:
+\textbf{C1} (Pilot $\Delta\text{Gen-PPL} = +0.18$, $p_{\mathrm{TOST}} = 0.0011$, $\Delta H_{\mathrm{ps}} = +0.0010$ nats, $p_{\mathrm{TOST}} = 0.0002$; 20-seed replication Gen-PPL $32.10\pm 0.25$ vs.\ $32.34\pm 0.30$, $\Delta = +0.25$, $p_{\mathrm{TOST}} = 5.19\times 10^{-12}$, $H_{\mathrm{ps}}$ $5.2467\pm 0.0051$ vs.\ $5.2484\pm 0.0047$ nats, $\Delta = +0.0017$, $p_{\mathrm{TOST}} = 3.33\times 10^{-16}$);
+\textbf{C2} (Pilot $\Delta\text{Gen-PPL} = +0.03$, $p_{\mathrm{TOST}} = 0.0004$, $\Delta H_{\mathrm{ps}} = -0.0013$ nats, $p_{\mathrm{TOST}} = 0.0002$; 20-seed replication Gen-PPL $28.72\pm 0.26$ vs.\ $28.83\pm 0.25$, $\Delta = +0.10$, $p_{\mathrm{TOST}} = 1.31\times 10^{-12}$, $H_{\mathrm{ps}}$ $5.2112\pm 0.0053$ vs.\ $5.2101\pm 0.0052$ nats, $\Delta = -0.0011$, $p_{\mathrm{TOST}} = 4.44\times 10^{-16}$); and
+\textbf{C3} (Pilot $\Delta\text{Gen-PPL} = +0.15$, $p_{\mathrm{TOST}} = 0.0030$, $\Delta H_{\mathrm{ps}} = -0.0045$ nats, $p_{\mathrm{TOST}} = 0.0018$; 20-seed replication Gen-PPL $27.28\pm 0.24$ vs.\ $27.48\pm 0.27$, $\Delta = +0.20$, $p_{\mathrm{TOST}} = 3.40\times 10^{-8}$, $H_{\mathrm{ps}}$ $5.1939\pm 0.0053$ vs.\ $5.1907\pm 0.0059$ nats, $\Delta = -0.0032$, $p_{\mathrm{TOST}} = 4.45\times 10^{-11}$).
+Under step-down Holm correction across $m=3$, the maximum adjusted $p$-value is $p_{\mathrm{Holm}}(\text{Family 1}) = 0.0030$ on the pilot and $p_{\mathrm{Holm}}(\text{Family 1}) = 3.40\times 10^{-8} \ll 0.05$ on the 20-seed confirmatory replication. The Family 1 Gate is unequivocally \textbf{OPEN}.
+
+\subsection{Secondary Structural Divergence and Multiplicity Audit}
+With the equivalence gate open, we evaluate Family 2 secondary metrics across both the 5-seed pilot and the 20-seed confirmatory replication (Table~\ref{tab:confirmatory_tost}):
+(1) \textbf{Within-Sample Repetition (\texttt{rep-4}):} Increasing $\text{SC-CFG}$ ($1 \to 4$) while lowering $\gamma$ drives \texttt{rep-4} upward on the 20-seed replication from $0.0310 \to 0.0420$ ($\Delta = +1.10\pm 0.04$~pp, $t_{19}=110.4$, $p_{\mathrm{Holm}} = 3.07\times 10^{-27}$) on \textbf{C1}, $0.0356 \to 0.0540$ ($\Delta = +1.84\pm 0.07$~pp, $t_{19}=114.8$, $p_{\mathrm{Holm}} = 1.64\times 10^{-27}$) on \textbf{C2}, and $0.0382 \to 0.0593$ ($\Delta = +2.11\pm 0.10$~pp, $t_{19}=97.0$, $p_{\mathrm{Holm}} = 3.11\times 10^{-26}$) on \textbf{C3}, matching the pilot shifts ($+1.10$, $+1.86$, and $+2.10$~pp);
+(2) \textbf{Cross-Sample Lexical Dispersion ($\mathrm{JSD}_\pi$):} Inter-sample divergence rises across all 20 replication seeds from $1.7193 \to 1.7928$~nats ($\Delta = +0.0735\pm 0.0036$, $p_{\mathrm{Holm}} = 7.72\times 10^{-26}$) on \textbf{C1}, $1.7040 \to 1.8177$~nats ($\Delta = +0.1137\pm 0.0057$, $p_{\mathrm{Holm}} = 8.72\times 10^{-26}$) on \textbf{C2}, and $1.6964 \to 1.8284$~nats ($\Delta = +0.1321\pm 0.0061$, $p_{\mathrm{Holm}} = 3.11\times 10^{-26}$) on \textbf{C3}; and
+(3) \textbf{Distributional Alignment (MAUVE):} On the 20-seed replication, MAUVE increases from $0.276 \to 0.385$ ($\Delta = +0.109\pm 0.032$, $p_{\mathrm{Holm}} = 5.13\times 10^{-12}$) on \textbf{C1}, $0.218 \to 0.379$ ($\Delta = +0.161\pm 0.034$, $p_{\mathrm{Holm}} = 3.50\times 10^{-14}$) on \textbf{C2}, and $0.197 \to 0.358$ ($\Delta = +0.161\pm 0.034$, $p_{\mathrm{Holm}} = 3.50\times 10^{-14}$) on \textbf{C3} (resolving the pilot C1 MAUVE $p_{\mathrm{Holm}}=0.0084$).
+All 9/9 Family 2 confirmatory tests reject the null hypothesis of no difference ($p_{\mathrm{Holm}} \le 5.13\times 10^{-12} \ll 0.05$), exhibiting $100\%$ sign consistency across all $20/20$ replication seeds (exact $2^{20}$ sign-flip permutation $p = 2/2^{20} = 1.91\times 10^{-6}$ for every metric). Exploratory Family 3 metrics replicate with identical sign consistency across all 20 seeds: 4-gram Self-BLEU drops by $-2.80$, $-4.00$, and $-4.36$~points ($p \le 1.10\times 10^{-23}$), while byte-level CTW JCD drops by $-0.0117$, $-0.0198$, and $-0.0246$~bpb ($p \le 8.65\times 10^{-15}$). Three-stream CRN ($\hat{r}_{AB} \in [0.56, 0.90]$ on primary metrics, up to $0.99$ on $\mathrm{JSD}_\pi$) shrinks paired SEs by up to $10.5\times$ on $\mathrm{JSD}_\pi$ ($16.8\times$ on $H_{\mathrm{pool}}$) with $100\%$ LOSO sign consistency (Appendix~\ref{app:stats}, Table~\ref{tab:c1_c3_seed_level}).
+
+\section{Is the Divergence Perceptible? Automated Evaluation \& Reference Audit}
+\label{sec:perceptibility}
+
+\subsection{Verified Pretraining-Excluded Reference Corpus}
+To verify that secondary divergences are not artifacts of reference memorization from \texttt{R0\_owt\_ref} (drawn from the final shard of \texttt{openwebtext-t5}), we execute a 13-gram Bloom filter contamination audit (\path{notebooks/17_heldout_reference_and_contamination_audit.ipynb}; \path{runs/heldout_reference/heldout_reference_manifest.json}) across \textbf{Reference A} ($1{,}008$ documents from OpenAI \texttt{gpt-2-output-dataset} \texttt{webtext.test} screened against $856{,}301$ OpenWebText training 13-grams, purging all $8$ overlapping documents [$0.79\%$] to yield $1{,}000$ clean documents in \texttt{clean\_ref\_a.jsonl}) and \textbf{Reference B} ($1{,}000$ post-cutoff documents in \texttt{clean\_ref\_b.jsonl}). Re-evaluating seeds $201\text{--}205$ (\path{runs/heldout_reference/heldout_paired_summary.json}) confirms that model-free depth-6 \texttt{CTW JCD} decreases significantly in Arm B across all three pairs: $0.1408\pm 0.0022 \to 0.1347\pm 0.0037$~bpb ($\Delta = -0.0060$~bpb, $p=0.0097$) on \textbf{C1}, $0.1479\pm 0.0028 \to 0.1363\pm 0.0043$~bpb ($\Delta = -0.0115$~bpb, $p=0.0020$) on \textbf{C2}, and $0.1514\pm 0.0031 \to 0.1382\pm 0.0045$~bpb ($\Delta = -0.0132$~bpb, $p=0.0024$) on \textbf{C3}. Out-of-domain MAUVE compresses to $0.026\text{--}0.035$, remaining higher on \textbf{C1} ($0.0261 \to 0.0349$, $\Delta = +0.0088$, $p=0.0102$), directionally higher on \textbf{C3} ($0.0273 \to 0.0320$, $\Delta = +0.0047$, $p=0.183$), and indistinguishable on \textbf{C2} ($0.0286 \to 0.0275$, $\Delta = -0.0011$, $p=0.595$).
+
+\subsection{Validated Automated (LLM) Judgment Panel}
+We evaluate perceptibility via a 3-judge LLM panel (\path{notebooks/15_final_human_evaluation.ipynb}; \path{runs/llm_judge_panel/llm_judge_panel_summary.json}):
+\textbf{(1) Benchmark Calibration Gate (HANNA):} On $N=50$ human-annotated story pairs from HANNA ($150$ calibration evaluations total, rating gap $\ge 0.75$, threshold $>70\%$), all three judges pass: \texttt{Qwen2.5-7B-Instruct} ($86.0\%, 43/50$), \texttt{Llama-3.1-8B-Instruct} ($98.0\%, 49/50$), and \texttt{Mistral-7B-Instruct-v0.3} ($93.0\%, 46.5/50$).
+\textbf{(2) Position-Swapped Pairwise Evaluation:} Each judge evaluates $N=100$ CRN-matched passage pairs per contrast across C1 and C3 ($300$ pooled judgments/contrast, $600$ paired evaluations total, executing both $(A, B)$ and $(B, A)$ orders for $1{,}200$ individual LLM calls). On \textbf{C1}, Arm B wins $46.67\%$ ($140.0/300$, $\mathrm{SE}=2.88\%$, 95\% CI $[41.02\%, 52.31\%]$, $p_{\mathrm{TOST}}=0.2814$ vs.\ $\pm 5\%$ parity) as judges penalize early repetition. On \textbf{C3}, Arm B wins $50.17\%$ ($150.5/300$, $\mathrm{SE}=2.89\%$, 95\% CI $[44.51\%, 55.82\%]$), passing TOST parity ($p_{\mathrm{TOST}}=0.0470 < 0.05$): higher self-conditioning sharpens topical coherence on non-looping passages while inducing phrase loops on a subset of trajectories, averaging out opposing shifts. We emphasize plainly that \emph{no human study was conducted} (protocol archived in \path{human_eval/protocol/}).
+
+\begin{table*}[t]
+    \centering
+    \caption{Mechanistic evaluation of Attractor-Contrast-Escape (ACE)~\citep{zhang2026selfcond} self-conditioning feedback projection on ELF-B (seeds $201\text{--}205$, $n=5$ seeds/condition), including uncompensated steering (Rows 3--6, unpaired Welch 95\% sensitivity CIs) and $\gamma$-compensated matched ACE at $\gamma^*=1.1699$ (Row 7, Notebook 21). Full suite in Appendix~\ref{app:full_tables}, Table~\ref{tab:ace_intervention_full}.}
+    \label{tab:ace_intervention}
+    \resizebox{\textwidth}{!}{\input{tables/tab_ace_intervention.tex}}
+\end{table*}
+
+\section{Scale Persistence and Architecture Generality}
+\label{sec:scale}
+
+\subsection{Cross-Scale Validation up to 652.1M Parameters}
+Evaluating $2\times 2$ factorials across ELF-M (342.5M, $M=1{,}000$/seed, Appendix~\ref{app:scale_cross}, Table~\ref{tab:elfm_m1}) and ELF-L (652.1M, $6.2\times$ scale, $M=500$/seed, Appendix~\ref{app:scale_cross}, Table~\ref{tab:elfl_l1}; full panels in Appendix~\ref{app:full_tables}, Tables~\ref{tab:elfm_m1_full}--\ref{tab:elfl_l1_full}) confirms scale persistence. On ELF-M, exploratory off-diagonal Pair M1 ($(1.0, 2.00)$ vs.\ $(4.0, 0.50)$, seeds $0\text{--}4$) passes strict Tier-I TOST on Gen-PPL ($\Delta = +0.09$, $p_{\mathrm{TOST,I}} = 0.0052$) but fails strict Tier-I on $H_{\mathrm{ps}}$ ($\Delta H_{\mathrm{ps}} = -0.0210$~nats vs.\ $\pm 0.015$~nats bound, $p_{\mathrm{TOST,I}} = 0.9889$, $p_{\mathrm{diff}} = 0.0002$), satisfying only post-hoc exploratory Tier-II ($\pm 0.025$~nats, $p_{\mathrm{TOST,II,paired}} = 0.0354$) with $+3.47$~pp \texttt{rep-4} and $+0.2774$~nats $\mathrm{JSD}_\pi$ divergence ($p_{\mathrm{paired}} < 0.0001$). Raising $\text{SC-CFG}$ ($1.0 \to 4.0$) increases \texttt{rep-4} across all scales ($+3.29\pm 0.07$~pp on ELF-B; $+3.67\pm 0.03$~pp on ELF-M, $p_{\mathrm{block}} = 2.20\times 10^{-8}$; $+3.40\pm 0.10$~pp on ELF-L, $p_{\mathrm{block}} = 0.00086$) with significant interactions $I_s = \Delta_{\mathrm{SC}}(\gamma=0.5) - \Delta_{\mathrm{SC}}(\gamma=2.0)$ ($+0.82$~pp on ELF-M; $+2.53$~pp on ELF-L, $p=0.0007$). Across \texttt{mpnet}, \texttt{MiniLM}, and \texttt{bge-base} (Appendix~\ref{app:cuda_semantic}, Tables~\ref{tab:embedding_geometry}--\ref{tab:semantic_diversity}; Table~\ref{tab:embedding_geometry_full}), high-SC arms achieve higher Vendi Score $\mathrm{VS}_{\cos}$ ($14/18$ C1--C3 tests pass 6-way Holm at $p < 0.05$), while \texttt{ABTT-3} mean cosine distance is pinned near $250/249 \approx 1.0040$ (Eq.~\eqref{eq:abtt_bound}).
+
+\subsection{Architecture Generality: Plaid-1B Response Surface and Iso-Contour Audit}
+We evaluate Plaid-1B ($1{,}275{,}925{,}506$ parameters)~\citep{gulrajani2023plaid} across a 32-run $4\times 4$ factorial grid over $T_{\mathrm{score}} \in \{0.8, 1.0, 1.2, 1.5\}$ and $K \in \{32, 64, 128, 256\}$ (seeds $101\text{--}102$, $M=64$/run, $T=256$; \path{notebooks/18_plaid_feasibility_spike.ipynb}, \path{runs/plaid_eval/plaid_spike_response_surface.json}, extending an initial 24-run $3\times 4$ sweep consolidated in the same artifact; preflight gate at $(0.9, 64)$: $\text{Gen-PPL}=51.60 \le 200.0$, English ratio $94.98\%$, \texttt{PASSED}):
+\textbf{(1) Descriptive 1D Near-Iso-Perplexity Non-Equivalence on Plaid-1B:} In a descriptive comparison of two-seed cell means ($n=2$ seeds/cell, $df=1$; no formal Tier-I TOST equivalence is claimed from $n=2$ seeds), trading step count for score temperature between $(T_{\mathrm{score}}=0.8, K=32)$ ($\text{Gen-PPL} = 54.74\pm 0.62$) and $(T_{\mathrm{score}}=1.0, K=256)$ ($\text{Gen-PPL} = 53.37\pm 5.19$) increases within-sample repetition (\texttt{rep-4}) by $+148\%$ ($0.0074\pm 0.0006 \to 0.0183\pm 0.0058$) and $\mathrm{JSD}_\pi$ from $2.092\pm 0.038 \to 2.208\pm 0.008$~nats ($\Delta = +0.115$~nats).
+\textbf{(2) 2D Joint Iso-Contour Gate Decision (\texttt{NO-GO}):} Because Plaid-1B fixes self-conditioning internally ($w_{\mathrm{SC}}=0.5$) and exposes $(T_{\mathrm{score}}, K)$ with distinct entropy-to-log-perplexity slopes ($\partial H_{\mathrm{ps}}/\partial\log\text{PPL} = 0.189$ along $T_{\mathrm{score}}$ vs.\ $0.111$ along $K$), matching $\text{Gen-PPL} \approx 54$ leaves a $+0.070$~nat $H_{\mathrm{ps}}$ separation ($4.686\pm 0.006$ vs.\ $4.756\pm 0.023$~nats, $4.7\times$ Tier-I), triggering \texttt{GATE\_DECISION: NO-GO} (gating out Notebook 19) and confirming that 2D frontier non-identifiability specifically requires collinear control gradients ($\kappa(J_F) \gg 1$).
+
+\section{Mechanistic Probing: Matched ACE and Control Attractors}
+\label{sec:ace}
+
+\subsection{The Self-Conditioning Attractor and Uncompensated ACE}
+\citet{zhang2026selfcond} demonstrated that self-conditioning in diffusion language models creates a dominant feedback attractor direction $\hat{\mathbf{d}}_{\mathrm{ACE}}$ that drives phrase repetition, proposing ACE projection $\mathbf{u}_{\mathrm{steered}} = \mathbf{u}_t - \alpha \langle \mathbf{u}_t, \hat{\mathbf{d}}_{\mathrm{ACE}} \rangle \hat{\mathbf{d}}_{\mathrm{ACE}}$. Evaluating ACE across all $K-1=31$ non-final steps on ELF-B (Table~\ref{tab:ace_intervention}) confirms repetition sensitivity: $\alpha = +1.0$ reduces \texttt{rep-4} by $-0.65$~pp ($p=0.0046$), whereas reverse-polarity steering ($\alpha = -0.5$) inflates \texttt{rep-4} by $+1.68$~pp ($p=1.16\times 10^{-4}$). However, uncompensated ACE steering at fixed $\gamma=1.000$ shifts Gen-PPL upward by $+2.06\text{--}2.90$ points ($+7.5\%\text{--}10.5\%$) and $H_{\mathrm{ps}}$ by $+0.028\text{--}0.032$~nats, violating Tier-I equivalence margins.
+
+\subsection{\texorpdfstring{$\gamma$}{gamma}-Compensated Matched ACE and Random Direction Null}
+To separate genuine attractor suppression from operating-point drift, we execute the \textbf{$\gamma$-compensated matched-ACE protocol} and 20-direction orthogonal null benchmark on ELF-B (\path{notebooks/21_ace_null_distribution_and_matched_ace.ipynb}; \path{runs/p21_matched_ace/matched_ace_summary.json}, Table~\ref{tab:ace_intervention} Row 7):
+\textbf{(1) Subspace Stability and $\gamma^*$ Calibration:} $\hat{\mathbf{d}}_{\mathrm{ACE}}$ extracted from $4{,}096$ trajectories exhibits high cosine stability ($|\langle \hat{\mathbf{d}}_{4096}, \hat{\mathbf{d}}_{500}\rangle| = 0.9568 \ge 0.85$); sweeping $\gamma \in \{0.70, 0.85, 1.00, 1.15\}$ under $(\text{SC}=4.0, \alpha=+0.50)$ on seeds $301\text{--}302$ ($\text{Gen-PPL} \in \{32.15, 30.41, 28.86, 27.66\}$) identifies $\gamma_{\mathrm{comp}}^* = 1.1699$ to match the C3 target operating point.
+\textbf{(2) Restored Tier-I Joint TOST Equivalence:} On held-out seeds $201\text{--}205$, $(\text{SC}=4.0, \alpha=+0.50, \gamma_{\mathrm{comp}}^*=1.1699)$ achieves $\text{Gen-PPL} = 27.63\pm 0.17$ ($p_{\mathrm{TOST,PPL}}=0.00012$) and $H_{\mathrm{ps}} = 5.1934\pm 0.0064$~nats ($p_{\mathrm{TOST},H}=0.00092$), passing Tier-I Joint TOST against C3 Arm A ($27.41\pm 0.12$ PPL, $5.1942\pm 0.0043$ nats; $p_{\mathrm{joint}}=0.0009 < 0.05$).
+\textbf{(3) Decomposing Drift vs.\ Directional Steering against 20 Null Directions:} At strictly matched $(\text{Gen-PPL}, H_{\mathrm{ps}})$, matched ACE yields $\texttt{rep-4} = 5.54\pm 0.09\%$, reducing repetition by $-0.39$~pp vs.\ unsteered C3 Arm B ($5.93\%$, accounting for $18.3\%$ of the $+2.10$~pp excess while leaving $+1.72$~pp above Arm A $3.83\%$, $p < 0.0001$) and outperforming all 20 random orthogonal directions on $S^{510}$ (null $5.89\pm 0.10\%$, range $[5.64\%, 6.05\%]$, $p_{\mathrm{emp}} = 1/21 = 0.0476 < 0.05$). Comparing $-0.39$~pp against uncompensated ACE ($-0.55$~pp at $\alpha=+0.50$, $-0.65$~pp at $\alpha=+1.00$) demonstrates that $\approx 29\%\text{--}40\%$ of uncompensated ACE's apparent repetition drop is an artifact of its $+7.5\%\text{--}10.5\%$ perplexity shift.
+
+\section{Related Work and Practical Recommendations}
+\label{sec:related_work}
+
+\paragraph{Perplexity Hacking and Self-Conditioning Dynamics.}
+\citet{franca2026hacking} demonstrated that unconditional Gen-PPL can be driven arbitrarily low by training-free samplers that cycle through high-frequency $n$-grams, advocating Context-Tree Weighting Jeffreys Coding Divergence (CTW JCD) and LLM-judge panels. While França \& Tong show that the frontier can be \emph{adversarially hacked} by degenerate decoders, we show that the frontier is \emph{inherently ambiguous} among legitimate operating points of a single model's inference controls. Concurrently, \citet{zhang2026selfcond} identified that self-conditioning collapses onto a low-rank subspace and proposed ACE projection. We extend their findings by showing that uncompensated ACE shifts $(\text{Gen-PPL}, H_{\mathrm{ps}})$ by $+7.5\text{--}10.5\%$ PPL, and by introducing $\gamma$-compensated matched ACE ($\gamma^*=1.1699$, $p_{\mathrm{joint}}=0.0009$) to isolate genuine directional suppression ($-0.39$~pp \texttt{rep-4}, $p_{\mathrm{emp}}=0.0476$) from frontier drift.
+
+\paragraph{Guidance, Diversity Metrics, and Benchmarking Recommendations.}
+In continuous text flows, classifier-free guidance~\citep{ho2022classifier} interacts with Langevin noise $\gamma$ so that higher guidance with lower $\gamma$ increases local repetition (\texttt{rep-4}) while expanding cross-sample dispersion ($\mathrm{JSD}_\pi$, Vendi Score~\citep{friedman2023vendi}, MAUVE~\citep{pillutla2021mauve}) and lowering Self-BLEU~\citep{caccia2020language} via the Shannon concavity identity $H_{\mathrm{pool}} = H_{\mathrm{ps,weighted}} + \mathrm{JSD}_{\pi}$. We recommend three reporting standards for diffusion and flow LM benchmarks: (1) \textbf{Dual-Axis Reporting}, pairing $(\text{Gen-PPL}, H_{\mathrm{ps}})$ with a within-sequence repetition metric (\texttt{rep-4}) and a cross-sequence dispersion metric ($\mathrm{JSD}_\pi$, Self-BLEU, or CTW JCD); (2) \textbf{Control-Freezing Protocols} when comparing architectures at fixed NFE; and (3) \textbf{Verified Pretraining-Excluded Reference Splits} audited for $n$-gram overlap.
+\label{sec:end_of_main}
+
+\clearpage
+\section*{Limitations}
+\label{sec:discussion}
+Our primary 2D $(\text{Gen-PPL}, H_{\mathrm{ps}})$ equivalence findings are established on unconditional text generation on OpenWebText within the ELF flow-matching family (104.6M to 652.1M). While our 32-run Plaid-1B evaluation ($n=2$ seeds/cell, descriptive) exhibits $+148\%$ \texttt{rep-4} divergence along 1D near-iso-perplexity contours ($\text{Gen-PPL}\approx 54$), Plaid-1B's $(T_{\mathrm{score}}, K)$ controls exhibit distinct entropy-to-perplexity slopes that separate $H_{\mathrm{ps}}$ by $+0.070$~nats, showing that full 2D frontier non-identifiability specifically requires coupled continuous drift/diffusion controls with near-rank-1 primary Jacobians. Extending 2D iso-frontier audits to conditional generation tasks (e.g., summarization, translation) remains important future work. Finally, while our 3-judge LLM panel ($600$ paired judge evaluations across C1 and C3---$300$ per contrast, $100$ per judge, comprising $1{,}200$ individual forward/reverse LLM calls---plus $150$ calibration evaluations on HANNA at $86\%\text{--}98\%$ concordance) provides algorithmic evidence of competing perceptual trade-offs, it does not replace large-scale human evaluation.
+
+\section*{Ethical Considerations}
+This work audits evaluation methodology and inference controls using publicly available checkpoints and open-domain text. No human subjects data or private personal information was collected. By exposing how matched scalar metrics mask severe phrase looping and mode shifts, our findings foster more reliable reporting standards for generative language models.
+
+\bibliographystyle{acl_natbib}
+\bibliography{references}
+
+\clearpage
+\appendix
+
+\section{Statistical Reanalysis, Paired vs.\ Unpaired Seed-Level Audit, and ANOVA}
+\label{app:stats}
+
+Table~\ref{tab:direct_pairs} and Table~\ref{tab:jcd_selfbleu_pairs} present the exploratory pairs on ELF-B ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed across 529 baseline runs totaling $528{,}000$ generated sequences). In the exploratory grid (where refinement runs at $\text{SC}=1.0, \gamma=1.25$ and $\gamma=1.75$ achieve 2-seed mean Gen-PPL $34.29$ and $26.29$, and \textbf{Refined-2} Arm B at $\text{SC}=4.0, \gamma=1.0$ achieves $27.47$ [$+4.49\%$ relative difference]), direct pair \textbf{S1} exhibits a $+39.7\%$ relative increase in \texttt{rep-4} (two-sample Welch $p=0.0029$, 5-seed $t_{\mathrm{Welch}}=43.13$), a significant shift in \texttt{distinct-2} ($p=0.0211$), a $+85.1\%$ relative increase in MAUVE ($p=0.0170$; requiring $M_{\min}=1{,}158$ samples for $80\%$ power at $\alpha=0.05$), and a $-0.0191$~bpb ($-0.0261$~bpb on the matched rescore) shift in CTW JCD; direct pair \textbf{S2} exhibits $+56.1\%$ in \texttt{rep-4} and $+62.6\%$ in MAUVE; \textbf{Refined-1} exhibits $+38.1\%$ in \texttt{rep-4} ($p=0.0005$, 5-seed $t_{\mathrm{Welch}}=46.15$) and $+77.1\%$ in MAUVE ($p=0.0255$); and \textbf{Refined-2} (Arm A Gen-PPL $26.55$) exhibits $+65.5\%$ in \texttt{rep-4} (5-seed $t_{\mathrm{Welch}}=50.40$; maximum 6-pair Holm $p=0.0385$ on 2 seeds and $0.0193$ on 5 seeds), $+91.1\%$ in MAUVE, and $-0.0247$~bpb in CTW JCD. On ELF-M (29 runs; ANCOVA partial $R^2=0.734$ of SC-CFG on \texttt{rep-4}; balanced $2\times 2\times 5$ ANOVA SC-CFG variance share $98.3\%$, $F_{1,16}=7060.3$ on \texttt{rep-4}, and $\gamma$ variance share $95.0\%$ on $H_{\mathrm{pool}}$ and $90.1\%$ on Self-BLEU), the 2-seed M1 baseline achieves Gen-PPL $23.01$ vs.\ $23.15$ ($+0.63\%$), \texttt{rep-4} $2.95\%$ vs.\ $6.42\%$ ($t_{\mathrm{Welch}}=62.18, df_{\mathrm{Satt}}=1.59, p_{\mathrm{Holm}}=0.0067$; 5-seed $t_{\mathrm{Welch}}=53.62, df_{\mathrm{Satt}}=5.86$), and Arm B \texttt{within-distinct-2} $0.7554$. Across the matched-entropy contour ($H_{\mathrm{ps}}=5.20$, where mean GPT-2 token lengths span $943.3$ [$943$] at $\text{SC-CFG}=4$ to $954.8$ [$955$] at $\text{SC-CFG}=1$), one-way ANOVA yields $F=2181.0$ ($4\times 6\times 2$ non-collapsed $F_{3,24}=2455.7$, $66.1\%$ variance share) for \texttt{rep-4}, $F=4926.1$ ($4\times 7\times 2$ $\gamma$ $F_{6,28}=5701.4$, $85.2\%$ non-collapsed share) for \texttt{distinct-2}, and $F=18.3$ ($92.5\%$ $\gamma$ variance share) for MAUVE, while response-surface regression controlling for $\log\text{Gen-PPL}$ and $H_{\mathrm{ps}}$ yields partial slopes $\beta_{\gamma} = -0.0108$ and $\beta_{\mathrm{SC}} = +0.0044$ ($+0.00641$ in the 30-cell 5-term quadratic surface) on \texttt{rep-4} (Table~\ref{tab:ancova}). Table~\ref{tab:c1_c3_seed_level} reports the complete 5-seed paired CRN audit ($d_s = Y_{B,s} - Y_{A,s}$, $df=4$), unpaired Satterthwaite Welch sensitivity intervals, and Leave-One-Seed-Out (LOSO) ranges across all 7 five-seed pairs. Table~\ref{tab:decisions} reports practical configuration selection under operating budgets.
+
+\begin{table*}[t]
+    \centering
+    \caption{Direct uninterpolated configuration pairs in the 56-run exploratory ELF-B factorial grid ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed, $2{,}000$ sequences/cell). Strict pairs satisfy $|\Delta H_{\mathrm{ps}}| \le 0.010$ nats and relative $|\Delta\text{Gen-PPL}| \le 4.1\%$; Broad pairs satisfy $|\Delta H_{\mathrm{ps}}| \le 0.031$ nats. Parentheses report seed-0/seed-1 differences.}
+    \label{tab:direct_pairs}
+    \resizebox{0.84\textwidth}{!}{\input{tables/tab_direct_pairs.tex}}
+\end{table*}
+
+\begin{table*}[t]
+    \centering
+    \caption{Corpus-level vocabulary divergence ($H_{\mathrm{pool}}$, $\mathrm{JSD}_{\pi}$), within-sample \texttt{rep-4}, corpus \texttt{distinct-2}, 4-gram Self-BLEU, CTW JCD (bpb), and MAUVE across nine exploratory ELF-B configuration pairs ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed; \textbf{S1}, \textbf{Refined-1}, and \textbf{Refined-2} replicated to $n=5$ seeds/cell in Table~\ref{tab:c1_c3_seed_level}).}
+    \label{tab:jcd_selfbleu_pairs}
+    \resizebox{0.84\textwidth}{!}{\input{tables/tab_jcd_selfbleu_pairs.tex}}
+\end{table*}
+
+\begin{table*}[t]
+    \centering
+    \caption{Seed-level TOST test statistics ($t_{1,\mathrm{low}}, t_{2,\mathrm{high}}$), Paired Seed-Blocked Common Random Numbers (CRN, $df=4$) primary 95\% CIs vs.\ Unpaired Satterthwaite Welch ($df_{\mathrm{Satt}}$) sensitivity intervals, Pearson cross-arm correlations $\hat{r}_{AB}$, Leave-One-Seed-Out (LOSO) ranges, and per-seed differences $\Delta_s = Y_{B,s} - Y_{A,s}$ across all 7 five-seed pairs.}
+    \label{tab:c1_c3_seed_level}
+    \input{tables/tab_c1_c3_seed_level.tex}
+\end{table*}
+
+\begin{table*}[t]
+    \centering
+    \caption{Conditional response-surface regressions (Panel A, descriptive only, $df_{\mathrm{seed}}=1$) and seed-blocked ANCOVA (Panel B, $df=4$) across ELF-B and ELF-M.}
+    \label{tab:ancova}
+    \input{tables/tab_ancova.tex}
+\end{table*}
+
+\begin{table*}[t]
+    \centering
+    \caption{Practical configuration selection on ELF-B under four $(\text{Gen-PPL} \le \tau, H_{\mathrm{ps}} \ge h_0)$ operating budgets. Within every constraint regime containing $\ge 2$ admissible cells, optimizing for minimum local repetition (\texttt{rep-4}) vs.\ maximum corpus distributional quality (MAUVE or \texttt{distinct-2}) selects opposite corners of the $(\text{SC-CFG}, \gamma)$ grid.}
+    \label{tab:decisions}
+    \resizebox{0.88\textwidth}{!}{\input{tables/tab_decisions.tex}}
+\end{table*}
+
+\section{Synchronized CUDA Hardware Benchmarks and 5-Seed Embedding-Space Diversity}
+\label{app:cuda_semantic}
+
+Table~\ref{tab:cuda_benchmark} reports the hardware-synchronized \texttt{torch.cuda.Event} GPU batch timing, sequence throughput, Peak GPU VRAM, and NFE accounting reconciliation across five $(\text{SC-CFG}, \gamma)$ conditions on ELF-B ($K=32, B=64$, 5 repeats/condition). Table~\ref{tab:embedding_geometry} reports the 5-seed embedding-space Vendi Score ($\mathrm{VS}_{\cos}$) summary across \texttt{all-mpnet-base-v2}, \texttt{all-MiniLM-L6-v2}, and \texttt{BAAI/bge-base-en-v1.5} (raw and \texttt{ABTT-3}), partitioned into Part I (Confirmatory Held-Out ELF-B Pairs \textbf{C1}--\textbf{C3}, seeds $201\text{--}205$, passing strict Joint Tier-I TOST) and Part II (Exploratory Stage-1 Pairs \textbf{S1} and \textbf{M1}, seeds $0\text{--}4$, where \textbf{M1} fails strict Tier-I on $H_{\mathrm{ps}}$ at $p_{\mathrm{TOST,I}}=0.9889$ and satisfies only post-hoc exploratory Tier-II at $p_{\mathrm{TOST,II,paired}}=0.0354$). Table~\ref{tab:semantic_diversity} reports the complementary Stage-1 Seed-0 6-representation embedding geometry and Task-1 within-passage half-to-half semantic redundancy audit across all 9 Stage-1 exploratory pairs ($M_{\mathrm{sub}}=200$ passages), while Appendix~\ref{app:full_tables}, Table~\ref{tab:embedding_geometry_full} provides the complete 10-column 5-seed raw and \texttt{ABTT-3} panel breakdown.
+
+\paragraph{Algebraic Upper Bound for \texttt{ABTT-3} Mean Cosine Distance.}
+Because \texttt{ABTT-3} subtracts the sample mean $\bar{\mathbf{x}}$ before projecting out the top 3 PCs and re-normalizing to unit length, $\sum_{i=1}^{M_{\mathrm{sub}}} \hat{\mathbf{x}}_i \approx \mathbf{0}$. Expanding $\|\sum_{i=1}^{M_{\mathrm{sub}}} \hat{\mathbf{x}}_i\|_2^2 = M_{\mathrm{sub}} + \sum_{i\neq j}\hat{\mathbf{x}}_i^\top \hat{\mathbf{x}}_j \ge 0$ yields the exact mathematical upper bound:
+\begin{equation}
+    \begin{aligned}
+        \bar{d}_{\cos} &= 1 - \frac{\|\sum_{i=1}^{M_{\mathrm{sub}}}\hat{\mathbf{x}}_i\|_2^2 - M_{\mathrm{sub}}}{M_{\mathrm{sub}}(M_{\mathrm{sub}}-1)} \\
+        &\le \frac{M_{\mathrm{sub}}}{M_{\mathrm{sub}}-1} = \frac{250}{249} \approx 1.004016.
+    \end{aligned}
+    \label{eq:abtt_bound}
+\end{equation}
+All \texttt{ABTT-3} mean cosine distances cluster at $1.0038\text{--}1.0040$ with $|\Delta\bar{d}_{\cos}| \le 10^{-4}$, explaining why $\mathrm{VS}_{\cos}$ is the informative statistic under \texttt{ABTT-3}.
+
+\begin{table*}[t]
+    \centering
+    \caption{Hardware-synchronized \texttt{torch.cuda.Event} GPU timing and Peak VRAM benchmark on ELF-B ($K=32, B=64$, 5 repeats/condition after warm-up), alongside exact reconciliation of the three NFE fields logged in the codebase.}
+    \label{tab:cuda_benchmark}
+    \input{tables/tab_cuda_benchmark.tex}
+\end{table*}
+
+\begin{table*}[t]
+    \centering
+    \caption{Five-seed embedding-space Vendi Score ($\mathrm{VS}_{\cos}$) summary across three pretrained sentence encoders (\texttt{all-mpnet-base-v2}, \texttt{all-MiniLM-L6-v2}, \texttt{BAAI/bge-base-en-v1.5}) under raw unit-normalized embeddings and \texttt{ABTT-3} ($n=5$ seeds/arm, $M_{\mathrm{sub}}=250$/seed), separating confirmatory Tier-I pairs (\textbf{C1}--\textbf{C3}, Part I) from exploratory Stage-1 pairs (\textbf{S1, M1}, Part II). Full panel including $\bar{d}_{\cos}$ in Appendix~\ref{app:full_tables}, Table~\ref{tab:embedding_geometry_full}.}
+    \label{tab:embedding_geometry}
+    \resizebox{\textwidth}{!}{\input{tables/tab_embedding_geometry.tex}}
+\end{table*}
+
+\begin{table*}[t]
+    \centering
+    \caption{Stage-1 exploratory Seed-0 embedding geometry across six sentence representations ($M_{\mathrm{sub}}=200$ passages) and Task-1 within-passage half-to-half cosine similarity ($\text{Half-Sim}$, toks $1\text{--}128$ vs.\ $129\text{--}256$) across all nine Stage-1 exploratory pairs.}
+    \label{tab:semantic_diversity}
+    \input{tables/tab_semantic_diversity.tex}
+\end{table*}
+
+\section{Uncontrolled Langevin Back-Noising (\texorpdfstring{$\gamma$}{gamma}) Sweep and Entropy Collapse}
+\label{app:gamma_sweep}
+
+Table~\ref{tab:gamma_sweep} and Figure~\ref{fig:collapse} present the 2-seed $\gamma \in [0, 3.0]$ sweep on ELF-B at fixed $\text{SC-CFG}=3.0$ ($M=1{,}000$ samples/seed, median per-run 95\% bootstrap CI half-width $2.0\%$, reaching $\text{Gen-PPL}=16.92$ [$16.83$ on seed 0] and $H_{\mathrm{ps}}=4.950$~nats at $\gamma=3.0$; collapsing onto $H_{\mathrm{ps}}$ with linear $R^2=0.945$, quadratic $R^2=0.989$, and cubic $R^2=0.993$), compared against the 1,000-passage OpenWebText reference subsample (\texttt{runs/R0\_owt\_ref/summary.json}: $\text{Gen-PPL}=17.1803$, $H_{\mathrm{ps}}=5.4037$ nats, $\texttt{rep-4}=0.0302$, $\texttt{distinct-2}=0.4400$). Figure~\ref{fig:matched_entropy} and Table~\ref{tab:matched_entropy_app} report raw $\gamma=0$ perplexities ($103.6$ at $\text{SC-CFG}=1$ to $43.6$ at $\text{SC-CFG}=4$, a $2.37\times$ raw ratio) and interpolated values at reference entropies $H_{\mathrm{ref}} \in \{5.15, 5.20\}$ nats across $\text{SC-CFG} \in \{1, 2, 3, 4\}$ (at $H_{\mathrm{ps}}=5.15$, Gen-PPL spans $24.49$, $23.68$, and $25.13$ [$3.4\%$ spread]; at $H_{\mathrm{ps}}=5.20$, reached at $\gamma=1.61$ for $\text{SC-CFG}=1$ vs.\ $\gamma=0.90$ for $\text{SC-CFG}=4$, MAUVE rises by $+0.203$ [$0.204 \to 0.407$] compared against a $0.090$ maximum seed-to-seed MAUVE difference).
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.72\textwidth]{paper_figures/fig_matched_entropy.pdf}
+    \caption{Perplexity--entropy curves across $\text{SC-CFG} \in \{1,2,3,4\}$ on ELF-B ($K=32$, $n=2$ seeds/cell, $M=1{,}000$ samples/seed). \textbf{Left:} At matched $H_{\mathrm{ps}}=5.20$, Gen-PPL spans $1.09$ points ($27.54$--$28.63$). \textbf{Right:} Higher $\text{SC-CFG}$ with lower $\gamma$ raises \texttt{rep-4} ($0.037 \to 0.058$), corpus \texttt{distinct-2} ($0.280 \to 0.301$), and MAUVE ($0.204 \to 0.407$).}
+    \label{fig:matched_entropy}
+\end{figure*}
+
+\begin{table}[ht]
+    \centering
+    \caption{Back-noising sweep ($\gamma \in [0, 3.0]$) on ELF-B at $\text{SC-CFG}=3.0$ ($K=32$ steps, $n=2$ seeds, $M=1{,}000$ sequences/seed), compared against OpenWebText reference subsample (\texttt{R0\_owt\_ref}).}
+    \label{tab:gamma_sweep}
+    \resizebox{\columnwidth}{!}{\input{tables/tab_gamma_sweep.tex}}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \caption{Raw $\gamma=0$ Generative Perplexity vs.\ linear interpolations at matched per-sample entropies $H_{\mathrm{ps}} \in \{5.15, 5.20\}$ nats across $\text{SC-CFG} \in \{1, 2, 3, 4\}$ on ELF-B ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed).}
+    \label{tab:matched_entropy_app}
+    \resizebox{\columnwidth}{!}{\input{tables/tab_matched_entropy.tex}}
+\end{table}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.92\textwidth]{paper_figures/fig_collapse.pdf}
+    \caption{Uncontrolled Langevin back-noising sweep ($\gamma \in [0, 3.0]$ across $\text{SC-CFG}\in\{1,2,3,4\}$, 56 runs, $n=2$ seeds/cell, $M=1{,}000$ samples/seed) on ELF-B. \textbf{(a)} Increasing $\gamma$ drives raw Gen-PPL monotonically below the OpenWebText reference line ($17.18$; reaching $16.70$ at $\gamma=3.0, \text{SC-CFG}=3.0$), but \textbf{(b)} plotting the same 56 runs against per-sample entropy $H_{\mathrm{ps}}$ reveals that all four guidance scales collapse onto a shared trajectory (quadratic $R^2 = 0.989$) driven by entropy contraction.}
+    \label{fig:collapse}
+\end{figure*}
+
+\section{Audit of Inference-Time Interventions: ECP and CMLC}
+\label{app:interventions}
+
+Table~\ref{tab:interventions} and Figure~\ref{fig:interventions} report the complete screening, 3-seed final evaluation, and control comparisons for Encoder-Conditioned Projection (ECP) and Confidence-Modulated Latent Caching (CMLC) on ELF-B (against 3-seed baseline ODE-16 Gen-PPL $98.86$ [$98.49$ in the CMLC evaluation block], 16-step SDE $\gamma=1.5$ Gen-PPL $39.23$, and global-clock fine-tune R1 ODE-16 Gen-PPL $152.01$).
+Both ECP finals ($t_{\mathrm{on}}=0.50$, 3 seeds) and controls lie directly on the unmodified ELF baseline frontier ($+0.07\%$ residual at $\text{SC-CFG}=3, \gamma=1.0$ and $-0.19\%$ at $\text{SC-CFG}=1, \gamma=1.0$, $\le 0.2\%$ residual at matched entropy), while the three lower/in-range CMLC adaptive early-exit variants are strictly Pareto-dominated in the 2D $(\text{Gen-PPL}, H_{\mathrm{ps}})$ plane ($+36.3\%$, $+62.6\%$, and $+160.1\%$) and the fourth (\texttt{+ commit}, Gen-PPL $230.90$) lies above the 16-step baseline entropy range ($H_{\mathrm{ps}}=5.542$ nats).
+
+\begin{table*}[t]
+    \centering
+    \caption{Evaluation of Encoder-Conditioned Projection (ECP) and Confidence-Modulated Latent Caching (CMLC) on ELF-B against matched-entropy baseline trajectories and ablation controls.}
+    \label{tab:interventions}
+    \resizebox{\textwidth}{!}{\input{tables/tab_interventions.tex}}
+\end{table*}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.92\textwidth]{paper_figures/fig_interventions.pdf}
+    \caption{Trajectory interventions plotted in the $(\text{Gen-PPL}, H_{\mathrm{ps}})$ plane on ELF-B. Both ECP finals ($t_{\mathrm{on}}=0.50$, 3 seeds) and controls lie directly on the unmodified ELF baseline frontier ($\le 0.2\%$ residual at matched entropy), while the three lower/in-range CMLC adaptive early-exit variants are strictly Pareto-dominated in the 2D $(\text{Gen-PPL}, H_{\mathrm{ps}})$ plane ($+36.3\%$ to $+160.1\%$) and the fourth (\texttt{+ commit}, Gen-PPL $230.90$) lies above the 16-step baseline entropy range ($H_{\mathrm{ps}}=5.542$ nats).}
+    \label{fig:interventions}
+\end{figure*}
+
+\section{Model-Scale Frontiers and Cross-Paradigm Discrete Diffusion (MDLM)}
+\label{app:scale_cross}
+
+Table~\ref{tab:elfm_m1} and Table~\ref{tab:elfl_l1} report the ELF-M (342.5M) Pair M1 evaluation and ELF-L (652.1M) Pair L1 evaluation alongside their seed-blocked $2\times 2$ factorial main effects. Table~\ref{tab:scale} reports the model-scale frontier comparison across ELF-B (104.6M, interpolated $\text{PPL}@H=5.15$ of $23.68$), ELF-M (342.5M, interpolated $\text{PPL}@H=5.15$ of $19.54$ and $\text{PPL}@H=5.20$ of $23.42$), and ELF-L (652.1M, boundary $\text{Gen-PPL}=21.59$ at $H_{\mathrm{ps}}=5.2402$; $\text{PPL}@H=5.15$ not reported as $5.15 \notin [5.240, 5.287]$). Table~\ref{tab:cross_paradigm} and Figure~\ref{fig:cross_paradigm} report the cross-paradigm step-budget comparison between continuous-latent ELF-B (reaching $N=64$ Gen-PPL of $54.82$ at $\gamma=0$, $28.53$ at $\gamma=1.0$, and $22.77$ at $\gamma=1.5$) and discrete Masked Diffusion Language Models (MDLM, 130M backbone / 170M total parameters, Gen-PPL $147.80$ at $N=64$)~\citep{sahoo2024mdlm,zheng2025masked}.
+
+\begin{table*}[t]
+    \centering
+    \caption{ELF-M (342.5M backbone, $K=64$) exploratory Pair M1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=5$ complete blocks, $df=4$, $M=1{,}000$/seed; Pair M1 passes Tier-I equivalence on Gen-PPL at $p_{\mathrm{TOST,I}}=0.0052$, fails strict Tier-I on $H_{\mathrm{ps}}$ at $\Delta H_{\mathrm{ps}}=-0.0210$~nats vs.\ $\pm 0.015$~nats bound [$p_{\mathrm{TOST,I}}=0.9889$], and satisfies only the post-hoc exploratory Tier-II tolerance $\pm 0.025$~nats at $p_{\mathrm{TOST,II,paired}}=0.0354$). Full panels in Appendix~\ref{app:full_tables}, Tables~\ref{tab:elfm_m1_full}--\ref{tab:elfl_l1_full}.}
+    \label{tab:elfm_m1}
+    \resizebox{\textwidth}{!}{\input{tables/tab_elfm_m1.tex}}
+\end{table*}
+
+\begin{table*}[t]
+    \centering
+    \caption{ELF-L (652.1M backbone, $6.2\times$ scale, $K=64$) Pair L1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=3$ complete blocks $df=2$; 5-seed paired contrast $df=4$). Full multi-column panel in Appendix~\ref{app:full_tables}, Table~\ref{tab:elfl_l1_full}.}
+    \label{tab:elfl_l1}
+    \makebox[\textwidth][c]{\input{tables/tab_elfl_l1.tex}}
+\end{table*}
+
+\begin{table}[ht]
+    \centering
+    \caption{Model-scale comparison across ELF-B (104.6M, 32 steps), ELF-M (342.5M, 64 steps), and ELF-L (652.1M, 64 steps) along $\text{SC-CFG}=3$ $\gamma$-sweeps.}
+    \label{tab:scale}
+    \resizebox{\columnwidth}{!}{\input{tables/tab_scale.tex}}
+\end{table}
+
+\begin{table*}[t]
+    \centering
+    \caption{Cross-paradigm comparison between continuous-latent ELF-B (104.6M backbone) and discrete Masked Diffusion Language Models (MDLM, 130M backbone / 170M total) across step budgets $N \in \{4, 8, 16, 32, 64\}$.}
+    \label{tab:cross_paradigm}
+    \resizebox{\textwidth}{!}{\input{tables/tab_cross_paradigm.tex}}
+\end{table*}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.92\textwidth]{paper_figures/fig_cross_paradigm.pdf}
+    \caption{Cross-paradigm step-budget trajectories ($N \in \{8,32,64\}$) for ELF-B ($\gamma \in \{0, 1.0, 1.5\}$) and discrete MDLM in the $(\text{Gen-PPL}, H_{\mathrm{pool}})$ plane.}
+    \label{fig:cross_paradigm}
+\end{figure*}
+
+\section{Authoritative Experimental Inventory and Reproducibility}
+\label{app:inventory}
+
+To ensure complete scientific reproducibility, all 529 baseline model generation runs, 1 OpenWebText reference run, and all confirmatory revision suites---the 120-run 20-seed C1--C3 replication (\path{runs/replication_c1_c3/}), the 13-gram decontaminated held-out reference audit (\path{runs/heldout_reference/}), the 3-judge position-swapped LLM evaluation panel (\path{runs/llm_judge_panel/}), the 32-run Plaid-1B $4\times 4$ response-surface audit (\path{runs/plaid_eval/}), and the $\gamma$-compensated matched-ACE plus 20-direction orthogonal null suite (\path{runs/p21_matched_ace/})---are cataloged with cryptographic SHA-256 manifests in \path{analysis/out/authoritative_experiment_inventory.json}, \path{analysis/out/final_consolidation_stats.json}, and their respective \path{runs/*/manifest.json} files.
+All statistical analyses and LaTeX tables are deterministically generated by \path{analysis/final_consolidation_audit.py} and \path{analysis/generate_revised_tables.py} from raw JSON run artifacts. The standalone diagnostic package \path{frontier_audit/} provides zero-dependency CLI and programmatic interfaces for the $\kappa_m$ sensitivity diagnostic and TOST equivalence gates.
+
+\section{Complete Full-Precision Confirmatory and Cross-Scale Tables}
+\label{app:full_tables}
+
+This appendix provides the full-precision, unabridged multi-column companion tables corresponding to the condensed tables in the main text.
+
+\begin{table*}[p]
+    \centering
+    \caption{Full confirmatory operating-point equivalence (Panel A: all 13 columns including paired CRN 95\% CIs, unpaired Welch sensitivity intervals, Leave-One-Seed-Out ranges, and Hedges' $g$) and secondary distributional divergence (Panel B) across pairs \textbf{C1}--\textbf{C3} on ELF-B ($K=32, M=1{,}000$/seed) and exploratory pairs on ELF-M.}
+    \label{tab:confirmatory_tost_full}
+    \input{tables/tab_confirmatory_tost_full.tex}
+\end{table*}
+
+\begin{table*}[p]
+    \centering
+    \caption{Full ELF-M (342.5M, $K=64$) factorial results across 11 cells (29 runs, $M=1{,}000$/seed) and complete seed-blocked ANOVA contrasts ($df=4$).}
+    \label{tab:elfm_m1_full}
+    \input{tables/tab_elfm_m1_full.tex}
+\end{table*}
+
+\begin{table*}[p]
+    \centering
+    \caption{Full multi-seed $2\times 2$ factorial on \textbf{ELF-L (652.1M backbone)} ($K=64$, $M=500$/seed across seeds $201\text{--}205$) and cross-scale $2\times 2$ seed-blocked contrasts across ELF-B, ELF-M, and ELF-L.}
+    \label{tab:elfl_l1_full}
+    \input{tables/tab_elfl_l1_full.tex}
+\end{table*}
+
+\begin{table*}[p]
+    \centering
+    \caption{Full 5-seed embedding-space diversity evaluation across three pretrained sentence encoders (\texttt{all-mpnet-base-v2}, \texttt{all-MiniLM-L6-v2}, \texttt{BAAI/bge-base-en-v1.5}) separated into Panel A (Raw unit-normalized embeddings) and Panel B (\texttt{ABTT-3} top-3 PC removal), and partitioned into Part I (Confirmatory Held-Out ELF-B Pairs \textbf{C1}--\textbf{C3}) and Part II (Exploratory Stage-1 Pairs \textbf{S1, M1}).}
+    \label{tab:embedding_geometry_full}
+    \input{tables/tab_embedding_geometry_full.tex}
+\end{table*}
+
+\begin{table*}[p]
+    \centering
+    \caption{Full eight-condition mechanistic evaluation of the Attractor-Contrast-Escape (ACE)~\citep{zhang2026selfcond} self-conditioning feedback projection across all three ablation and control panels on ELF-B (seeds $201\text{--}205$, $n=5$ seeds/condition).}
+    \label{tab:ace_intervention_full}
+    \input{tables/tab_ace_intervention_full.tex}
+\end{table*}
+
+\end{document}

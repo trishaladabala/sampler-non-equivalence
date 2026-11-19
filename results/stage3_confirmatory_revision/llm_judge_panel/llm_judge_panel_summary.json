@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-11-06T15:48:12Z",
+  "admission_records": {
+    "Qwen2.5-7B": {
+      "accuracy": 0.86,
+      "passed": true,
+      "total_tested": 50
+    },
+    "Llama-3.1-8B": {
+      "accuracy": 0.98,
+      "passed": true,
+      "total_tested": 50
+    },
+    "Mistral-7B": {
+      "accuracy": 0.93,
+      "passed": true,
+      "total_tested": 50
+    }
+  },
+  "analysis": {
+    "C1": {
+      "n_judgments": 300,
+      "arm_b_wins": 140.0,
+      "win_rate_b": 0.4666666666666667,
+      "se": 0.02880329199292382,
+      "ci95": [
+        0.410212214360536,
+        0.5231211189727973
+      ],
+      "p_tost_parity": 0.2814168769586628,
+      "is_equivalent_at_05": false
+    },
+    "C3": {
+      "n_judgments": 300,
+      "arm_b_wins": 150.5,
+      "win_rate_b": 0.5016666666666667,
+      "se": 0.028867353083961024,
+      "ci95": [
+        0.4450866546221031,
+        0.5582466787112303
+      ],
+      "p_tost_parity": 0.04703336379099643,
+      "is_equivalent_at_05": true
+    }
+  }
+}

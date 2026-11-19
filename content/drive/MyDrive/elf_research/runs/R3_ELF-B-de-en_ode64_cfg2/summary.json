@@ -1,0 +1,30 @@
+{
+  "run_id": "R3_ELF-B-de-en_ode64_cfg2",
+  "model": "ELF-B-de-en",
+  "kind": "cond",
+  "method": "ode",
+  "steps": 64,
+  "gamma": 0.0,
+  "cfg": 2,
+  "sc_cfg": 1,
+  "seed": 42,
+  "n": 1000,
+  "rouge1": 59.110381258655586,
+  "rouge2": 33.24525598223252,
+  "rougeL": 53.84496606930947,
+  "bleu": 25.76215021495986,
+  "all_results": [
+    {
+      "name": "ode-steps64-cfg2-ts_logit_normal-cond",
+      "epoch": 100,
+      "step": 880600,
+      "bleu": 25.76215021495986,
+      "rouge1": 59.110381258655586,
+      "rouge2": 33.24525598223252,
+      "rougeL": 53.84496606930947
+    }
+  ],
+  "wall_s": 52.05381751060486,
+  "status": "done",
+  "timestamp": "2026-10-21T07:23:09"
+}

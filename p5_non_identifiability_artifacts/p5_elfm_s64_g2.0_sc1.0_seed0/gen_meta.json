@@ -1,0 +1,9 @@
+{
+  "n_elf_fwd": 1386,
+  "nfe_elf": 66.0,
+  "n_enc_fwd": 0,
+  "wall_s": 395.77893328666687,
+  "batch_size": 48,
+  "compile_ok": true,
+  "gpu": "NVIDIA A100-SXM4-40GB"
+}

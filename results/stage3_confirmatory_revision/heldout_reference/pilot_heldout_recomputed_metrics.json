@@ -1,0 +1,187 @@
+{
+  "timestamp": "2026-11-06T14:29:31Z",
+  "n_evaluated_runs": 30,
+  "reference_docs": 1000,
+  "runs": {
+    "p4_elfb_s32_g1.0_sc2.0_seed201": {
+      "run_id": "p4_elfb_s32_g1.0_sc2.0_seed201",
+      "n_samples": 1000,
+      "mauve_heldout": 0.030359443855046242,
+      "ctw_jcd_heldout": 0.13965816561584976
+    },
+    "p4_elfb_s32_g1.0_sc2.0_seed202": {
+      "run_id": "p4_elfb_s32_g1.0_sc2.0_seed202",
+      "n_samples": 1000,
+      "mauve_heldout": 0.03712323316764545,
+      "ctw_jcd_heldout": 0.13218169788606504
+    },
+    "p4_elfb_s32_g1.0_sc2.0_seed203": {
+      "run_id": "p4_elfb_s32_g1.0_sc2.0_seed203",
+      "n_samples": 1000,
+      "mauve_heldout": 0.036491946930794716,
+      "ctw_jcd_heldout": 0.13048902785036232
+    },
+    "p4_elfb_s32_g1.0_sc2.0_seed204": {
+      "run_id": "p4_elfb_s32_g1.0_sc2.0_seed204",
+      "n_samples": 1000,
+      "mauve_heldout": 0.031182600616291405,
+      "ctw_jcd_heldout": 0.13708284201969012
+    },
+    "p4_elfb_s32_g1.0_sc2.0_seed205": {
+      "run_id": "p4_elfb_s32_g1.0_sc2.0_seed205",
+      "n_samples": 1000,
+      "mauve_heldout": 0.03948891301155084,
+      "ctw_jcd_heldout": 0.1341660368210924
+    },
+    "p4_elfb_s32_g1.0_sc3.0_seed201": {
+      "run_id": "p4_elfb_s32_g1.0_sc3.0_seed201",
+      "n_samples": 1000,
+      "mauve_heldout": 0.025744093354985738,
+      "ctw_jcd_heldout": 0.14211844177026878
+    },
+    "p4_elfb_s32_g1.0_sc3.0_seed202": {
+      "run_id": "p4_elfb_s32_g1.0_sc3.0_seed202",
+      "n_samples": 1000,
+      "mauve_heldout": 0.024440340939076016,
+      "ctw_jcd_heldout": 0.1319360551912947
+    },
+    "p4_elfb_s32_g1.0_sc3.0_seed203": {
+      "run_id": "p4_elfb_s32_g1.0_sc3.0_seed203",
+      "n_samples": 1000,
+      "mauve_heldout": 0.03022448977091958,
+      "ctw_jcd_heldout": 0.13370885201936344
+    },
+    "p4_elfb_s32_g1.0_sc3.0_seed204": {
+      "run_id": "p4_elfb_s32_g1.0_sc3.0_seed204",
+      "n_samples": 1000,
+      "mauve_heldout": 0.027571212874666608,
+      "ctw_jcd_heldout": 0.1395303271569983
+    },
+    "p4_elfb_s32_g1.0_sc3.0_seed205": {
+      "run_id": "p4_elfb_s32_g1.0_sc3.0_seed205",
+      "n_samples": 1000,
+      "mauve_heldout": 0.0296304111222761,
+      "ctw_jcd_heldout": 0.13436691923851263
+    },
+    "p4_elfb_s32_g1.0_sc4.0_seed201": {
+      "run_id": "p4_elfb_s32_g1.0_sc4.0_seed201",
+      "n_samples": 1000,
+      "mauve_heldout": 0.03422535705916573,
+      "ctw_jcd_heldout": 0.1444540655903932
+    },
+    "p4_elfb_s32_g1.0_sc4.0_seed202": {
+      "run_id": "p4_elfb_s32_g1.0_sc4.0_seed202",
+      "n_samples": 1000,
+      "mauve_heldout": 0.02877714447825014,
+      "ctw_jcd_heldout": 0.1340465420405621
+    },
+    "p4_elfb_s32_g1.0_sc4.0_seed203": {
+      "run_id": "p4_elfb_s32_g1.0_sc4.0_seed203",
+      "n_samples": 1000,
+      "mauve_heldout": 0.033621919833826536,
+      "ctw_jcd_heldout": 0.13581681015084657
+    },
+    "p4_elfb_s32_g1.0_sc4.0_seed204": {
+      "run_id": "p4_elfb_s32_g1.0_sc4.0_seed204",
+      "n_samples": 1000,
+      "mauve_heldout": 0.036067142925754955,
+      "ctw_jcd_heldout": 0.14153395617078401
+    },
+    "p4_elfb_s32_g1.0_sc4.0_seed205": {
+      "run_id": "p4_elfb_s32_g1.0_sc4.0_seed205",
+      "n_samples": 1000,
+      "mauve_heldout": 0.02724909578321131,
+      "ctw_jcd_heldout": 0.13524714434205953
+    },
+    "p4_elfb_s32_g1.346_sc1.0_seed201": {
+      "run_id": "p4_elfb_s32_g1.346_sc1.0_seed201",
+      "n_samples": 1000,
+      "mauve_heldout": 0.020582419977961376,
+      "ctw_jcd_heldout": 0.14287495944511397
+    },
+    "p4_elfb_s32_g1.346_sc1.0_seed202": {
+      "run_id": "p4_elfb_s32_g1.346_sc1.0_seed202",
+      "n_samples": 1000,
+      "mauve_heldout": 0.029587474257691287,
+      "ctw_jcd_heldout": 0.1426764235380349
+    },
+    "p4_elfb_s32_g1.346_sc1.0_seed203": {
+      "run_id": "p4_elfb_s32_g1.346_sc1.0_seed203",
+      "n_samples": 1000,
+      "mauve_heldout": 0.029095354723121962,
+      "ctw_jcd_heldout": 0.13763273378058938
+    },
+    "p4_elfb_s32_g1.346_sc1.0_seed204": {
+      "run_id": "p4_elfb_s32_g1.346_sc1.0_seed204",
+      "n_samples": 1000,
+      "mauve_heldout": 0.02734687565465631,
+      "ctw_jcd_heldout": 0.14101152443711862
+    },
+    "p4_elfb_s32_g1.346_sc1.0_seed205": {
+      "run_id": "p4_elfb_s32_g1.346_sc1.0_seed205",
+      "n_samples": 1000,
+      "mauve_heldout": 0.023972296000668268,
+      "ctw_jcd_heldout": 0.13962191317792327
+    },
+    "p4_elfb_s32_g1.547_sc1.0_seed201": {
+      "run_id": "p4_elfb_s32_g1.547_sc1.0_seed201",
+      "n_samples": 1000,
+      "mauve_heldout": 0.030589512024325576,
+      "ctw_jcd_heldout": 0.1500565036817445
+    },
+    "p4_elfb_s32_g1.547_sc1.0_seed202": {
+      "run_id": "p4_elfb_s32_g1.547_sc1.0_seed202",
+      "n_samples": 1000,
+      "mauve_heldout": 0.027651191723348283,
+      "ctw_jcd_heldout": 0.1462152082208703
+    },
+    "p4_elfb_s32_g1.547_sc1.0_seed203": {
+      "run_id": "p4_elfb_s32_g1.547_sc1.0_seed203",
+      "n_samples": 1000,
+      "mauve_heldout": 0.024727868899942555,
+      "ctw_jcd_heldout": 0.14383899210925866
+    },
+    "p4_elfb_s32_g1.547_sc1.0_seed204": {
+      "run_id": "p4_elfb_s32_g1.547_sc1.0_seed204",
+      "n_samples": 1000,
+      "mauve_heldout": 0.03150355737831551,
+      "ctw_jcd_heldout": 0.1485684211244538
+    },
+    "p4_elfb_s32_g1.547_sc1.0_seed205": {
+      "run_id": "p4_elfb_s32_g1.547_sc1.0_seed205",
+      "n_samples": 1000,
+      "mauve_heldout": 0.028696534345488585,
+      "ctw_jcd_heldout": 0.15063904785092386
+    },
+    "p4_elfb_s32_g1.651_sc1.0_seed201": {
+      "run_id": "p4_elfb_s32_g1.651_sc1.0_seed201",
+      "n_samples": 1000,
+      "mauve_heldout": 0.025693494296887345,
+      "ctw_jcd_heldout": 0.15290778383888615
+    },
+    "p4_elfb_s32_g1.651_sc1.0_seed202": {
+      "run_id": "p4_elfb_s32_g1.651_sc1.0_seed202",
+      "n_samples": 1000,
+      "mauve_heldout": 0.029090749149569085,
+      "ctw_jcd_heldout": 0.15041130869910035
+    },
+    "p4_elfb_s32_g1.651_sc1.0_seed203": {
+      "run_id": "p4_elfb_s32_g1.651_sc1.0_seed203",
+      "n_samples": 1000,
+      "mauve_heldout": 0.027007517736412724,
+      "ctw_jcd_heldout": 0.1462950781105068
+    },
+    "p4_elfb_s32_g1.651_sc1.0_seed204": {
+      "run_id": "p4_elfb_s32_g1.651_sc1.0_seed204",
+      "n_samples": 1000,
+      "mauve_heldout": 0.023817142453736218,
+      "ctw_jcd_heldout": 0.15319082328568245
+    },
+    "p4_elfb_s32_g1.651_sc1.0_seed205": {
+      "run_id": "p4_elfb_s32_g1.651_sc1.0_seed205",
+      "n_samples": 1000,
+      "mauve_heldout": 0.03087069547964797,
+      "ctw_jcd_heldout": 0.15407786958273673
+    }
+  }
+}

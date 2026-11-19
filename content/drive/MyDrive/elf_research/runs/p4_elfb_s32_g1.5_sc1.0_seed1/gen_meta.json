@@ -1,0 +1,9 @@
+{
+  "n_elf_fwd": 160,
+  "nfe_elf": 40.0,
+  "n_enc_fwd": 0,
+  "wall_s": 35.044694662094116,
+  "batch_size": 256,
+  "compile_ok": true,
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition"
+}

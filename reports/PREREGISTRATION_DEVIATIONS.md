@@ -1,0 +1,39 @@
+# Post-Execution Protocol-Deviation & Technical Clarification Log
+
+**Governing Preregistration Document:** [prereg/PREREGISTRATION.md](prereg/PREREGISTRATION.md)
+**Frozen Preregistration SHA-256 Digest:** `79c860c197cc5156d65ad93e5aa0fc71d475433c560652f9d48af47c8549afb5`
+**Protocol Identifier:** `PREREG-ELF-ARR2027-C1C3-REP20`
+**Log Created (Post-Execution):** `2026-11-07`
+
+---
+
+## Purpose & Integrity Mandate
+
+In accordance with Section 9 of [prereg/PREREGISTRATION.md](prereg/PREREGISTRATION.md) (line 211: *"Any unavoidable technical deviations during execution will be logged in `reports/PREREGISTRATION_DEVIATIONS.md`"*), the original preregistration file is preserved bit-for-bit unmodified (verified SHA-256: `79c860c197cc5156d65ad93e5aa0fc71d475433c560652f9d48af47c8549afb5`). This dated post-execution log records all discovered technical discrepancies, implementation bugs, and post-hoc exploratory analyses transparently without retroactively altering the preregistration text.
+
+---
+
+## Logged Post-Execution Entries (Dated `2026-11-07`)
+
+### DEV-01: Native ELF Sequence Length ($T=1024, d=512$) vs. Nominal Preregistration Text ($L=256, d=768$)
+- **Preregistration Reference:** Section 2 (line 37: *"sequences of length $L = 256$ tokens"*) and Section 3.2 (line 58: *"generating $\mathbf{z}_0 \in \mathbb{R}^{256 \times 768}$"*).
+- **Actual Runtime Execution:**
+  1. All public ELF checkpoints (`ELF-B`, `ELF-M`, `ELF-L`) are trained and configured with T5-small SentencePiece token sequence length `max_length: 1024` and latent encoder dimension `text_encoder_dim: 512` (while the transformer hidden size is $768$ for `ELF-B`, $1056$ for `ELF-M`, and $1280$ for `ELF-L`), as defined in [train_owt_ELF-B.yml](file://./ELF/src/configs/training_configs/train_owt_ELF-B.yml) (line 16), [load.py](file://./elfx/load.py) (line 63), and [sample.py](file://./elfx/sample.py) (line 199: `L, D = int(config.max_length), int(base.text_encoder_dim)`).
+  2. In [16_preregistered_c1_c3_replication.ipynb](file://./notebooks/16_preregistered_c1_c3_replication.ipynb), the standalone CRN digest verification helper (`verify_crn_three_stream_gpu`, line 215) tested RNG stream determinacy on a $(256, 768)$ tensor shape, whereas the actual production rollout (`execute_replication_run`, line 349) invoked `elfx.sample.generate(model=model_dict["model"], config=model_dict["config"], ...)`, which generated latents at the native checkpoint dimension $\mathbf{z}_t \in \mathbb{R}^{1024 \times 512}$.
+  3. Empirical verification across raw `summary.json` files confirms mean decoded GPT-2 token lengths of $942.8$ tokens on ELF-B (`p4_elfb_s32_g1.0_sc4.0_seed0`), $933.9$ tokens on ELF-M (`p5_elfm_s64_g0.5_sc4.0_seed0`), and $933.5$ tokens on ELF-L (`p4_elfl_s64_g1.0_sc3_seed0`). By contrast, the independent Plaid-1B evaluation ([plaid_spike_response_surface.json](file://./runs/plaid_eval/plaid_spike_response_surface.json)) was executed at `seq_len: 256` to fit its 1.28B denoiser in GPU memory.
+- **Scientific Impact:** None on CRN pairing validity or hypothesis tests—both Arm A and Arm B in all 120 replication runs were generated identically via `elfx.sample.generate` at the native $(1024, 512)$ ELF-B configuration with bit-identical per-sample CRN seeds (`seed * 100003 + j`, `seed_int(seed, j, 'sched')`, `seed_int(seed, j, 'sde')`). Manuscript Section 2 is updated to report the true $T=1024$ ($d=512$) ELF sequence length and $T=256$ Plaid-1B sequence length.
+
+### DEV-02: Key Name Mismatch for Exploratory `Distinct-2` in Notebook 16 (`"distinct2"` vs. `"cross_distinct2"`)
+- **Preregistration Reference:** Section 3.3 (line 79: *"Extended Lexical & Compression Diagnostics: Corpus-level `Distinct-2`, 4-gram `Self-BLEU`, and Context-Tree Weighting Jeffreys Coding Divergence (`CTW JCD`, bits/byte) are logged for diagnostic completeness"*). Note that `Distinct-2` is a diagnostic metric outside confirmatory Family 1 (`Gen-PPL`, $H_{\mathrm{ps}}$) and Family 2 (`rep-4`, $\mathrm{JSD}_\pi$, `MAUVE`).
+- **Discovered Bug:** In [16_preregistered_c1_c3_replication.ipynb](file://./notebooks/16_preregistered_c1_c3_replication.ipynb) (line 425), `execute_replication_run` constructed the per-run summary dictionary using `ext_metrics.get("distinct2", 0.0)`, whereas `elfx.non_identifiability.score_extended_sample_metrics` ([non_identifiability.py](file://./elfx/non_identifiability.py) line 500) returns keys `"cross_distinct2"` and `"within_distinct2"`. Consequently, `"distinct2"` defaulted to `0.0` in [replication_c1_c3_summary.json](file://./runs/replication_c1_c3/replication_c1_c3_summary.json).
+- **Remediation & Historical Preservation:**
+  1. [replication_c1_c3_summary.json](file://./runs/replication_c1_c3/replication_c1_c3_summary.json) is preserved unmodified (SHA-256: `eb38ba552ddd6514ae5aedeefc1d828309c966fc30dcfc27ea5a311f890b3af2`). Because the 120 per-seed `extended_metrics.json` files for seeds `401..420` reside on the remote Colab Drive rather than local disk, `Distinct-2` for seeds `401..420` is omitted rather than fabricated or silently reported as `0.0`.
+  2. In [16_preregistered_c1_c3_replication.ipynb](file://./notebooks/16_preregistered_c1_c3_replication.ipynb) (and its notebook builder scripts), the fallback logic has been remediated to query `"cross_distinct2"` first, use explicit `None` (`null`) instead of `0.0` whenever any metric is missing, log an explicit warning, and skip `None`/`NaN` metrics during statistical aggregation.
+
+### DEV-03: Non-Preregistered Status of Relaxed Tier-II Equivalence Margins ($\pm 5.0\%$ Gen-PPL, $\pm 0.025$ nats $H_{\mathrm{ps}}$)
+- **Preregistration Reference:** Section 5.1 of [prereg/PREREGISTRATION.md](prereg/PREREGISTRATION.md) specifies **only Strict Tier-I equivalence margins** ($\delta_{\mathrm{PPL}} = \pm 2.5\%$ of target PPL; $\delta_H = \pm 0.015$ nats) for the confirmatory ELF-B pairs C1–C3.
+- **Clarification:** The relaxed **Tier-II margins** ($\pm 5.0\%$ Gen-PPL and $\pm 0.025$ nats $H_{\mathrm{ps}}$) implemented in [tost.py](file://./frontier_audit/tost.py) and [final_consolidation_audit.py](file://./analysis/final_consolidation_audit.py) were introduced as **post-hoc exploratory sensitivity tolerances** for evaluating cross-scale and unrefined grid pairs (`S1`, `M1`). Specifically, for ELF-M Pair M1 (`(1.0, 2.0)` vs. `(4.0, 0.5)`, `seeds 0..4`, $df=4$), `Gen-PPL` satisfies Tier-I equivalence ($\Delta = +0.09, p_{\mathrm{TOST,I}} = 0.0052$), whereas $H_{\mathrm{ps}}$ ($\Delta H_{\mathrm{ps}} = -0.0210$ nats) **fails strict Tier-I equivalence** ($p_{\mathrm{TOST,I}} = 0.9889$) and satisfies only the **post-hoc exploratory Tier-II margin** under paired CRN testing ($p_{\mathrm{TOST,II,paired}} = 0.0354$; unpaired Welch $p_{\mathrm{TOST,II}} = 0.1619$). All manuscript tables and prose now explicitly label Tier-II as a post-hoc exploratory tolerance.
+
+### DEV-04: Plaid-1B 2D Iso-Contour Gate Closure (`NO-GO`) and Descriptive 1D Comparison
+- **Execution Outcome:** Following the 32-run $4\times 4$ factorial response-surface audit on Plaid-1B ($T_{\mathrm{score}} \in \{0.8, 1.0, 1.2, 1.5\} \times K \in \{32, 64, 128, 256\}$, seeds `101..102`, $M=64$/run, plus 1 preflight gate run at $M=16$; [plaid_spike_response_surface.json](file://./runs/plaid_eval/plaid_spike_response_surface.json)), matching $\text{Gen-PPL} \approx 54$ between $(0.8, 32)$ and $(1.0, 256)$ leaves a $+0.070$ nat gap in $H_{\mathrm{ps}}$ ($4.686$ vs. $4.756$ nats, $4.7\times$ the $\pm 0.015$ nat Tier-I bound).
+- **Clarification:** This triggered `GATE_DECISION: NO-GO` for 2D joint equivalence, gating out [19_plaid_heldout_equivalence.ipynb](file://./notebooks/19_plaid_heldout_equivalence.ipynb). Because the Plaid-1B $4\times 4$ grid has only $n=2$ seeds/cell ($df=1$), the 1D near-iso-PPL comparison between $(0.8, 32)$ and $(1.0, 256)$ is strictly **descriptive** and does not claim formal Tier-I equivalence.

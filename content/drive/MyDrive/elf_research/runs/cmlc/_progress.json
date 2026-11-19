@@ -1,0 +1,65 @@
+{
+  "R1": {
+    "steps": 20000,
+    "lt_mode": "cont",
+    "Km": null,
+    "use_cme": false,
+    "forced_tau_mode": "global",
+    "allow_known": false,
+    "desc": "Global-only fine-tune control (20k steps)"
+  },
+  "R2": {
+    "steps": 20000,
+    "lt_mode": "cont",
+    "Km": null,
+    "use_cme": false,
+    "forced_tau_mode": null,
+    "allow_known": true,
+    "desc": "Clocks active, CME off, lt cont (20k steps)"
+  },
+  "R3": {
+    "steps": 20000,
+    "lt_mode": "cont",
+    "Km": Infinity,
+    "use_cme": true,
+    "forced_tau_mode": null,
+    "allow_known": true,
+    "desc": "MAIN: Clocks active, CME Km=inf, lt cont (20k steps)"
+  },
+  "R4": {
+    "steps": 10000,
+    "lt_mode": "cont",
+    "Km": 2,
+    "use_cme": true,
+    "forced_tau_mode": null,
+    "allow_known": true,
+    "desc": "Ablation: CME Km=2 (10k steps)"
+  },
+  "R5": {
+    "steps": 10000,
+    "lt_mode": "cont",
+    "Km": 4,
+    "use_cme": true,
+    "forced_tau_mode": null,
+    "allow_known": true,
+    "desc": "Ablation: CME Km=4 (10k steps)"
+  },
+  "R6": {
+    "steps": 10000,
+    "lt_mode": "none",
+    "Km": Infinity,
+    "use_cme": true,
+    "forced_tau_mode": null,
+    "allow_known": true,
+    "desc": "Ablation: noise-blind lt_mode none, CME Km=inf (10k steps)"
+  },
+  "R7": {
+    "steps": 10000,
+    "lt_mode": "quant",
+    "Km": Infinity,
+    "use_cme": true,
+    "forced_tau_mode": null,
+    "allow_known": true,
+    "desc": "Ablation: quantized lt_mode K=4, CME Km=inf (10k steps)"
+  }
+}

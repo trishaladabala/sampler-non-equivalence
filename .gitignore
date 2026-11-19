@@ -1,0 +1,21 @@
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# macOS / OS metadata
+.DS_Store
+._*
+
+# LaTeX build artifacts (keep main.pdf and main.aux for manuscript checker)
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc

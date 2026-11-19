@@ -1,0 +1,8 @@
+# Core CPU dependencies for statistical reanalysis, figure/table generation,
+# 170-test verification suite, and manuscript consistency checking (no GPU required)
+numpy>=1.26.4,<2.0.0
+scipy>=1.11.0
+matplotlib>=3.8.0
+pytest>=7.4.0
+
+# For optional GPU model generation & evaluation, see ELF/requirements.txt

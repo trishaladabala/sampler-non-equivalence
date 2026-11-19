@@ -1,0 +1,7 @@
+{
+  "protocol": "PLAID-FEASIBILITY-SPIKE-4X4",
+  "colab_drive_sha256": "74a8f84780a5e706467e5f965cec509723c9979b4628815dc96ec565e19600be",
+  "local_sha256": "607501e4ca0e42193cdcf1bb1aae422f57acf3ffc09c6045be15873757d3d7ba",
+  "gate_decision": "NO-GO",
+  "n_points": 32
+}

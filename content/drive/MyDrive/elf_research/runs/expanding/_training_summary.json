@@ -1,0 +1,7 @@
+{
+  "total_steps": 500,
+  "final_loss": 2.225343704223633,
+  "final_flow_loss": 1.8380420207977295,
+  "final_insert_loss": 0.7746034860610962,
+  "total_time_s": 27.170417547225952
+}

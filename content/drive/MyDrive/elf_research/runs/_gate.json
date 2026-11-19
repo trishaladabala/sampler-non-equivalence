@@ -1,0 +1,14 @@
+{
+  "G-uncond": {
+    "ppl": 24.245108823176007,
+    "entropy": 5.158570845469512,
+    "n_seeds": 3,
+    "pass_": true
+  },
+  "G-cond": {
+    "xsum_rougeL": 28.296613310799696,
+    "wmt_bleu": 25.76215021495986,
+    "pass_": true
+  },
+  "ALL_PASS": true
+}

@@ -1,0 +1,12 @@
+{
+  "run_id": "p5_elfm_s64_g0.5_sc4.0_seed2",
+  "model": "ELF-M",
+  "steps": 64,
+  "method": "sde",
+  "gamma": 0.5,
+  "sc_cfg": 4.0,
+  "n": 1000,
+  "seed": 2,
+  "mauve": true,
+  "output_dir": "/content/drive/MyDrive/elf_research/runs/p5_elfm_s64_g0.5_sc4.0_seed2"
+}

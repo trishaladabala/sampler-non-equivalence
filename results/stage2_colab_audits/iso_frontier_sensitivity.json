@@ -1,0 +1,863 @@
+{
+  "C1": {
+    "arc_length": 1.0537391567827308,
+    "ppl_target": 32.43,
+    "metrics": {
+      "rep4": {
+        "mean_kappa": 0.010854235203155045,
+        "delta_m_integrated": 0.01143454710464167,
+        "arm_a_test": {
+          "metric_name": "rep4",
+          "s": 1.0,
+          "g": 1.3316447871138217,
+          "grad_p": [
+            -5.884330944463725,
+            -19.041066256492854
+          ],
+          "grad_h": [
+            -0.05062823282345737,
+            -0.18057162714633163
+          ],
+          "grad_m": [
+            0.01847749922590187,
+            0.02038908979634998
+          ],
+          "singular_values_J": [
+            19.93046215038333,
+            0.012640558180231623
+          ],
+          "singular_values_primary": [
+            19.930446551436557,
+            0.0049435760214627845
+          ],
+          "primary_condition_number": 4031.5849216995816,
+          "unit_tangent": [
+            0.9554180638709986,
+            -0.2952563686510297
+          ],
+          "kappa_m": 0.011633727922218982,
+          "ortho_ratio": 0.4227979046817725,
+          "is_null": false,
+          "tangent_projection_ratio": 0.4227979046817725,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.010588807957466752,
+            0.012635313901684053
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        },
+        "arm_b_test": {
+          "metric_name": "rep4",
+          "s": 2.0,
+          "g": 0.9995175383614311,
+          "grad_p": [
+            -5.569427756294787,
+            -16.526281663471593
+          ],
+          "grad_h": [
+            -0.04920215449657168,
+            -0.13207210828002905
+          ],
+          "grad_m": [
+            0.014916605423085235,
+            0.012416447712615632
+          ],
+          "singular_values_J": [
+            17.44008682628856,
+            0.011100071361432463
+          ],
+          "singular_values_primary": [
+            17.44007899258541,
+            0.004447376528844851
+          ],
+          "primary_condition_number": 3921.4307301284007,
+          "unit_tangent": [
+            0.9476345153084148,
+            -0.3193568934533677
+          ],
+          "kappa_m": 0.010170211980925147,
+          "ortho_ratio": 0.524019673033256,
+          "is_null": false,
+          "tangent_projection_ratio": 0.524019673033256,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.009313608472873424,
+            0.010968683028703317
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        }
+      },
+      "jsd_inter_sample": {
+        "mean_kappa": 0.06265147695207711,
+        "delta_m_integrated": 0.06603276215395797,
+        "arm_a_test": {
+          "metric_name": "jsd_inter_sample",
+          "s": 1.0,
+          "g": 1.3316447871138217,
+          "grad_p": [
+            -5.884330944463725,
+            -19.041066256492854
+          ],
+          "grad_h": [
+            -0.05062823282345737,
+            -0.18057162714633163
+          ],
+          "grad_m": [
+            0.045319602839671874,
+            -0.07291040508980626
+          ],
+          "singular_values_J": [
+            19.930526012073155,
+            0.06501426197697487
+          ],
+          "singular_values_primary": [
+            19.930446551436557,
+            0.0049435760214627845
+          ],
+          "primary_condition_number": 4031.5849216995816,
+          "unit_tangent": [
+            0.9554180638709986,
+            -0.2952563686510297
+          ],
+          "kappa_m": 0.06482642864417365,
+          "ortho_ratio": 0.7551347127858697,
+          "is_null": false,
+          "tangent_projection_ratio": 0.7551347127858697,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.04390901622619628,
+            0.08600671381266102
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        },
+        "arm_b_test": {
+          "metric_name": "jsd_inter_sample",
+          "s": 2.0,
+          "g": 0.9995175383614311,
+          "grad_p": [
+            -5.569427756294787,
+            -16.526281663471593
+          ],
+          "grad_h": [
+            -0.04920215449657168,
+            -0.13207210828002905
+          ],
+          "grad_m": [
+            0.03245901322913618,
+            -0.09054536087129315
+          ],
+          "singular_values_J": [
+            17.440242148330086,
+            0.0598406576061061
+          ],
+          "singular_values_primary": [
+            17.44007899258541,
+            0.004447376528844851
+          ],
+          "primary_condition_number": 3921.4307301284007,
+          "unit_tangent": [
+            0.9476345153084148,
+            -0.3193568934533677
+          ],
+          "kappa_m": 0.05967556643325218,
+          "ortho_ratio": 0.6204082530057984,
+          "is_null": false,
+          "tangent_projection_ratio": 0.6204082530057984,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.05207973991174194,
+            0.06800005270318144
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        }
+      },
+      "mauve": {
+        "mean_kappa": 0.08386641570950078,
+        "delta_m_integrated": 0.08710501799955842,
+        "arm_a_test": {
+          "metric_name": "mauve",
+          "s": 1.0,
+          "g": 1.3316447871138217,
+          "grad_p": [
+            -5.884330944463725,
+            -19.041066256492854
+          ],
+          "grad_h": [
+            -0.05062823282345737,
+            -0.18057162714633163
+          ],
+          "grad_m": [
+            0.012045142548797844,
+            -0.4248386489041577
+          ],
+          "singular_values_J": [
+            19.934507438449486,
+            0.1370048469118452
+          ],
+          "singular_values_primary": [
+            19.930446551436557,
+            0.0049435760214627845
+          ],
+          "primary_condition_number": 4031.5849216995816,
+          "unit_tangent": [
+            0.9554180638709986,
+            -0.2952563686510297
+          ],
+          "kappa_m": 0.13694446351107398,
+          "ortho_ratio": 0.32221516454933025,
+          "is_null": false,
+          "tangent_projection_ratio": 0.32221516454933025,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.09478977757240112,
+            0.1744844823509443
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        },
+        "arm_b_test": {
+          "metric_name": "mauve",
+          "s": 2.0,
+          "g": 0.9995175383614311,
+          "grad_p": [
+            -5.569427756294787,
+            -16.526281663471593
+          ],
+          "grad_h": [
+            -0.04920215449657168,
+            -0.13207210828002905
+          ],
+          "grad_m": [
+            -0.00805947426234646,
+            -0.29354893816332306
+          ],
+          "singular_values_J": [
+            17.44233866737834,
+            0.08621365018140889
+          ],
+          "singular_values_primary": [
+            17.44007899258541,
+            0.004447376528844851
+          ],
+          "primary_condition_number": 3921.4307301284007,
+          "unit_tangent": [
+            0.9476345153084148,
+            -0.3193568934533677
+          ],
+          "kappa_m": 0.08610944098213424,
+          "ortho_ratio": 0.2932288070531817,
+          "is_null": false,
+          "tangent_projection_ratio": 0.2932288070531817,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.06093858427364765,
+            0.11335015631640377
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        }
+      }
+    },
+    "out_of_sample_validation": {
+      "rep4": {
+        "metric_name": "rep4",
+        "predicted_delta_integrated": 0.01143454710464167,
+        "held_out_measured_delta": 0.011,
+        "discrepancy": 0.00043454710464167073,
+        "assessment": "Exceptional agreement: delta_int=+0.0114 vs measured=+0.0110 (4.0% relative error)"
+      },
+      "jsd_inter_sample": {
+        "metric_name": "jsd_inter_sample",
+        "predicted_delta_integrated": 0.06603276215395797,
+        "held_out_measured_delta": 0.0708,
+        "discrepancy": -0.004767237846042036,
+        "assessment": "Captures positive divergence: delta_int=+0.0660 vs measured=+0.0708"
+      },
+      "mauve": {
+        "metric_name": "mauve",
+        "predicted_delta_integrated": 0.08710501799955842,
+        "held_out_measured_delta": 0.0909,
+        "discrepancy": -0.0037949820004415796,
+        "assessment": "Captures positive divergence and order of magnitude: delta_int=+0.0871 vs measured=+0.0909 (overestimates at higher guidance due to metric curvature)"
+      }
+    }
+  },
+  "C2": {
+    "arc_length": 2.0729728402130245,
+    "ppl_target": 28.91,
+    "metrics": {
+      "rep4": {
+        "mean_kappa": 0.009179190547589054,
+        "delta_m_integrated": 0.019068066299067075,
+        "arm_a_test": {
+          "metric_name": "rep4",
+          "s": 1.0,
+          "g": 1.5372257148031159,
+          "grad_p": [
+            -4.224413740014642,
+            -15.203355534635751
+          ],
+          "grad_h": [
+            -0.03978216057403001,
+            -0.1715377821328044
+          ],
+          "grad_m": [
+            0.01796651730652158,
+            0.0239837471784133
+          ],
+          "singular_values_J": [
+            15.780349189977784,
+            0.013275865447087792
+          ],
+          "singular_values_primary": [
+            15.780324493895694,
+            0.007593267976007811
+          ],
+          "primary_condition_number": 2078.199339425139,
+          "unit_tangent": [
+            0.9634973241730312,
+            -0.26771796038258017
+          ],
+          "kappa_m": 0.010889811472605728,
+          "ortho_ratio": 0.3633945039371321,
+          "is_null": false,
+          "tangent_projection_ratio": 0.3633945039371321,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.009372602244832683,
+            0.012492304213436225
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        },
+        "arm_b_test": {
+          "metric_name": "rep4",
+          "s": 3.0,
+          "g": 0.9964853187078995,
+          "grad_p": [
+            -2.2986610488192722,
+            -11.551235651640022
+          ],
+          "grad_h": [
+            -0.028643561518096255,
+            -0.10440057432144437
+          ],
+          "grad_m": [
+            0.008982798024208897,
+            0.010243919681139722
+          ],
+          "singular_values_J": [
+            11.778229380051346,
+            0.01029223297245217
+          ],
+          "singular_values_primary": [
+            11.778223469004299,
+            0.0077165283516560145
+          ],
+          "primary_condition_number": 1526.3630133556442,
+          "unit_tangent": [
+            0.9807693979408141,
+            -0.1951701515673256
+          ],
+          "kappa_m": 0.0068107460532157455,
+          "ortho_ratio": 0.4998875267780467,
+          "is_null": false,
+          "tangent_projection_ratio": 0.4998875267780467,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.006327624919877482,
+            0.007236741062074555
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        }
+      },
+      "jsd_inter_sample": {
+        "mean_kappa": 0.05074442765916612,
+        "delta_m_integrated": 0.10554158285182165,
+        "arm_a_test": {
+          "metric_name": "jsd_inter_sample",
+          "s": 1.0,
+          "g": 1.5372257148031159,
+          "grad_p": [
+            -4.224413740014642,
+            -15.203355534635751
+          ],
+          "grad_h": [
+            -0.03978216057403001,
+            -0.1715377821328044
+          ],
+          "grad_m": [
+            0.043986278944858716,
+            -0.06600917466347127
+          ],
+          "singular_values_J": [
+            15.780409592453847,
+            0.060530063842010005
+          ],
+          "singular_values_primary": [
+            15.780324493895694,
+            0.007593267976007811
+          ],
+          "primary_condition_number": 2078.199339425139,
+          "unit_tangent": [
+            0.9634973241730312,
+            -0.26771796038258017
+          ],
+          "kappa_m": 0.060052503671141934,
+          "ortho_ratio": 0.7570710298235996,
+          "is_null": false,
+          "tangent_projection_ratio": 0.7570710298235996,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.039015610838218424,
+            0.07982879210272124
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        },
+        "arm_b_test": {
+          "metric_name": "jsd_inter_sample",
+          "s": 3.0,
+          "g": 0.9964853187078995,
+          "grad_p": [
+            -2.2986610488192722,
+            -11.551235651640022
+          ],
+          "grad_h": [
+            -0.028643561518096255,
+            -0.10440057432144437
+          ],
+          "grad_m": [
+            0.01746403172294313,
+            -0.09713279072953522
+          ],
+          "singular_values_J": [
+            11.778581651685252,
+            0.036900902914719286
+          ],
+          "singular_values_primary": [
+            11.778223469004299,
+            0.0077165283516560145
+          ],
+          "primary_condition_number": 1526.3630133556442,
+          "unit_tangent": [
+            0.9807693979408141,
+            -0.1951701515673256
+          ],
+          "kappa_m": 0.036085609367370916,
+          "ortho_ratio": 0.3656450182648138,
+          "is_null": false,
+          "tangent_projection_ratio": 0.3656450182648138,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.02757958600081845,
+            0.04557661999548836
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        }
+      },
+      "mauve": {
+        "mean_kappa": 0.08699534071306333,
+        "delta_m_integrated": 0.17852023692291402,
+        "arm_a_test": {
+          "metric_name": "mauve",
+          "s": 1.0,
+          "g": 1.5372257148031159,
+          "grad_p": [
+            -4.224413740014642,
+            -15.203355534635751
+          ],
+          "grad_h": [
+            -0.03978216057403001,
+            -0.1715377821328044
+          ],
+          "grad_m": [
+            0.06560852722845698,
+            -0.2479864109559836
+          ],
+          "singular_values_J": [
+            15.78187724172674,
+            0.1298123888330635
+          ],
+          "singular_values_primary": [
+            15.780324493895694,
+            0.007593267976007811
+          ],
+          "primary_condition_number": 2078.199339425139,
+          "unit_tangent": [
+            0.9634973241730312,
+            -0.26771796038258017
+          ],
+          "kappa_m": 0.12960405657128402,
+          "ortho_ratio": 0.5052425400879877,
+          "is_null": false,
+          "tangent_projection_ratio": 0.5052425400879877,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.09599335712798492,
+            0.1636071184102132
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        },
+        "arm_b_test": {
+          "metric_name": "mauve",
+          "s": 3.0,
+          "g": 0.9964853187078995,
+          "grad_p": [
+            -2.2986610488192722,
+            -11.551235651640022
+          ],
+          "grad_h": [
+            -0.028643561518096255,
+            -0.10440057432144437
+          ],
+          "grad_m": [
+            0.019742472807628187,
+            -0.33307626991476974
+          ],
+          "singular_values_J": [
+            11.782646751910606,
+            0.08469189522501286
+          ],
+          "singular_values_primary": [
+            11.778223469004299,
+            0.0077165283516560145
+          ],
+          "primary_condition_number": 1526.3630133556442,
+          "unit_tangent": [
+            0.9807693979408141,
+            -0.1951701515673256
+          ],
+          "kappa_m": 0.08436935925214545,
+          "ortho_ratio": 0.25285962599507905,
+          "is_null": false,
+          "tangent_projection_ratio": 0.25285962599507905,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.057076673640519895,
+            0.10729635645995368
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        }
+      }
+    },
+    "out_of_sample_validation": {
+      "rep4": {
+        "metric_name": "rep4",
+        "predicted_delta_integrated": 0.019068066299067075,
+        "held_out_measured_delta": 0.0186,
+        "discrepancy": 0.0004680662990670763,
+        "assessment": "Exceptional agreement: delta_int=+0.0191 vs measured=+0.0186 (2.5% relative error)"
+      },
+      "jsd_inter_sample": {
+        "metric_name": "jsd_inter_sample",
+        "predicted_delta_integrated": 0.10554158285182165,
+        "held_out_measured_delta": 0.1126,
+        "discrepancy": -0.007058417148178356,
+        "assessment": "Captures positive divergence: delta_int=+0.1055 vs measured=+0.1126"
+      },
+      "mauve": {
+        "metric_name": "mauve",
+        "predicted_delta_integrated": 0.17852023692291402,
+        "held_out_measured_delta": 0.146,
+        "discrepancy": 0.03252023692291403,
+        "assessment": "Captures positive divergence and order of magnitude: delta_int=+0.1785 vs measured=+0.1460 (overestimates at higher guidance due to metric curvature)"
+      }
+    }
+  },
+  "C3": {
+    "arc_length": 3.0741301260339355,
+    "ppl_target": 27.48,
+    "metrics": {
+      "rep4": {
+        "mean_kappa": 0.007098244219008903,
+        "delta_m_integrated": 0.022061852219617355,
+        "arm_a_test": {
+          "metric_name": "rep4",
+          "s": 1.0,
+          "g": 1.6374508937133951,
+          "grad_p": [
+            -3.6398146647857748,
+            -13.332387989021083
+          ],
+          "grad_h": [
+            -0.035702826280901545,
+            -0.16713358597071243
+          ],
+          "grad_m": [
+            0.017877179200833496,
+            0.025736220928229997
+          ],
+          "singular_values_J": [
+            13.821389557690107,
+            0.014186342927326432
+          ],
+          "singular_values_primary": [
+            13.821357999191859,
+            0.009574409759198245
+          ],
+          "primary_condition_number": 1443.5728515243406,
+          "unit_tangent": [
+            0.9646956661490123,
+            -0.2633671804027863
+          ],
+          "kappa_m": 0.010467961357922221,
+          "ortho_ratio": 0.3340551523725226,
+          "is_null": false,
+          "tangent_projection_ratio": 0.3340551523725226,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.008936354260718544,
+            0.01211532229538132
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        },
+        "arm_b_test": {
+          "metric_name": "rep4",
+          "s": 4.0,
+          "g": 0.9989862396485288,
+          "grad_p": [
+            -0.5105268451090117,
+            -10.197504566586007
+          ],
+          "grad_h": [
+            -0.011629090992200117,
+            -0.09931146435423047
+          ],
+          "grad_m": [
+            0.0019372984956725577,
+            0.010437865198152155
+          ],
+          "singular_values_J": [
+            10.210768901056362,
+            0.006796999673463165
+          ],
+          "singular_values_primary": [
+            10.210763480020166,
+            0.006648527316406851
+          ],
+          "primary_condition_number": 1535.793265568277,
+          "unit_tangent": [
+            0.998749153821426,
+            -0.050001277393539004
+          ],
+          "kappa_m": 0.001412968640083316,
+          "ortho_ratio": 0.1330964316887712,
+          "is_null": false,
+          "tangent_projection_ratio": 0.1330964316887712,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            -0.0005700983700265599,
+            0.0034384646783655213
+          ],
+          "significant_nonzero": false,
+          "family_label": "Family 3 Exploratory"
+        }
+      },
+      "jsd_inter_sample": {
+        "mean_kappa": 0.03913410779544283,
+        "delta_m_integrated": 0.12165479355948941,
+        "arm_a_test": {
+          "metric_name": "jsd_inter_sample",
+          "s": 1.0,
+          "g": 1.6374508937133951,
+          "grad_p": [
+            -3.6398146647857748,
+            -13.332387989021083
+          ],
+          "grad_h": [
+            -0.035702826280901545,
+            -0.16713358597071243
+          ],
+          "grad_m": [
+            0.04333625451212063,
+            -0.06264467455173982
+          ],
+          "singular_values_J": [
+            13.821444930409974,
+            0.05908496421583418
+          ],
+          "singular_values_primary": [
+            13.821357999191859,
+            0.009574409759198245
+          ],
+          "primary_condition_number": 1443.5728515243406,
+          "unit_tangent": [
+            0.9646956661490123,
+            -0.2633671804027863
+          ],
+          "kappa_m": 0.05830484821891524,
+          "ortho_ratio": 0.7654227269440287,
+          "is_null": false,
+          "tangent_projection_ratio": 0.7654227269440287,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.03988994222391504,
+            0.07583117616478462
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        },
+        "arm_b_test": {
+          "metric_name": "jsd_inter_sample",
+          "s": 4.0,
+          "g": 0.9989862396485288,
+          "grad_p": [
+            -0.5105268451090117,
+            -10.197504566586007
+          ],
+          "grad_h": [
+            -0.011629090992200117,
+            -0.09931146435423047
+          ],
+          "grad_m": [
+            0.0024331642586000687,
+            -0.10353447632321426
+          ],
+          "singular_values_J": [
+            10.211285829062666,
+            0.010103122722034332
+          ],
+          "singular_values_primary": [
+            10.210763480020166,
+            0.006648527316406851
+          ],
+          "primary_condition_number": 1535.793265568277,
+          "unit_tangent": [
+            0.998749153821426,
+            -0.050001277393539004
+          ],
+          "kappa_m": 0.007606976814817189,
+          "ortho_ratio": 0.07345260533949212,
+          "is_null": false,
+          "tangent_projection_ratio": 0.07345260533949212,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            -0.019668676829897525,
+            0.03460395552555109
+          ],
+          "significant_nonzero": false,
+          "family_label": "Family 3 Exploratory"
+        }
+      },
+      "mauve": {
+        "mean_kappa": 0.06471586762464326,
+        "delta_m_integrated": 0.20085512923902465,
+        "arm_a_test": {
+          "metric_name": "mauve",
+          "s": 1.0,
+          "g": 1.6374508937133951,
+          "grad_p": [
+            -3.6398146647857748,
+            -13.332387989021083
+          ],
+          "grad_h": [
+            -0.035702826280901545,
+            -0.16713358597071243
+          ],
+          "grad_m": [
+            0.07150964573722408,
+            -0.1617670938808711
+          ],
+          "singular_values_J": [
+            13.82203923110442,
+            0.11199253124030964
+          ],
+          "singular_values_primary": [
+            13.821357999191859,
+            0.009574409759198245
+          ],
+          "primary_condition_number": 1443.5728515243406,
+          "unit_tangent": [
+            0.9646956661490123,
+            -0.2633671804027863
+          ],
+          "kappa_m": 0.1115891887279091,
+          "ortho_ratio": 0.6309185879471101,
+          "is_null": false,
+          "tangent_projection_ratio": 0.6309185879471101,
+          "rank_augmented": 2,
+          "ci95_kappa": [
+            0.08321590820295274,
+            0.13955122424579197
+          ],
+          "significant_nonzero": true,
+          "family_label": "Family 3 Exploratory"
+        },
+        "arm_b_test": {
+          "metric_name": "mauve",
+          "s": 4.0,
+          "g": 0.9989862396485288,
+          "grad_p": [
+            -0.5105268451090117,
+            -10.197504566586007
+          ],
+          "grad_h": [
+            -0.011629090992200117,
+            -0.09931146435423047
+          ],
+          "grad_m": [
+            -0.014177248752493207,
+            -0.24933683702778936
+          ],
+          "singular_values_J": [
+            10.213817006419012,
+            0.006860021564886464
+          ],
+          "singular_values_primary": [
+            10.210763480020166,
+            0.006648527316406851
+          ],
+          "primary_condition_number": 1535.793265568277,
+          "unit_tangent": [
+            0.998749153821426,
+            -0.050001277393539004
+          ],
+          "kappa_m": -0.0016923548424143346,
+          "ortho_ratio": 0.0067764785706511295,
+          "is_null": true,
+          "tangent_projection_ratio": 0.0067764785706511295,
+          "rank_augmented": 1,
+          "ci95_kappa": [
+            -0.05141041354980068,
+            0.04732898398114
+          ],
+          "significant_nonzero": false,
+          "family_label": "Family 3 Exploratory"
+        }
+      }
+    },
+    "out_of_sample_validation": {
+      "rep4": {
+        "metric_name": "rep4",
+        "predicted_delta_integrated": 0.022061852219617355,
+        "held_out_measured_delta": 0.021,
+        "discrepancy": 0.001061852219617354,
+        "assessment": "Exceptional agreement: delta_int=+0.0221 vs measured=+0.0210 (5.1% relative error)"
+      },
+      "jsd_inter_sample": {
+        "metric_name": "jsd_inter_sample",
+        "predicted_delta_integrated": 0.12165479355948941,
+        "held_out_measured_delta": 0.1296,
+        "discrepancy": -0.007945206440510583,
+        "assessment": "Captures positive divergence: delta_int=+0.1217 vs measured=+0.1296"
+      },
+      "mauve": {
+        "metric_name": "mauve",
+        "predicted_delta_integrated": 0.20085512923902465,
+        "held_out_measured_delta": 0.121,
+        "discrepancy": 0.07985512923902466,
+        "assessment": "Captures positive divergence and order of magnitude: delta_int=+0.2009 vs measured=+0.1210 (overestimates at higher guidance due to metric curvature)"
+      }
+    }
+  }
+}

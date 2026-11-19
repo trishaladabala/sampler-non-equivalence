@@ -1,0 +1,11 @@
+{
+  "run_id": "p5_elfm_s64_g1.5_sc1.0_seed1",
+  "model": "ELF-M",
+  "steps": 64,
+  "method": "sde",
+  "gamma": 1.5,
+  "sc_cfg": 1.0,
+  "n": 1000,
+  "seed": 1,
+  "mauve": true
+}

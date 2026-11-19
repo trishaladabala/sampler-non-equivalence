@@ -1,0 +1,13 @@
+{
+  "run_id": "cmlc_eval/T2_R2_global_K32",
+  "method": "R2 global",
+  "steps": 32,
+  "policy": "global",
+  "cont_nll": 4.541899214096056,
+  "cont_ppl": 93.86890808677624,
+  "coherence": 0.830666015625,
+  "rep4": 0.04273332363131656,
+  "mauve": 0.13297539941681616,
+  "nfe_elf": 33.0,
+  "wall_s": 71.75893115997314
+}

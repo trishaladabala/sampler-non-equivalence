@@ -1,0 +1,75 @@
+{
+  "project": "ELF Continuous-Latent Sampler-Control Evaluation Study",
+  "target_venue": "ACL 2027 Main Conference (ARR Double-Blind)",
+  "hierarchy": "model/checkpoint -> experiment configuration -> independent run/seed -> generated samples -> metrics -> statistical analysis -> table/figure -> manuscript claim",
+  "models": {
+    "ELF-S": {
+      "params_M": 43.3,
+      "checkpoint_step": 350000,
+      "backbone": "DiT + frozen T5-Base encoder (d=768)"
+    },
+    "ELF-B": {
+      "params_M": 105.0,
+      "checkpoint_step": 182985,
+      "backbone": "DiT + frozen T5-Base encoder (d=768)"
+    },
+    "ELF-M": {
+      "params_M": 342.5,
+      "checkpoint_step": 152140,
+      "backbone": "DiT + frozen T5-Large encoder (d=1024)"
+    },
+    "MDLM": {
+      "params_M": 169.6,
+      "checkpoint": "kuleshov-group/mdlm-owt",
+      "backbone": "Absorbing-state discrete diffusion"
+    },
+    "GPT-2": {
+      "params_M": 124.4,
+      "checkpoint": "gpt2",
+      "backbone": "Autoregressive Transformer"
+    },
+    "Evaluator": {
+      "params_M": 774.0,
+      "checkpoint": "gpt2-large",
+      "precision": "bfloat16 on CUDA, context=1024"
+    }
+  },
+  "primary_experiment_families": {
+    "P4_ELFB_Factorial": {
+      "description": "Balanced 4 x 7 x 2 factorial grid on ELF-B (32 steps, SC-CFG in {1,2,3,4}, gamma in {0,0.25,0.5,1.0,1.5,2.0,3.0}, 2 seeds/cell, 1000 samples/seed)",
+      "n_runs": 56,
+      "n_cells": 28,
+      "per_sample_nfe": 33
+    },
+    "E3_ELFB_Refinement": {
+      "description": "Targeted midpoint refinement on ELF-B (32 steps, SC-CFG=1.0, gamma in {1.25, 1.75}, 2 baseline seeds + 3 P6 expansion seeds = 5 seeds/cell, 1000 samples/seed)",
+      "n_runs": 10,
+      "n_cells": 2,
+      "per_sample_nfe": 33
+    },
+    "P6_ELFB_5Seed_Expansion": {
+      "description": "5-seed replication expansion (seeds 2,3,4, 1000 samples/seed) on ELF-B matched-pair cells S1, Refined-1 (E3a), and Refined-2 (E3b)",
+      "n_new_runs": 18,
+      "n_cells_expanded_to_5_seeds": 6,
+      "per_sample_nfe": 33
+    },
+    "E1_P5_P6_ELFM_Factorial": {
+      "description": "ELF-M 64-step evaluation across 11 (SC-CFG, gamma) cells (29 runs total), including the complete balanced 2 x 2 x 5 factorial design on SC-CFG in {1.0, 4.0} x gamma in {0.5, 2.0} (20 runs, 5 seeds/cell, 1000 samples/seed), SC=1.0 gamma=1.5 and SC=4.0 gamma=1.0 (2 seeds/cell), and SC=3.0 gamma in {0,0.5,1.0,1.5,2.0} (1 seed/cell)",
+      "n_runs": 29,
+      "n_cells": 11,
+      "per_sample_nfe": 65
+    },
+    "E2_P6_Extended_Rescore": {
+      "description": "Full extended metric rescoring (H_pool, JSD_inter, within/cross distinct-1..4, 4-gram Self-BLEU, depth-6 CTW forward/reverse/Jeffreys coding divergence, position-wise entropy quartiles) on 64 runs across ELF-M and ELF-B",
+      "n_runs": 64
+    }
+  },
+  "total_logged_runs_in_db": 314,
+  "reproduction_commands": {
+    "1_integrate_raw_artifacts": "python3 analysis/integrate_followup_runs.py",
+    "2_statistical_reanalysis": "python3 analysis/statistical_reanalysis.py",
+    "3_check_manuscript_claims": "python3 analysis/check_manuscript.py",
+    "4_run_unit_tests": "python3 tests/run_tests.py",
+    "5_compile_manuscript": "pdflatex -interaction=nonstopmode main.tex && bibtex main && pdflatex -interaction=nonstopmode main.tex && pdflatex -interaction=nonstopmode main.tex"
+  }
+}

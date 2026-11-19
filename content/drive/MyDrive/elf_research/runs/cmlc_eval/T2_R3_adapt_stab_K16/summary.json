@@ -1,0 +1,13 @@
+{
+  "run_id": "cmlc_eval/T2_R3_adapt_stab_K16",
+  "method": "Ours (R3 adaptive-stab)",
+  "steps": 16,
+  "policy": "adaptive-stab",
+  "cont_nll": 5.224571772636358,
+  "cont_ppl": 185.78159672595154,
+  "coherence": 0.76326171875,
+  "rep4": 0.04241995704089609,
+  "mauve": 0.018749479545289206,
+  "nfe_elf": 17.0,
+  "wall_s": 41.48028612136841
+}

@@ -1,0 +1,7 @@
+{
+  "T1 Exact Reduction (global == elfx.sample)": true,
+  "T2 Clock Invariants (monotonicity, target mean, final tau=1)": true,
+  "T3 Water-filling Convergence & Cap Infeasibility": true,
+  "T4 Prefix Mode Preservation (256 tokens)": true,
+  "T5 Runtime Benchmark (8 samples x K=16 < 30s)": true
+}

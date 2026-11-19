@@ -1,0 +1,140 @@
+{
+  "provenance": "Recovered directly in Google Colab (Notebook 11) from /content/drive/MyDrive/elf_research/runs/p4_elfb_s32_g{gamma}_sc{sc_cfg}_seed{201..205}/summary.json and extended_metrics.json",
+  "ace_direction_verification": {
+    "path": "/content/drive/MyDrive/elf_research/runs/p9_ace_intervention/ace_calibrated_directions.pt",
+    "shape": [512],
+    "norm": 1.0,
+    "sha256": "ebc9918907584bad"
+  },
+  "confirmatory_pairs_recovered": {
+    "C1": {
+      "description": "ELF-B (105M), K=32: SC=2.0 vs gamma*=1.346",
+      "seeds": [201, 202, 203, 204, 205],
+      "seed_values": {
+        "gen_ppl_arm_A": [32.354, 32.329, 32.589, 32.093, 32.330],
+        "gen_ppl_arm_B": [32.338, 32.791, 32.765, 32.377, 32.336],
+        "token_entropy_arm_A": [5.2483, 5.2475, 5.2543, 5.2494, 5.2400],
+        "token_entropy_arm_B": [5.2445, 5.2511, 5.2565, 5.2509, 5.2416]
+      },
+      "tier1_ppl_2.5pct": {
+        "mean_A": 32.339, "sd_A": 0.176, "mean_B": 32.521, "sd_B": 0.235,
+        "diff_B_minus_A": 0.1826, "pearson_r": 0.561,
+        "p_tost_paired": 0.001088, "p_tost_unpaired": 0.0008759,
+        "ci90_paired_A_minus_B": [-0.3728, 0.0077],
+        "ci90_paired_B_minus_A": [-0.0077, 0.3728]
+      },
+      "tier2_ppl_5.0pct": {
+        "p_tost_paired": 4.38e-05, "p_tost_unpaired": 3.945e-06
+      },
+      "tier1_hps_0.015": {
+        "mean_A": 5.2479, "sd_A": 0.0051, "mean_B": 5.2489, "sd_B": 0.0059,
+        "diff_B_minus_A": 0.0010, "pearson_r": 0.878,
+        "p_tost_paired": 0.0001885, "p_tost_unpaired": 0.002051,
+        "ci90_paired_A_minus_B": [-0.0037, 0.0017],
+        "ci90_paired_B_minus_A": [-0.0017, 0.0037]
+      },
+      "tier2_hps_0.025": {
+        "p_tost_paired": 2.253e-05, "p_tost_unpaired": 7.052e-05
+      },
+      "metrics": {
+        "gen_ppl": {"diff_B_minus_A": 0.1826, "r": 0.561, "p_two_paired": 0.1102, "p_two_unpaired": 0.2047, "p_tost_1.25_paired": 0.0001399, "p_tost_1.25_unpaired": 3.018e-05, "loso_A_minus_B": [-0.2323, -0.1127]},
+        "token_entropy": {"diff_B_minus_A": 0.0010, "r": 0.878, "p_two_paired": 0.4599, "p_two_unpaired": 0.7758, "p_tost_0.03_paired": 1.062e-05, "p_tost_0.03_unpaired": 1.875e-05, "loso_A_minus_B": [-0.0022, -0.0004]},
+        "mauve": {"diff_B_minus_A": 0.0909, "r": 0.296, "p_two_paired": 0.00838, "p_two_unpaired": 0.004001, "loso_A_minus_B": [-0.1043, -0.0770]},
+        "rep4": {"diff_B_minus_A": 0.0110, "r": 0.661, "p_two_paired": 3.971e-07, "p_two_unpaired": 4.892e-08, "loso_A_minus_B": [-0.0112, -0.0109]},
+        "self_bleu": {"diff_B_minus_A": -2.7838, "r": 0.893, "p_two_paired": 2.157e-05, "p_two_unpaired": 6.061e-05, "loso_A_minus_B": [2.7268, 2.8651]},
+        "distinct_2": {"diff_B_minus_A": 0.0120, "r": 0.929, "p_two_paired": 3.526e-06, "p_two_unpaired": 1.08e-05, "loso_A_minus_B": [-0.0123, -0.0118]},
+        "distinct_3": {"diff_B_minus_A": 0.0121, "r": 0.929, "p_two_paired": 3.18e-06, "p_two_unpaired": 9.425e-06, "loso_A_minus_B": [-0.0123, -0.0119]},
+        "within_distinct2": {"diff_B_minus_A": -0.0131, "r": 0.311, "p_two_paired": 9.183e-06, "p_two_unpaired": 4.37e-07, "loso_A_minus_B": [0.0127, 0.0134]},
+        "h_pool": {"diff_B_minus_A": 0.0719, "r": 0.984, "p_two_paired": 5.611e-07, "p_two_unpaired": 7.719e-05, "loso_A_minus_B": [-0.0730, -0.0711]},
+        "jsd_inter_sample": {"diff_B_minus_A": 0.0708, "r": 0.992, "p_two_paired": 5.282e-08, "p_two_unpaired": 1.306e-05, "loso_A_minus_B": [-0.0712, -0.0702]},
+        "jcd_bits_per_byte": {"diff_B_minus_A": -0.0110, "r": 0.739, "p_two_paired": 0.0003099, "p_two_unpaired": 0.0003375, "loso_A_minus_B": [0.0102, 0.0116]}
+      }
+    },
+    "C2": {
+      "description": "ELF-B (105M), K=32: SC=3.0 vs gamma*=1.547",
+      "seeds": [201, 202, 203, 204, 205],
+      "seed_values": {
+        "gen_ppl_arm_A": [28.840, 28.989, 29.090, 28.713, 28.826],
+        "gen_ppl_arm_B": [28.690, 29.204, 29.232, 28.802, 28.673],
+        "token_entropy_arm_A": [5.2126, 5.2114, 5.2179, 5.2124, 5.2048],
+        "token_entropy_arm_B": [5.2078, 5.2129, 5.2172, 5.2132, 5.2016]
+      },
+      "tier1_ppl_2.5pct": {
+        "mean_A": 28.892, "sd_A": 0.148, "mean_B": 28.920, "sd_B": 0.277,
+        "diff_B_minus_A": 0.0286, "pearson_r": 0.847,
+        "p_tost_paired": 0.0004044, "p_tost_unpaired": 0.001229,
+        "ci90_paired_A_minus_B": [-0.1911, 0.1339],
+        "ci90_paired_B_minus_A": [-0.1339, 0.1911]
+      },
+      "tier2_ppl_5.0pct": {
+        "p_tost_paired": 2.472e-05, "p_tost_unpaired": 2.432e-05
+      },
+      "tier1_hps_0.015": {
+        "mean_A": 5.2118, "sd_A": 0.0047, "mean_B": 5.2105, "sd_B": 0.0060,
+        "diff_B_minus_A": -0.0013, "pearson_r": 0.903,
+        "p_tost_paired": 0.0001732, "p_tost_unpaired": 0.002176,
+        "ci90_paired_A_minus_B": [-0.0013, 0.0039],
+        "ci90_paired_B_minus_A": [-0.0039, 0.0013]
+      },
+      "tier2_hps_0.025": {
+        "p_tost_paired": 2.001e-05, "p_tost_unpaired": 7.857e-05
+      },
+      "metrics": {
+        "gen_ppl": {"diff_B_minus_A": 0.0286, "r": 0.847, "p_two_paired": 0.7262, "p_two_unpaired": 0.845, "p_tost_1.25_paired": 4.435e-05, "p_tost_1.25_unpaired": 5.706e-05, "loso_A_minus_B": [-0.0741, 0.0179]},
+        "token_entropy": {"diff_B_minus_A": -0.0013, "r": 0.903, "p_two_paired": 0.3437, "p_two_unpaired": 0.7138, "p_tost_0.03_paired": 9.358e-06, "p_tost_0.03_unpaired": 2.156e-05, "loso_A_minus_B": [0.0004, 0.0020]},
+        "mauve": {"diff_B_minus_A": 0.1460, "r": -0.374, "p_two_paired": 0.001649, "p_two_unpaired": 0.0001645, "loso_A_minus_B": [-0.1627, -0.1356]},
+        "rep4": {"diff_B_minus_A": 0.0186, "r": 0.507, "p_two_paired": 1.453e-07, "p_two_unpaired": 2.59e-08, "loso_A_minus_B": [-0.0187, -0.0183]},
+        "self_bleu": {"diff_B_minus_A": -3.8865, "r": 0.696, "p_two_paired": 7.84e-05, "p_two_unpaired": 2.866e-05, "loso_A_minus_B": [3.7569, 4.0358]},
+        "distinct_2": {"diff_B_minus_A": 0.0166, "r": 0.989, "p_two_paired": 5.157e-08, "p_two_unpaired": 1.796e-06, "loso_A_minus_B": [-0.0167, -0.0164]},
+        "distinct_3": {"diff_B_minus_A": 0.0156, "r": 0.981, "p_two_paired": 2.017e-07, "p_two_unpaired": 7.84e-06, "loso_A_minus_B": [-0.0158, -0.0155]},
+        "within_distinct2": {"diff_B_minus_A": -0.0209, "r": 0.343, "p_two_paired": 1.839e-06, "p_two_unpaired": 3.273e-08, "loso_A_minus_B": [0.0206, 0.0213]},
+        "h_pool": {"diff_B_minus_A": 0.1114, "r": 0.998, "p_two_paired": 4.281e-09, "p_two_unpaired": 4.068e-06, "loso_A_minus_B": [-0.1118, -0.1111]},
+        "jsd_inter_sample": {"diff_B_minus_A": 0.1126, "r": 0.991, "p_two_paired": 1.298e-08, "p_two_unpaired": 7.008e-07, "loso_A_minus_B": [-0.1131, -0.1120]},
+        "jcd_bits_per_byte": {"diff_B_minus_A": -0.0182, "r": 0.522, "p_two_paired": 0.0002741, "p_two_unpaired": 3.52e-05, "loso_A_minus_B": [0.0173, 0.0192]}
+      }
+    },
+    "C3": {
+      "description": "ELF-B (105M), K=32: SC=4.0 vs gamma*=1.651",
+      "seeds": [201, 202, 203, 204, 205],
+      "seed_values": {
+        "gen_ppl_arm_A": [27.495, 27.371, 27.569, 27.264, 27.368],
+        "gen_ppl_arm_B": [27.411, 27.743, 27.944, 27.419, 27.296],
+        "token_entropy_arm_A": [5.1952, 5.1948, 5.1988, 5.1951, 5.1870],
+        "token_entropy_arm_B": [5.1853, 5.1919, 5.1991, 5.1911, 5.1809]
+      },
+      "tier1_ppl_2.5pct": {
+        "mean_A": 27.413, "sd_A": 0.119, "mean_B": 27.562, "sd_B": 0.270,
+        "diff_B_minus_A": 0.1491, "pearson_r": 0.565,
+        "p_tost_paired": 0.003008, "p_tost_unpaired": 0.003993,
+        "ci90_paired_A_minus_B": [-0.3641, 0.0659],
+        "ci90_paired_B_minus_A": [-0.0659, 0.3641]
+      },
+      "tier2_ppl_5.0pct": {
+        "p_tost_paired": 0.0001332, "p_tost_unpaired": 7.405e-05
+      },
+      "tier1_hps_0.015": {
+        "mean_A": 5.1942, "sd_A": 0.0043, "mean_B": 5.1897, "sd_B": 0.0069,
+        "diff_B_minus_A": -0.0045, "pearson_r": 0.870,
+        "p_tost_paired": 0.001768, "p_tost_unpaired": 0.01263,
+        "ci90_paired_A_minus_B": [0.0009, 0.0082],
+        "ci90_paired_B_minus_A": [-0.0082, -0.0009]
+      },
+      "tier2_hps_0.025": {
+        "p_tost_paired": 0.0001367, "p_tost_unpaired": 0.0004679
+      },
+      "metrics": {
+        "gen_ppl": {"diff_B_minus_A": 0.1491, "r": 0.565, "p_two_paired": 0.2134, "p_two_unpaired": 0.306, "p_tost_1.25_paired": 0.0001999, "p_tost_1.25_unpaired": 0.0001269, "loso_A_minus_B": [-0.2074, -0.0926]},
+        "token_entropy": {"diff_B_minus_A": -0.0045, "r": 0.870, "p_two_paired": 0.05609, "p_two_unpaired": 0.2564, "p_tost_0.03_paired": 5.794e-05, "p_tost_0.03_unpaired": 0.0001304, "loso_A_minus_B": [0.0032, 0.0057]},
+        "mauve": {"diff_B_minus_A": 0.1210, "r": 0.146, "p_two_paired": 0.001999, "p_two_unpaired": 0.0001648, "loso_A_minus_B": [-0.1351, -0.1087]},
+        "rep4": {"diff_B_minus_A": 0.0210, "r": -0.028, "p_two_paired": 1.065e-07, "p_two_unpaired": 2.627e-09, "loso_A_minus_B": [-0.0212, -0.0208]},
+        "self_bleu": {"diff_B_minus_A": -4.0481, "r": 0.569, "p_two_paired": 0.0001047, "p_two_unpaired": 2.374e-05, "loso_A_minus_B": [3.8818, 4.2238]},
+        "distinct_2": {"diff_B_minus_A": 0.0187, "r": 0.977, "p_two_paired": 2.307e-07, "p_two_unpaired": 1.142e-06, "loso_A_minus_B": [-0.0188, -0.0184]},
+        "distinct_3": {"diff_B_minus_A": 0.0169, "r": 0.957, "p_two_paired": 3.1e-06, "p_two_unpaired": 9.748e-06, "loso_A_minus_B": [-0.0171, -0.0165]},
+        "within_distinct2": {"diff_B_minus_A": -0.0230, "r": 0.268, "p_two_paired": 6.886e-06, "p_two_unpaired": 2.69e-06, "loso_A_minus_B": [0.0224, 0.0235]},
+        "h_pool": {"diff_B_minus_A": 0.1252, "r": 0.963, "p_two_paired": 3.779e-07, "p_two_unpaired": 1.575e-06, "loso_A_minus_B": [-0.1265, -0.1236]},
+        "jsd_inter_sample": {"diff_B_minus_A": 0.1296, "r": 0.946, "p_two_paired": 2.34e-07, "p_two_unpaired": 1.608e-07, "loso_A_minus_B": [-0.1313, -0.1289]},
+        "jcd_bits_per_byte": {"diff_B_minus_A": -0.0227, "r": 0.358, "p_two_paired": 0.0003558, "p_two_unpaired": 4.264e-05, "loso_A_minus_B": [0.0212, 0.0239]}
+      }
+    }
+  }
+}
