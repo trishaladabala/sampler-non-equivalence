@@ -38,7 +38,10 @@ ACL_JSON = ROOT / "analysis" / "out" / "reanalysis_stats.json"
 FINAL_STATS_JSON = ROOT / "analysis" / "out" / "final_consolidation_stats.json"
 ISO_JSON = ROOT / "analysis" / "out" / "iso_frontier_sensitivity.json"
 REP20_JSON = ROOT / "runs" / "replication_c1_c3" / "replication_c1_c3_summary.json"
+REP_DIST2_JSON = ROOT / "runs" / "replication_c1_c3_v2" / "replication_distinct2_recovered.json"
 HELDOUT_JSON = ROOT / "runs" / "heldout_reference" / "heldout_paired_summary.json"
+HELDOUT_REP_JSON = ROOT / "runs" / "heldout_reference" / "replication_heldout_paired_summary.json"
+HELDOUT_MANIFEST_JSON = ROOT / "runs" / "heldout_reference" / "heldout_reference_manifest.json"
 JUDGE_JSON = ROOT / "runs" / "llm_judge_panel" / "llm_judge_panel_summary.json"
 PLAID_JSON = ROOT / "runs" / "plaid_eval" / "plaid_spike_response_surface.json"
 ACE_JSON = ROOT / "runs" / "p21_matched_ace" / "matched_ace_summary.json"
@@ -54,7 +57,10 @@ def main() -> int:
         FINAL_STATS_JSON,
         ISO_JSON,
         REP20_JSON,
+        REP_DIST2_JSON,
         HELDOUT_JSON,
+        HELDOUT_REP_JSON,
+        HELDOUT_MANIFEST_JSON,
         JUDGE_JSON,
         PLAID_JSON,
         ACE_JSON,
@@ -70,7 +76,10 @@ def main() -> int:
     fstats = json.loads(FINAL_STATS_JSON.read_text(encoding="utf-8"))
     iso = json.loads(ISO_JSON.read_text(encoding="utf-8"))
     rep20 = json.loads(REP20_JSON.read_text(encoding="utf-8"))
+    rep_dist2 = json.loads(REP_DIST2_JSON.read_text(encoding="utf-8"))
     heldout = json.loads(HELDOUT_JSON.read_text(encoding="utf-8"))
+    heldout_rep = json.loads(HELDOUT_REP_JSON.read_text(encoding="utf-8"))
+    heldout_manifest = json.loads(HELDOUT_MANIFEST_JSON.read_text(encoding="utf-8"))
     judge = json.loads(JUDGE_JSON.read_text(encoding="utf-8"))
     plaid = json.loads(PLAID_JSON.read_text(encoding="utf-8"))
     ace = json.loads(ACE_JSON.read_text(encoding="utf-8"))
@@ -177,6 +186,8 @@ def main() -> int:
         ("runs/plaid_1b_grid", "Dangling local directory reference (use runs/plaid_eval/plaid_spike_response_surface.json)"),
         ("21.21", "Obsolete ELF-M PPL@5.15 baseline superseded by 19.54"),
         ("19.63", "Obsolete unvalidated ELF-L PPL@5.15 extrapolation outside observed support"),
+        ("147.80", "Obsolete N=64 MDLM Gen-PPL contradicting tables/tab_cross_paradigm.tex"),
+        ("856{,}301", "Obsolete 1,000-doc OWT 13-gram count superseded by full 9.20B-shingle OWT scan"),
     ]
     for needle, reason in banned_in_main_tex:
         if needle in tex:
@@ -218,10 +229,12 @@ def main() -> int:
         ("32-run $4\\times 4$ factorial grid", "Plaid-1B 32-run 4x4 response surface count"),
         ("24-run $3\\times 4$ sweep", "Plaid-1B initial 24-run 3x4 grid reconciliation"),
         ("no formal Tier-I TOST equivalence is claimed from $n=2$ seeds", "Plaid-1B descriptive 2-seed disclaimer"),
-        # LLM-Judge Arithmetic
-        ("600", "Total paired LLM judge evaluations across C1 and C3"),
-        ("1{,}200", "Total individual forward/reverse LLM judge calls across C1 and C3"),
-        ("150", "Total HANNA calibration evaluations across 3 judges"),
+        # LLM-Judge & Full-Corpus OWT Decontamination Arithmetic
+        ("900", "Total paired full-passage LLM judge evaluations across C1, C2, and C3"),
+        ("1{,}800", "Total individual forward/reverse LLM judge calls across C1, C2, and C3"),
+        ("150", "Total position-swapped HANNA calibration pair evaluations across 3 judges"),
+        ("9{,}737{,}184", "Full-corpus OpenWebText pretraining passages audited in 75 shards"),
+        ("9{,}199{,}398{,}013", "Full-corpus OpenWebText exact T5 13-grams audited"),
     ]
     for phrase, desc in required_acceptance_phrases:
         if phrase not in full_tex:
@@ -369,13 +382,13 @@ def main() -> int:
         ("R94", "+0.0112", c1_rep["secondary"]["rep4"]["diff"] + t_crit_19 * (c1_rep["secondary"]["rep4"]["sd_diff"] / (20 ** 0.5)), 0.0001, "C1 20-seed replication rep-4 paired CRN 95% CI upper bound (df=19)", "runs/replication_c1_c3/replication_c1_c3_summary.json::details.C1.secondary.rep4.paired_ci95_hi"),
         ("R95", "+0.0718", c1_rep["secondary"]["jsd_pi"]["diff"] - t_crit_19 * (c1_rep["secondary"]["jsd_pi"]["sd_diff"] / (20 ** 0.5)), 0.0001, "C1 20-seed replication JSD_pi paired CRN 95% CI lower bound (df=19)", "runs/replication_c1_c3/replication_c1_c3_summary.json::details.C1.secondary.jsd_pi.paired_ci95_lo"),
         ("R96", "+0.0752", c1_rep["secondary"]["jsd_pi"]["diff"] + t_crit_19 * (c1_rep["secondary"]["jsd_pi"]["sd_diff"] / (20 ** 0.5)), 0.0001, "C1 20-seed replication JSD_pi paired CRN 95% CI upper bound (df=19)", "runs/replication_c1_c3/replication_c1_c3_summary.json::details.C1.secondary.jsd_pi.paired_ci95_hi"),
-        ("R97", "-0.0060", heldout["C1"]["ctw_jcd_heldout_diff"], 0.0001, "C1 decontaminated Reference A CTW JCD shift (bpb)", "runs/heldout_reference/heldout_paired_summary.json::C1.ctw_jcd_heldout_diff"),
-        ("R98", "-0.0115", heldout["C2"]["ctw_jcd_heldout_diff"], 0.0001, "C2 decontaminated Reference A CTW JCD shift (bpb)", "runs/heldout_reference/heldout_paired_summary.json::C2.ctw_jcd_heldout_diff"),
-        ("R99", "-0.0132", heldout["C3"]["ctw_jcd_heldout_diff"], 0.0001, "C3 decontaminated Reference A CTW JCD shift (bpb)", "runs/heldout_reference/heldout_paired_summary.json::C3.ctw_jcd_heldout_diff"),
-        ("R100", "46.67\\%", judge["analysis"]["C1"]["win_rate_b"] * 100.0, 0.02, "C1 3-judge pooled Arm B win rate (%)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C1.win_rate_b"),
-        ("R101", "0.2814", judge["analysis"]["C1"]["p_tost_parity"], 0.0001, "C1 3-judge pooled TOST parity p-value (+/-5% bound)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C1.p_tost_parity"),
-        ("R102", "50.17\\%", judge["analysis"]["C3"]["win_rate_b"] * 100.0, 0.02, "C3 3-judge pooled Arm B win rate (%)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C3.win_rate_b"),
-        ("R103", "0.0470", judge["analysis"]["C3"]["p_tost_parity"], 0.0001, "C3 3-judge pooled TOST parity p-value (+/-5% bound)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C3.p_tost_parity"),
+        ("R97", "-0.0039", heldout_rep["ref_a"]["C1"]["ctw_jcd_heldout_diff"], 0.0001, "C1 20-seed decontaminated Reference A CTW JCD shift (bpb)", "runs/heldout_reference/replication_heldout_paired_summary.json::ref_a.C1.ctw_jcd_heldout_diff"),
+        ("R98", "-0.0069", heldout_rep["ref_a"]["C2"]["ctw_jcd_heldout_diff"], 0.0001, "C2 20-seed decontaminated Reference A CTW JCD shift (bpb)", "runs/heldout_reference/replication_heldout_paired_summary.json::ref_a.C2.ctw_jcd_heldout_diff"),
+        ("R99", "-0.0080", heldout_rep["ref_a"]["C3"]["ctw_jcd_heldout_diff"], 0.0001, "C3 20-seed decontaminated Reference A CTW JCD shift (bpb)", "runs/heldout_reference/replication_heldout_paired_summary.json::ref_a.C3.ctw_jcd_heldout_diff"),
+        ("R100", "45.67\\%", judge["analysis"]["C1"]["win_rate_b"] * 100.0, 0.02, "C1 full-passage 3-judge Arm B win rate (%)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C1.win_rate_b"),
+        ("R101", "0.2933", judge["analysis"]["C1"]["p_tost_parity_pair_clustered"], 0.0001, "C1 full-passage pair-clustered TOST parity p-value (+/-5% bound, df=99)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C1.p_tost_parity_pair_clustered"),
+        ("R102", "48.67\\%", judge["analysis"]["C3"]["win_rate_b"] * 100.0, 0.02, "C3 full-passage 3-judge Arm B win rate (%)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C3.win_rate_b"),
+        ("R103", "0.0035", judge["analysis"]["C3"]["p_tost_parity_pair_clustered"], 0.0001, "C3 full-passage pair-clustered TOST parity p-value (+/-5% bound, df=99)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C3.p_tost_parity_pair_clustered"),
         ("R104", "23.02", m1_stats["gen_ppl"]["mean_a"], 0.01, "ELF-M M1 Arm A Gen-PPL (5 seeds)", "analysis/out/final_consolidation_stats.json::phase2_equivalence.local_5seed_paired_vs_unpaired_audit.M1_ELFM_5seed.gen_ppl.mean_a"),
         ("R105", "23.11", m1_stats["gen_ppl"]["mean_b"], 0.01, "ELF-M M1 Arm B Gen-PPL (5 seeds)", "analysis/out/final_consolidation_stats.json::phase2_equivalence.local_5seed_paired_vs_unpaired_audit.M1_ELFM_5seed.gen_ppl.mean_b"),
         ("R106", "0.0052", m1_stats["gen_ppl"]["paired_seed_blocked"]["tost_t1_paired"]["p_tost"], 0.0001, "ELF-M M1 Gen-PPL Paired Tier-I TOST p-value", "analysis/out/final_consolidation_stats.json::M1_ELFM_5seed.gen_ppl.paired_seed_blocked.tost_t1_paired.p_tost"),
@@ -384,10 +397,21 @@ def main() -> int:
         ("R109", "0.0354", m1_stats["entropy"]["paired_seed_blocked"]["tost_t2_paired"]["p_tost"], 0.0001, "ELF-M M1 H_ps Paired Tier-II TOST p-value", "analysis/out/final_consolidation_stats.json::M1_ELFM_5seed.entropy.paired_seed_blocked.tost_t2_paired.p_tost"),
         ("R110", "51.60", plaid["preflight"]["gen_ppl"], 0.01, "Plaid-1B preflight sanity gate Gen-PPL", "runs/plaid_eval/plaid_spike_response_surface.json::preflight.gen_ppl"),
         ("R111", "1.1699", ace["gamma_comp_star"], 0.0001, "Matched ACE calibrated gamma*", "runs/p21_matched_ace/matched_ace_summary.json::gamma_comp_star"),
-        ("R112", "27.63", ace["tost_evaluation"]["steered_ppl_mean"], 0.01, "Matched ACE held-out Gen-PPL mean", "runs/p21_matched_ace/matched_ace_summary.json::tost_evaluation.steered_ppl_mean"),
-        ("R113", "0.0009", ace["tost_evaluation"]["p_joint_tost"], 0.0001, "Matched ACE Joint Tier-I TOST p-value vs C3 Arm A", "runs/p21_matched_ace/matched_ace_summary.json::tost_evaluation.p_joint_tost"),
+        ("R112", "27.68", ace["tost_evaluation"]["steered_ppl_mean"], 0.01, "Matched ACE held-out Gen-PPL mean (M=1,000/seed)", "runs/p21_matched_ace/matched_ace_summary.json::tost_evaluation.steered_ppl_mean"),
+        ("R113", "0.0016", ace["tost_evaluation"]["p_joint_tost"], 0.0001, "Matched ACE Joint Tier-I TOST p-value vs C3 Arm A", "runs/p21_matched_ace/matched_ace_summary.json::tost_evaluation.p_joint_tost"),
         ("R114", "0.9568", ace["cosine_stability_4096_vs_500"], 0.0001, "ACE direction cosine stability |<d_4096, d_500>|", "runs/p21_matched_ace/matched_ace_summary.json::cosine_stability_4096_vs_500"),
-        ("R115", "0.0476", ace["null_stats"]["empirical_p_matched_ace"], 0.0001, "Matched ACE empirical p-value vs 20 orthogonal null directions", "runs/p21_matched_ace/matched_ace_summary.json::null_stats.empirical_p_matched_ace"),
+        ("R115", "0.0476", ace["null_stats"]["empirical_p_matched_ace"], 0.0001, "Matched ACE empirical p-value vs 20 gamma*-matched orthogonal null directions", "runs/p21_matched_ace/matched_ace_summary.json::null_stats.empirical_p_matched_ace"),
+        ("R116", "6.14", ace["null_stats"]["mean_rep4"] * 100.0, 0.01, "20-direction gamma*-matched orthogonal null mean rep-4 (%, M=1,000/seed)", "runs/p21_matched_ace/matched_ace_summary.json::null_stats.mean_rep4"),
+        ("R117", "-0.38", ace["tost_evaluation"]["delta_rep4_matched_vs_c3b"] * 100.0, 0.01, "Matched ACE rep-4 reduction vs unsteered C3 Arm B (pp)", "runs/p21_matched_ace/matched_ace_summary.json::tost_evaluation.delta_rep4_matched_vs_c3b"),
+        ("R118", "47.50\\%", judge["analysis"]["C2"]["win_rate_b"] * 100.0, 0.02, "C2 full-passage 3-judge Arm B win rate (%)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C2.win_rate_b"),
+        ("R119", "0.0395", judge["analysis"]["C2"]["p_tost_parity_pair_clustered"], 0.0001, "C2 full-passage pair-clustered TOST parity p-value (+/-5% bound, df=99)", "runs/llm_judge_panel/llm_judge_panel_summary.json::analysis.C2.p_tost_parity_pair_clustered"),
+        ("R120", "-0.0058", heldout["C3"]["ctw_jcd_heldout_diff"], 0.0001, "C3 5-seed pilot decontaminated Reference A CTW JCD shift (bpb)", "runs/heldout_reference/heldout_paired_summary.json::C3.ctw_jcd_heldout_diff"),
+        ("R121", "-0.0127", heldout_rep["ref_b"]["C1"]["ctw_jcd_heldout_diff"], 0.0001, "C1 20-seed post-cutoff Reference B CTW JCD shift (bpb)", "runs/heldout_reference/replication_heldout_paired_summary.json::ref_b.C1.ctw_jcd_heldout_diff"),
+        ("R122", "-0.0271", heldout_rep["ref_b"]["C3"]["ctw_jcd_heldout_diff"], 0.0001, "C3 20-seed post-cutoff Reference B CTW JCD shift (bpb)", "runs/heldout_reference/replication_heldout_paired_summary.json::ref_b.C3.ctw_jcd_heldout_diff"),
+        ("R123", "+0.0122", rep_dist2["pairs"]["C1"]["cross_distinct2_diff"], 0.0001, "C1 20-seed recovered corpus cross_distinct2 shift", "runs/replication_c1_c3_v2/replication_distinct2_recovered.json::pairs.C1.cross_distinct2_diff"),
+        ("R124", "+0.0166", rep_dist2["pairs"]["C2"]["cross_distinct2_diff"], 0.0001, "C2 20-seed recovered corpus cross_distinct2 shift", "runs/replication_c1_c3_v2/replication_distinct2_recovered.json::pairs.C2.cross_distinct2_diff"),
+        ("R125", "+0.0191", rep_dist2["pairs"]["C3"]["cross_distinct2_diff"], 0.0001, "C3 20-seed recovered corpus cross_distinct2 shift", "runs/replication_c1_c3_v2/replication_distinct2_recovered.json::pairs.C3.cross_distinct2_diff"),
+        ("R126", "9{,}737{,}184", heldout_manifest["total_training_docs_scanned"], 0.5, "Full-corpus OpenWebText training passages audited across 75 shards", "runs/heldout_reference/heldout_reference_manifest.json::total_training_docs_scanned"),
     ]
 
     norm_full_tex = full_tex.replace("{,}", ",").replace("\\%", "%")
@@ -398,7 +422,7 @@ def main() -> int:
         if tex_str not in full_tex and norm_needle not in norm_full_tex:
             errors.append(f"[{cid}] Expected string '{tex_str}' ({desc}) not found in main.tex/tables")
             continue
-        num_str = norm_needle.replace("%", "").replace("+", "")
+        num_str = norm_needle.replace("%", "").replace("+", "").replace(",", "")
         parsed = float(num_str)
         if abs(parsed - float(val)) > tol:
             errors.append(

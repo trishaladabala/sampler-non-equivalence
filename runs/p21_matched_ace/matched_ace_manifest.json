@@ -1,0 +1,8 @@
+{
+  "timestamp": "2026-11-19T19:46:48Z",
+  "summary_sha256": "1dcd75259a1e0f9a2deda4b41054a689fe525ab543230d4f64d33613197907ef",
+  "cal_directions_sha256": "cbea8150db4eb46e6591811c0ad9335e5d9d08609c0981a25e5cdb39721dfb1e",
+  "gamma_comp_star": 1.1698970934672173,
+  "m_null_samples_per_seed": 1000,
+  "scored_ppl_on_all_null_dirs": true
+}

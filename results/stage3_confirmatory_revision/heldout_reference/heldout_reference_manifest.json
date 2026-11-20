@@ -1,7 +1,14 @@
 {
-  "timestamp": "2026-11-06T14:31:33Z",
-  "clean_ref_a_sha256": "99943a3f61e1ce69f9c2d9af3dcd3fc6cc4f791db16460234cc34a52dc738d49",
-  "clean_ref_b_sha256": "e0fdfa32c8c64d9d014031077b3837f18afa80c68dc8a906cd83b5c695b21f7d",
+  "timestamp": "2026-11-19T17:27:22Z",
+  "scan_source": "embedded-language-flows/openwebtext-t5",
+  "total_training_docs_scanned": 9737184,
+  "total_training_13grams_scanned": 9199398013,
+  "ref_a_audited_docs": 3528,
+  "ref_a_contaminated_purged": 2528,
+  "ref_b_audited_docs": 2352,
+  "ref_b_contaminated_purged": 1352,
+  "clean_ref_a_sha256": "477d2fa01a2b66c05a9d37055518f2c6697d2e2fc1bfdfd428fb3f30c297e4c1",
+  "clean_ref_b_sha256": "8c6dfa538496b0a080c6d8bfdb3a3348c978dc79070a4a341ecbf5667a504bc3",
   "n_pilot_runs_evaluated": 30,
-  "n_replication_runs_evaluated": 6
+  "n_replication_runs_evaluated": 120
 }

@@ -18,6 +18,7 @@ Verifies:
 import ast
 import json
 import os
+import re
 import sys
 import unittest
 import warnings
@@ -35,6 +36,7 @@ REVISION_NOTEBOOKS = [
     "18_plaid_feasibility_spike.ipynb",
     "19_plaid_heldout_equivalence.ipynb",
     "21_ace_null_distribution_and_matched_ace.ipynb",
+    "22_acl_remediation_reruns.ipynb",
 ]
 
 ALL_REVISION_NOTEBOOKS = list(dict.fromkeys(REVISION_NOTEBOOKS))
@@ -245,8 +247,7 @@ class TestRevisionNotebooks(unittest.TestCase):
 
             code_cells = [clean_source(c["source"]) for c in data["cells"] if c.get("cell_type") == "code"]
             full_code = "\n".join(code_cells)
-            full_code = full_code.replace("RUN_SMOKE_CPU     = False", "RUN_SMOKE_CPU     = True")
-            full_code = full_code.replace("RUN_SMOKE_CPU = False", "RUN_SMOKE_CPU = True")
+            full_code = re.sub(r"RUN_SMOKE_CPU\s*=\s*False", "RUN_SMOKE_CPU = True", full_code, count=1)
 
             env_globals = {"__name__": "__test__"}
             exec(full_code, env_globals)

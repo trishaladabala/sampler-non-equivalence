@@ -378,6 +378,19 @@ class IsoFrontierAudit:
         g_arr = np.array(g_valid, dtype=np.float64)
         tan_arr = np.array(tangents, dtype=np.float64)
 
+        # At stationary/saddle points (||grad_p|| ~ 0), spline roundoff makes gradient-orthogonal
+        # tangents ill-conditioned; recover the branch tangent from neighboring traced points.
+        if len(s_valid) >= 2:
+            for k in range(len(s_valid)):
+                gp_k, _ = self.get_gradients(float(s_arr[k]), float(g_arr[k]))
+                if float(np.linalg.norm(gp_k)) < 1e-9:
+                    k0 = max(0, k - 1)
+                    k1 = min(len(s_valid) - 1, k + 1)
+                    chord = np.array([s_arr[k1] - s_arr[k0], g_arr[k1] - g_arr[k0]], dtype=np.float64)
+                    c_norm = float(np.linalg.norm(chord))
+                    if c_norm > 1e-15:
+                        tan_arr[k] = chord / c_norm
+
         # Compute cumulative arc length
         if len(s_valid) == 1:
             arc_len = np.array([0.0], dtype=np.float64)

@@ -20,12 +20,12 @@ results/
 │   ├── nb12_colab_statistical_reanalysis.json# Notebook 12: Colab paired CRN / Welch TOST & blocked ANCOVA
 │   └── second_stage_stats.json               # Notebooks 03–10: ANOVA, MixedLM, ELF-L, NFE timing, ACE, Vendi
 │
-├── stage3_confirmatory_revision/             # Outputs from Stage-3 Confirmatory Colab Notebooks 15–21 (mirrors runs/)
-│   ├── heldout_reference/                    # Notebook 17: 13-gram MinHash contamination audit & held-out WebText/CC-News MAUVE
-│   ├── llm_judge_panel/                      # Notebook 15: 3-model NF4 LLM-judge panel (HANNA gate & C1/C3 pairs)
-│   ├── p21_matched_ace/                      # Notebook 21: 20-direction random null & matched ACE (gamma*=0.9455)
+├── stage3_confirmatory_revision/             # Outputs from Stage-3 Confirmatory Colab Notebooks 15–22 (mirrors runs/)
+│   ├── heldout_reference/                    # Notebooks 17 & 22: Full 75-shard (9.20B 13-gram) OWT decontamination & Ref A/B eval
+│   ├── llm_judge_panel/                      # Notebooks 15 & 22: Full-passage 3-model NF4 LLM-judge panel (live HANNA & C1/C2/C3)
+│   ├── p21_matched_ace/                      # Notebooks 21 & 22: M=1,000 gamma*-matched 20-dir S^510 null & Matched ACE (gamma*=1.1699)
 │   ├── plaid_eval/                           # Notebooks 18–19: Plaid-1B 4x4 response surface & 2D NO-GO gate
-│   └── replication_c1_c3/                    # Notebook 16: 20-seed confirmatory replication (seeds 401–420, 120 runs)
+│   └── replication_c1_c3/                    # Notebook 16 (+ NB22 distinct2 recovery): 20-seed replication (seeds 401–420, 120 runs)
 │
 ├── external_exploratory_tracks/              # Outputs from Exploratory P5–P9 Colab Tracks (mirrors external_results/)
 │   ├── mdlm_at_scale_live_summary.json       # Notebook P8: MDLM-130M vs. ELF-B cross-paradigm sweep (Table 18, Fig. 5)

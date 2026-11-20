@@ -1,0 +1,1415 @@
+{
+  "judge_id": "Mistral-7B",
+  "model_hf": "unsloth/mistral-7b-instruct-v0.3-bnb-4bit",
+  "admission": {
+    "accuracy": 0.93,
+    "passed": true,
+    "total_tested": 50
+  },
+  "judgments": {
+    "C1": [
+      {
+        "sample_idx": 0,
+        "seed": 201,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 201,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 201,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 201,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 201,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 201,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 201,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 201,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 0,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 202,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 202,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 202,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 202,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 202,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 202,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 202,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 0,
+        "seed": 203,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 203,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 203,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 203,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 203,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 203,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 203,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 203,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 0,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 204,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 204,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 0,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 205,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 205,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 205,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 205,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 205,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      }
+    ],
+    "C3": [
+      {
+        "sample_idx": 0,
+        "seed": 201,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 201,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 201,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 201,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 201,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 201,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 201,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 0,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 202,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 202,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 202,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 202,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 202,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 202,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 202,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 202,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 202,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 202,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 0,
+        "seed": 203,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 203,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 203,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 203,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 203,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 203,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 203,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 203,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 0,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 204,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 204,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 204,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 204,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 204,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 204,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 204,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 0,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 1,
+        "seed": 205,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 2,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 3,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 4,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 5,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 6,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 7,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 8,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 9,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 10,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 11,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 12,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 13,
+        "seed": 205,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 14,
+        "seed": 205,
+        "resolved": "B",
+        "c1": "Option 2",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 15,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 16,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 2",
+        "c2": "Option 2"
+      },
+      {
+        "sample_idx": 17,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 18,
+        "seed": 205,
+        "resolved": "Tie",
+        "c1": "Option 1",
+        "c2": "Option 1"
+      },
+      {
+        "sample_idx": 19,
+        "seed": 205,
+        "resolved": "A",
+        "c1": "Option 1",
+        "c2": "Option 2"
+      }
+    ]
+  }
+}

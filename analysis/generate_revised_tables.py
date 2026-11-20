@@ -923,7 +923,7 @@ def build_tab_ace_intervention_full(stats: dict) -> str:
         r"\bottomrule",
         r"\end{tabular}%",
         r"}\\[2pt]",
-        r"{\footnotesize\noindent $^{\mathrm{a,b}}$Self-BLEU-4 and MAUVE depend on sample size $M$ ($M=1{,}000$ in Panel A vs.\ $M=500$ in Panel B), so cross-$M$ comparisons against Condition 2 are omitted. $^{\dagger}$Uncompensated ACE projection shifts $(\text{Gen-PPL}, H_{\mathrm{ps}})$ outside Tier-I equivalence; $\gamma$-compensated matched ACE ($\gamma^*=1.1699$, Table~\ref{tab:ace_intervention}) restores Tier-I equivalence ($p_{\mathrm{joint}}=0.0009$). Confidence intervals in Panel C are unpaired Welch Satterthwaite 95\% sensitivity intervals across $n_1=n_2=5$ seeds ($201\text{--}205$). " + PARAM_FOOTNOTE + r"\par}",
+        r"{\footnotesize\noindent $^{\mathrm{a,b}}$Self-BLEU-4 and MAUVE depend on sample size $M$ ($M=1{,}000$ in Panel A vs.\ $M=500$ in Panel B), so cross-$M$ comparisons against Condition 2 are omitted. $^{\dagger}$Uncompensated ACE projection shifts $(\text{Gen-PPL}, H_{\mathrm{ps}})$ outside Tier-I equivalence; $\gamma$-compensated matched ACE ($\gamma^*=1.1699$, Table~\ref{tab:ace_intervention}) restores Tier-I equivalence ($p_{\mathrm{joint}}=0.0016$) and outperforms all 20 $\gamma^*$-matched orthogonal null directions at $M=1{,}000$ ($5.54\%$ vs.\ $6.14\pm0.11\%$, $p_{\mathrm{emp}}=0.0476$, $p_z=3.93\!\times\!10^{-8}$). Confidence intervals in Panel C are unpaired Welch Satterthwaite 95\% sensitivity intervals across $n_1=n_2=5$ seeds ($201\text{--}205$). " + PARAM_FOOTNOTE + r"\par}",
         r"\endgroup",
         "",
     ]
@@ -982,13 +982,13 @@ def build_tab_ace_intervention(stats: dict) -> str:
     lines.append(r"\midrule")
     lines.append(
         r"7. $\gamma$-Compensated Matched ACE ($\gamma^*{=}1.1699$) & $\alpha = +0.50$ & "
-        r"$27.63\pm0.17^{\ddagger}$ & $5.1934\pm0.0064^{\ddagger}$ & "
-        r"$-0.39$ pp vs.\ B ($+1.72$ pp vs.\ A) & $p_{\mathrm{emp}}{=}0.0476$ vs.\ $20$ Null Dirs \\"
+        r"$27.68\pm0.20^{\ddagger}$ & $5.1929\pm0.0060^{\ddagger}$ & "
+        r"$-0.38$ pp vs.\ B ($+1.72$ pp vs.\ A) & $p_{\mathrm{emp}}{=}0.0476$ ($p_z{=}3.93\!\times\!10^{-8}$) \\"
     )
 
     lines += [
         r"\midrule",
-        r"\multicolumn{6}{@{}p{\linewidth}@{}}{\footnotesize Uncompensated ACE (Rows 3--6, unpaired Welch 95\% sensitivity CIs vs.\ Baseline B across $n=5$ seeds $201\text{--}205$) shifts Gen-PPL and $H_{\mathrm{ps}}$ outside Tier-I TOST equivalence. $^{\ddagger}$Row 7 ($\gamma^*=1.1699$, Notebook 21) restores Tier-I Joint TOST equivalence to C3 Arm A ($p_{\mathrm{joint}}=0.0009$) and outperforms all 20 random orthogonal null directions on $S^{510}$ (mean $\texttt{rep-4}=5.89\pm0.10\%$, $p_{\mathrm{emp}}=1/21=0.0476$).} \\",
+        r"\multicolumn{6}{@{}p{\linewidth}@{}}{\footnotesize Uncompensated ACE (Rows 3--6, unpaired Welch 95\% sensitivity CIs vs.\ Baseline B across $n=5$ seeds $201\text{--}205$) shifts Gen-PPL and $H_{\mathrm{ps}}$ outside Tier-I TOST equivalence. $^{\ddagger}$Row 7 ($\gamma^*=1.1699$, $M=1{,}000$/seed, Notebooks 21--22) restores Tier-I Joint TOST equivalence to C3 Arm A ($p_{\mathrm{joint}}=0.0016$) and outperforms all 20 $\gamma^*$-matched orthogonal null directions on $S^{510}$ at $M=1{,}000$ (steered $5.54\pm0.08\%$ vs.\ null $6.14\pm0.11\%$, range $[5.85\%,6.31\%]$, $-0.59$~pp, $p_{\mathrm{emp}}=1/21=0.0476$, paired-seed $p=4.21\!\times\!10^{-5}$).} \\",
         r"\multicolumn{6}{@{}p{\linewidth}@{}}{\footnotesize " + PARAM_FOOTNOTE + r" $n=5$ seeds ($201\text{--}205$).} \\",
         r"\bottomrule",
         r"\end{tabular}",

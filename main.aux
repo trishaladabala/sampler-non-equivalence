@@ -3,1117 +3,256 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\citation{li2022diffusionlm,lovelace2023ld4lg,hu2026elf}
+\citation{li2022diffusionlm,dieleman2022cdcd,lovelace2023ld4lg,jiang2026textldm,guo2026coladlm,hu2026elf}
+\citation{holtzman2020curious,nadeem2020systematic,basu2021mirostat}
 \citation{hu2026elf}
+\citation{chen2023analog}
 \citation{ho2022classifier}
-\citation{pynadath2026generative}
+\citation{radford2019language}
+\citation{caccia2020language,pynadath2026generative}
 \citation{schuirmann1987comparison}
-\@LN{0}{0}
-\@LN{1}{0}
-\@LN{2}{0}
-\@LN{3}{0}
-\@LN{4}{0}
-\@LN{5}{0}
-\@LN{6}{0}
-\@LN{7}{0}
-\@LN{8}{0}
-\@LN{9}{0}
-\@LN{10}{0}
-\@LN{11}{0}
-\@LN{12}{0}
-\@LN{13}{0}
-\@LN{14}{0}
-\@LN{15}{0}
-\@LN{16}{0}
-\@LN{17}{0}
-\@LN{18}{0}
-\@LN{19}{0}
-\@LN{20}{0}
-\@LN{21}{0}
-\@LN{22}{0}
-\@LN{23}{0}
-\@LN{24}{0}
-\@LN{25}{0}
-\@LN{26}{0}
-\@LN{27}{0}
-\@LN{28}{0}
-\@LN{29}{0}
-\@LN{30}{0}
-\@LN{31}{0}
-\@LN{32}{0}
-\@LN{33}{0}
-\@LN{34}{0}
-\@LN{35}{0}
-\@LN{36}{0}
-\@LN{37}{0}
-\@LN{38}{0}
-\@LN{39}{0}
-\@LN{40}{0}
-\@LN{41}{0}
-\@LN{42}{0}
-\@LN{43}{0}
-\def\@LN@column{1}
-\@LN{44}{0}
+\citation{xu2022learning}
+\citation{friedman2023vendi}
+\citation{pillutla2021mauve}
+\citation{zhu2018texygen}
+\citation{willems1995context,franca2026hacking}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
-\@LN{45}{0}
-\@LN{46}{0}
-\@LN{47}{0}
-\@LN{48}{0}
-\@LN{49}{0}
-\@LN{50}{0}
-\@LN{51}{0}
-\@LN{52}{0}
-\@LN{53}{0}
-\@LN{54}{0}
-\@LN{55}{0}
-\@LN{56}{0}
-\@LN{57}{0}
-\@LN{58}{0}
-\@LN{59}{0}
-\@LN{60}{0}
-\@LN{61}{0}
-\@LN{62}{0}
-\@LN{63}{0}
-\@LN{64}{0}
-\@LN{65}{0}
-\@LN{66}{0}
-\@LN{67}{0}
-\@LN{68}{0}
-\@LN{69}{0}
-\@LN{70}{0}
-\@LN{71}{0}
-\@LN{72}{0}
-\@LN{73}{0}
-\@LN{74}{0}
-\@LN{75}{0}
-\@LN{76}{0}
-\@LN{77}{0}
-\@LN{78}{0}
-\@LN{79}{0}
-\@LN{80}{0}
-\@LN{81}{0}
-\@LN{82}{0}
-\@LN{83}{0}
 \citation{zhang2026selfcond}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The ``Same Frontier, Different Text'' paradox on ELF-B (pilot seeds $201\text  {--}205$, paired CRN $df=4$; replication seeds $401\text  {--}420$, paired CRN $df=19$, $M=1{,}000$/seed; all error bars on observed shifts plot seed-level paired CRN 95\% CIs $d_s = Y_{B,s} - Y_{A,s}$). \textbf  {(a)} Primary Equivalence: \textbf  {C1}--\textbf  {C3} pass Tier-I Joint TOST ($\pm 2.5\%$ Gen-PPL, $\pm 0.015$ nats $H_{\mathrm  {ps}}$; $p_{\mathrm  {Holm}} \le 0.0030$ pilot, $\le 3.40\times 10^{-8}$ replication). \textbf  {(b)} Secondary Divergence: $9/9$ Family 2 tests pass step-down Holm ($p_{\mathrm  {Holm}} \le 5.13\times 10^{-12}$ on 20-seed replication). \textbf  {(c)} Out-of-Sample Iso-Frontier Line-Integral Validation: Stage-1 predictions $\Delta _{\mathrm  {pred}} = \DOTSI \intop \ilimits@ _{\mathcal  {C}} \kappa _m\,d\ell $ (open diamonds: seeds $0\text  {--}1$ with $B=500$ bootstrap 95\% CIs over 2 seeds/cell for \texttt  {rep-4}; 40-run Stage-1 response surface across 11 operating points, seeds $0\text  {--}4$, quadratic $R^2=0.980$ with residual SD for $\mathrm  {JSD}_\pi $) vs.\ 5-seed pilot (circles) and 20-seed replication (squares) shifts ($+2.5\%\text  {--}+5.1\%$ error on \texttt  {rep-4}, $-6.1\%\text  {--}-6.7\%$ on $\mathrm  {JSD}_\pi $; nonlinear MAUVE exhibits $+66.0\%$ curvature error on C3, Table~\ref {tab:iso_frontier_validation}).}}{2}{figure.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:teaser}{{1}{2}{The ``Same Frontier, Different Text'' paradox on ELF-B (pilot seeds $201\text {--}205$, paired CRN $df=4$; replication seeds $401\text {--}420$, paired CRN $df=19$, $M=1{,}000$/seed; all error bars on observed shifts plot seed-level paired CRN 95\% CIs $d_s = Y_{B,s} - Y_{A,s}$). \textbf {(a)} Primary Equivalence: \textbf {C1}--\textbf {C3} pass Tier-I Joint TOST ($\pm 2.5\%$ Gen-PPL, $\pm 0.015$ nats $H_{\mathrm {ps}}$; $p_{\mathrm {Holm}} \le 0.0030$ pilot, $\le 3.40\times 10^{-8}$ replication). \textbf {(b)} Secondary Divergence: $9/9$ Family 2 tests pass step-down Holm ($p_{\mathrm {Holm}} \le 5.13\times 10^{-12}$ on 20-seed replication). \textbf {(c)} Out-of-Sample Iso-Frontier Line-Integral Validation: Stage-1 predictions $\Delta _{\mathrm {pred}} = \int _{\mathcal {C}} \kappa _m\,d\ell $ (open diamonds: seeds $0\text {--}1$ with $B=500$ bootstrap 95\% CIs over 2 seeds/cell for \texttt {rep-4}; 40-run Stage-1 response surface across 11 operating points, seeds $0\text {--}4$, quadratic $R^2=0.980$ with residual SD for $\mathrm {JSD}_\pi $) vs.\ 5-seed pilot (circles) and 20-seed replication (squares) shifts ($+2.5\%\text {--}+5.1\%$ error on \texttt {rep-4}, $-6.1\%\text {--}-6.7\%$ on $\mathrm {JSD}_\pi $; nonlinear MAUVE exhibits $+66.0\%$ curvature error on C3, Table~\ref {tab:iso_frontier_validation})}{figure.caption.1}{}}
-\def\@LN@column{2}
-\@LN{84}{1}
-\@LN{85}{1}
-\@LN{86}{1}
-\@LN{87}{1}
-\@LN{88}{1}
-\@LN{89}{1}
-\@LN{90}{1}
-\@LN{91}{1}
-\@LN{92}{1}
 \@writefile{toc}{\contentsline {paragraph}{Claim A vs.\ Claim B Differentiation.}{2}{section*.2}\protected@file@percent }
-\@LN{93}{1}
-\@LN{94}{1}
-\@LN{95}{1}
-\@LN{96}{1}
-\@LN{97}{1}
-\@LN{98}{1}
-\@LN{99}{1}
-\@LN{100}{1}
-\@LN{101}{1}
-\@LN{102}{1}
-\@LN{103}{1}
-\@LN{104}{1}
-\@LN{105}{1}
-\@LN{106}{1}
-\@LN{107}{1}
-\@LN{108}{1}
-\@LN{109}{1}
-\@LN{110}{1}
-\@LN{111}{1}
-\def\@LN@column{1}
-\@LN{112}{1}
-\@LN{113}{1}
-\@LN{114}{1}
 \@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.3}\protected@file@percent }
-\@LN{115}{1}
-\@LN{116}{1}
-\@LN{117}{1}
-\@LN{118}{1}
-\@LN{119}{1}
-\@LN{120}{1}
-\@LN{121}{1}
-\@LN{122}{1}
-\@LN{123}{1}
-\@LN{124}{1}
-\@LN{125}{1}
-\@LN{126}{1}
-\@LN{127}{1}
-\@LN{128}{1}
-\@LN{129}{1}
-\@LN{130}{1}
-\@LN{131}{1}
-\@LN{132}{1}
-\@LN{133}{1}
-\@LN{134}{1}
-\@LN{135}{1}
-\@LN{136}{1}
-\@LN{137}{1}
-\@LN{138}{1}
-\@LN{139}{1}
 \citation{hu2026elf}
 \citation{raffel2020exploring}
-\citation{lipman2023flow}
+\citation{chen2023analog,lipman2023flow}
 \citation{schuirmann1987comparison}
-\def\@LN@column{2}
-\@LN{140}{2}
-\@LN{141}{2}
-\@LN{142}{2}
-\@LN{143}{2}
-\@LN{144}{2}
-\@LN{145}{2}
-\@LN{146}{2}
-\@LN{147}{2}
-\@LN{148}{2}
-\@LN{149}{2}
-\@LN{150}{2}
+\citation{holm1979simple}
+\citation{li2016diversity}
+\citation{zhu2018texygen}
+\citation{willems1995context}
+\citation{friedman2023vendi}
 \@writefile{toc}{\contentsline {section}{\numberline {2}The Calibrate-then-Held-Out Protocol and Iso-Frontier Diagnostic}{3}{section.2}\protected@file@percent }
 \newlabel{sec:protocol}{{2}{3}{The Calibrate-then-Held-Out Protocol and Iso-Frontier Diagnostic}{section.2}{}}
-\@LN{151}{2}
-\@LN{152}{2}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Model Architecture and Parameter Count Convention}{3}{subsection.2.1}\protected@file@percent }
-\@LN{153}{2}
-\@LN{154}{2}
-\@LN{155}{2}
-\@LN{156}{2}
-\@LN{157}{2}
-\@LN{158}{2}
-\@LN{159}{2}
-\@LN{160}{2}
-\@LN{161}{2}
-\@LN{162}{2}
-\@LN{163}{2}
-\@LN{164}{2}
-\@LN{165}{2}
-\@LN{166}{2}
-\@LN{167}{2}
-\@LN{168}{2}
-\@LN{169}{2}
-\@LN{170}{2}
-\@LN{171}{2}
 \@writefile{toc}{\contentsline {paragraph}{Parameter Count Convention.}{3}{section*.4}\protected@file@percent }
-\@LN{172}{2}
-\@LN{173}{2}
-\@LN{174}{2}
-\@LN{175}{2}
-\@LN{176}{2}
-\@LN{177}{2}
-\@LN{178}{2}
-\@LN{179}{2}
-\@LN{180}{2}
-\@LN{181}{2}
-\@LN{182}{2}
-\@LN{183}{2}
-\@LN{184}{2}
-\@LN{185}{2}
-\@LN{186}{2}
-\@LN{187}{2}
-\def\@LN@column{1}
-\@LN{188}{2}
-\@LN{189}{2}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Sampler Controls and Exact NFE Invariance}{3}{subsection.2.2}\protected@file@percent }
-\@LN{190}{2}
-\@LN{191}{2}
-\@LN{192}{2}
-\@LN{193}{2}
-\@LN{194}{2}
-\@LN{195}{2}
-\@LN{196}{2}
-\@LN{197}{2}
-\@LN{198}{2}
-\@LN{199}{2}
-\@LN{200}{2}
-\@LN{201}{2}
-\@LN{202}{2}
-\@LN{203}{2}
-\@LN{204}{2}
-\@LN{205}{2}
-\@LN{206}{2}
-\@LN{207}{2}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}The Calibrate-then-Held-Out TOST Protocol}{3}{subsection.2.3}\protected@file@percent }
-\@LN{208}{2}
-\@LN{209}{2}
-\@LN{210}{2}
-\@LN{211}{2}
-\@LN{212}{2}
-\@LN{213}{2}
-\@LN{214}{2}
-\@LN{215}{2}
-\@LN{216}{2}
-\@LN{217}{2}
-\@LN{218}{2}
-\@LN{219}{2}
-\@LN{220}{2}
-\@LN{221}{2}
-\@LN{222}{2}
-\@LN{223}{2}
-\@LN{224}{2}
-\@LN{225}{2}
-\@LN{226}{2}
-\@LN{227}{2}
-\@LN{228}{2}
-\@LN{229}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Multiplicity Hierarchy and Gatekeeping}{3}{subsection.2.4}\protected@file@percent }
-\@LN{230}{2}
-\@LN{231}{2}
-\@LN{232}{2}
-\@LN{233}{2}
-\@LN{234}{2}
-\@LN{235}{2}
-\@LN{236}{2}
-\def\@LN@column{2}
-\@LN{237}{3}
-\@LN{238}{3}
-\@LN{239}{3}
-\@LN{240}{3}
-\@LN{241}{3}
-\@LN{242}{3}
-\@LN{243}{3}
-\@LN{244}{3}
-\@LN{245}{3}
-\@LN{246}{3}
-\@LN{247}{3}
-\@LN{248}{3}
-\@LN{249}{3}
-\@LN{250}{3}
-\@LN{251}{3}
-\@LN{252}{3}
-\@LN{253}{3}
-\@LN{254}{3}
-\@LN{255}{3}
-\@LN{256}{3}
-\@LN{257}{3}
-\@LN{258}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Multiplicity Hierarchy and Gatekeeping}{4}{subsection.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Iso-Frontier Curves and Sensitivity Diagnostic ($\kappa _m$)}{4}{subsection.2.5}\protected@file@percent }
-\@LN{259}{3}
-\@LN{260}{3}
-\@LN{261}{3}
-\@LN{262}{3}
-\@LN{263}{3}
-\@LN{264}{3}
-\@LN{265}{3}
-\@LN{266}{3}
-\@LN{267}{3}
-\@LN{268}{3}
-\@LN{269}{3}
-\@LN{270}{3}
 \@writefile{toc}{\contentsline {paragraph}{Proposition (Local Invariance Condition Along the Matched Band).}{4}{section*.5}\protected@file@percent }
-\@LN{271}{3}
-\@LN{272}{3}
-\@LN{273}{3}
-\@LN{274}{3}
-\@LN{275}{3}
-\@LN{276}{3}
-\@LN{277}{3}
-\@LN{278}{3}
-\@LN{279}{3}
-\@LN{280}{3}
-\@LN{281}{3}
-\@LN{282}{3}
-\@LN{283}{3}
 \newlabel{eq:kappa}{{1}{4}{Proposition (Local Invariance Condition Along the Matched Band)}{equation.1}{}}
-\@LN{284}{3}
-\def\@LN@column{1}
-\@LN{285}{3}
-\@LN{286}{3}
-\@LN{287}{3}
-\@LN{288}{3}
-\@LN{289}{3}
-\@LN{290}{3}
-\@LN{291}{3}
-\@LN{292}{3}
-\@LN{293}{3}
-\@LN{294}{3}
-\@LN{295}{3}
-\@LN{296}{3}
-\@LN{297}{3}
-\@LN{298}{3}
-\@LN{299}{3}
-\@LN{300}{3}
-\@LN{301}{3}
-\@LN{302}{3}
-\@LN{303}{3}
-\@LN{304}{3}
-\@LN{305}{3}
-\@LN{306}{3}
-\@LN{307}{3}
-\@LN{308}{3}
-\@LN{309}{3}
-\@LN{310}{3}
-\@LN{311}{3}
-\@LN{312}{3}
-\@LN{313}{3}
-\@LN{314}{3}
-\@LN{315}{3}
-\@LN{316}{3}
-\@LN{317}{3}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Operating-Point Non-Equivalence on ELF-B}{4}{section.3}\protected@file@percent }
 \newlabel{sec:non_equivalence}{{3}{4}{Operating-Point Non-Equivalence on ELF-B}{section.3}{}}
-\@LN{318}{3}
-\@LN{319}{3}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Confirmatory Joint TOST Equivalence on Held-Out Seeds}{4}{subsection.3.1}\protected@file@percent }
-\@LN{320}{3}
-\@LN{321}{3}
-\@LN{322}{3}
-\@LN{323}{3}
-\@LN{324}{3}
-\@LN{325}{3}
-\@LN{326}{3}
-\@LN{327}{3}
-\@LN{328}{3}
-\@LN{329}{3}
-\@LN{330}{3}
-\@LN{331}{3}
-\@LN{332}{3}
-\@LN{333}{3}
-\@LN{334}{3}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Out-of-sample validation of the continuous iso-frontier model across \textbf  {C1}--\textbf  {C3}: Stage-1 predictions $\Delta _{\mathrm  {pred}} = \DOTSI \intop \ilimits@ _{\mathcal  {C}} \kappa _m d\ell $ (seeds $\{0,1\}$ for \texttt  {rep-4}/MAUVE; 40-run Stage-1 surface across 11 operating points, seeds $0\text  {--}4$, quadratic $R^2=0.980$ with residual SD for $\mathrm  {JSD}_\pi $) vs.\ held-out pilot $\Delta _{\mathrm  {obs}}$ (seeds $201\text  {--}205$, paired CRN 95\% CIs, $df=4$).}}{5}{table.caption.6}\protected@file@percent }
 \newlabel{tab:iso_frontier_validation}{{1}{5}{Out-of-sample validation of the continuous iso-frontier model across \textbf {C1}--\textbf {C3}: Stage-1 predictions $\Delta _{\mathrm {pred}} = \int _{\mathcal {C}} \kappa _m d\ell $ (seeds $\{0,1\}$ for \texttt {rep-4}/MAUVE; 40-run Stage-1 surface across 11 operating points, seeds $0\text {--}4$, quadratic $R^2=0.980$ with residual SD for $\mathrm {JSD}_\pi $) vs.\ held-out pilot $\Delta _{\mathrm {obs}}$ (seeds $201\text {--}205$, paired CRN 95\% CIs, $df=4$)}{table.caption.6}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Operating-point equivalence (Tier-I Joint TOST) and secondary divergence across \textbf  {C1}--\textbf  {C3} on ELF-B for the 5-seed pilot (seeds $201\text  {--}205$, paired CRN $df=4$) and 20-seed confirmatory replication (seeds $401\text  {--}420$, paired CRN $df=19$, $120$ GPU runs, $M=1{,}000$/seed; all 95\% CIs are paired CRN intervals $d_s = Y_{B,s} - Y_{A,s}$). Full panel with unpaired Welch sensitivity intervals in Appendix~\ref {app:full_tables}, Table~\ref {tab:confirmatory_tost_full}.}}{5}{table.caption.7}\protected@file@percent }
 \newlabel{tab:confirmatory_tost}{{2}{5}{Operating-point equivalence (Tier-I Joint TOST) and secondary divergence across \textbf {C1}--\textbf {C3} on ELF-B for the 5-seed pilot (seeds $201\text {--}205$, paired CRN $df=4$) and 20-seed confirmatory replication (seeds $401\text {--}420$, paired CRN $df=19$, $120$ GPU runs, $M=1{,}000$/seed; all 95\% CIs are paired CRN intervals $d_s = Y_{B,s} - Y_{A,s}$). Full panel with unpaired Welch sensitivity intervals in Appendix~\ref {app:full_tables}, Table~\ref {tab:confirmatory_tost_full}}{table.caption.7}{}}
-\def\@LN@column{2}
-\@LN{335}{4}
-\@LN{336}{4}
-\@LN{337}{4}
-\@LN{338}{4}
-\@LN{339}{4}
-\@LN{340}{4}
-\@LN{341}{4}
-\@LN{342}{4}
-\@LN{343}{4}
-\@LN{344}{4}
-\@LN{345}{4}
-\@LN{346}{4}
-\@LN{347}{4}
-\@LN{348}{4}
-\@LN{349}{4}
-\@LN{350}{4}
-\@LN{351}{4}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Secondary Structural Divergence and Multiplicity Audit}{5}{subsection.3.2}\protected@file@percent }
-\@LN{352}{4}
-\@LN{353}{4}
-\def\@LN@column{1}
-\@LN{354}{4}
-\@LN{355}{4}
-\@LN{356}{4}
-\@LN{357}{4}
-\@LN{358}{4}
-\@LN{359}{4}
-\@LN{360}{4}
-\@LN{361}{4}
-\@LN{362}{4}
-\@LN{363}{4}
-\@LN{364}{4}
-\@LN{365}{4}
-\@LN{366}{4}
-\@LN{367}{4}
-\@LN{368}{4}
-\@LN{369}{4}
-\@LN{370}{4}
-\@LN{371}{4}
-\@LN{372}{4}
-\@LN{373}{4}
+\citation{gokaslan2019openwebtext}
+\citation{brown2020language}
+\citation{radford2019language}
+\citation{zheng2023judging}
+\citation{chhun2022hanna}
+\citation{yang2025qwen25}
+\citation{grattafiori2024llama3}
+\citation{jiang2023mistral7b}
 \citation{zhang2026selfcond}
 \citation{zhang2026selfcond}
-\def\@LN@column{2}
-\@LN{374}{5}
-\@LN{375}{5}
-\@LN{376}{5}
-\@LN{377}{5}
-\@LN{378}{5}
-\@LN{379}{5}
-\@LN{380}{5}
-\@LN{381}{5}
-\@LN{382}{5}
-\@LN{383}{5}
-\@LN{384}{5}
-\@LN{385}{5}
-\@LN{386}{5}
-\@LN{387}{5}
-\@LN{388}{5}
-\@LN{389}{5}
-\@LN{390}{5}
-\@LN{391}{5}
-\@LN{392}{5}
-\@LN{393}{5}
-\@LN{394}{5}
-\@LN{395}{5}
-\@LN{396}{5}
-\@LN{397}{5}
+\citation{reimers2019sentence}
+\citation{xiao2024cpack}
+\citation{mu2018all}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Is the Divergence Perceptible? Automated Evaluation \& Reference Audit}{6}{section.4}\protected@file@percent }
 \newlabel{sec:perceptibility}{{4}{6}{Is the Divergence Perceptible? Automated Evaluation \& Reference Audit}{section.4}{}}
-\@LN{398}{5}
-\@LN{399}{5}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Verified Pretraining-Excluded Reference Corpus}{6}{subsection.4.1}\protected@file@percent }
-\@LN{400}{5}
-\@LN{401}{5}
-\@LN{402}{5}
-\@LN{403}{5}
-\@LN{404}{5}
-\@LN{405}{5}
-\@LN{406}{5}
-\@LN{407}{5}
-\@LN{408}{5}
-\@LN{409}{5}
-\@LN{410}{5}
-\@LN{411}{5}
-\@LN{412}{5}
-\@LN{413}{5}
-\@LN{414}{5}
-\@LN{415}{5}
-\@LN{416}{5}
-\@LN{417}{5}
-\@LN{418}{5}
-\@LN{419}{5}
-\@LN{420}{5}
-\@LN{421}{5}
-\@LN{422}{5}
-\@LN{423}{5}
-\def\@LN@column{1}
-\@LN{424}{5}
-\@LN{425}{5}
-\@LN{426}{5}
-\@LN{427}{5}
-\@LN{428}{5}
-\@LN{429}{5}
-\@LN{430}{5}
-\@LN{431}{5}
-\@LN{432}{5}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Validated Automated (LLM) Judgment Panel}{6}{subsection.4.2}\protected@file@percent }
-\@LN{433}{5}
-\@LN{434}{5}
-\@LN{435}{5}
-\@LN{436}{5}
-\@LN{437}{5}
-\@LN{438}{5}
-\@LN{439}{5}
-\@LN{440}{5}
-\@LN{441}{5}
-\@LN{442}{5}
-\@LN{443}{5}
-\@LN{444}{5}
-\@LN{445}{5}
-\@LN{446}{5}
-\@LN{447}{5}
-\@LN{448}{5}
-\@LN{449}{5}
-\@LN{450}{5}
-\@LN{451}{5}
-\@LN{452}{5}
-\@LN{453}{5}
-\@LN{454}{5}
-\@LN{455}{5}
-\@LN{456}{5}
-\@LN{457}{5}
-\@LN{458}{5}
-\@LN{459}{5}
-\@LN{460}{5}
-\@LN{461}{5}
-\@LN{462}{5}
-\@LN{463}{5}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Scale Persistence and Architecture Generality}{6}{section.5}\protected@file@percent }
 \newlabel{sec:scale}{{5}{6}{Scale Persistence and Architecture Generality}{section.5}{}}
-\@LN{464}{5}
-\@LN{465}{5}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Cross-Scale Validation up to 652.1M Parameters}{6}{subsection.5.1}\protected@file@percent }
-\@LN{466}{5}
-\@LN{467}{5}
-\@LN{468}{5}
-\@LN{469}{5}
-\@LN{470}{5}
-\@LN{471}{5}
-\@LN{472}{5}
 \citation{gulrajani2023plaid}
 \citation{zhang2026selfcond}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Mechanistic evaluation of Attractor-Contrast-Escape (ACE)~\citep  {zhang2026selfcond} self-conditioning feedback projection on ELF-B (seeds $201\text  {--}205$, $n=5$ seeds/condition), including uncompensated steering (Rows 3--6, unpaired Welch 95\% sensitivity CIs) and $\gamma $-compensated matched ACE at $\gamma ^*=1.1699$ (Row 7, Notebook 21). Full suite in Appendix~\ref {app:full_tables}, Table~\ref {tab:ace_intervention_full}.}}{7}{table.caption.8}\protected@file@percent }
-\newlabel{tab:ace_intervention}{{3}{7}{Mechanistic evaluation of Attractor-Contrast-Escape (ACE)~\citep {zhang2026selfcond} self-conditioning feedback projection on ELF-B (seeds $201\text {--}205$, $n=5$ seeds/condition), including uncompensated steering (Rows 3--6, unpaired Welch 95\% sensitivity CIs) and $\gamma $-compensated matched ACE at $\gamma ^*=1.1699$ (Row 7, Notebook 21). Full suite in Appendix~\ref {app:full_tables}, Table~\ref {tab:ace_intervention_full}}{table.caption.8}{}}
-\def\@LN@column{2}
-\@LN{473}{6}
-\@LN{474}{6}
-\@LN{475}{6}
-\@LN{476}{6}
-\@LN{477}{6}
-\@LN{478}{6}
-\@LN{479}{6}
-\@LN{480}{6}
-\@LN{481}{6}
-\@LN{482}{6}
-\@LN{483}{6}
-\@LN{484}{6}
-\@LN{485}{6}
-\@LN{486}{6}
-\@LN{487}{6}
-\@LN{488}{6}
-\@LN{489}{6}
-\@LN{490}{6}
-\@LN{491}{6}
-\@LN{492}{6}
-\@LN{493}{6}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Mechanistic evaluation of Attractor-Contrast-Escape (ACE)~\citep  {zhang2026selfcond} self-conditioning feedback projection on ELF-B (seeds $201\text  {--}205$, $n=5$ seeds/condition), including uncompensated steering (Rows 3--6, unpaired Welch 95\% sensitivity CIs) and $\gamma $-compensated matched ACE at $\gamma ^*=1.1699, M=1{,}000$/seed (Row 7, Notebooks 21--22). Full suite in Appendix~\ref {app:full_tables}, Table~\ref {tab:ace_intervention_full}.}}{7}{table.caption.8}\protected@file@percent }
+\newlabel{tab:ace_intervention}{{3}{7}{Mechanistic evaluation of Attractor-Contrast-Escape (ACE)~\citep {zhang2026selfcond} self-conditioning feedback projection on ELF-B (seeds $201\text {--}205$, $n=5$ seeds/condition), including uncompensated steering (Rows 3--6, unpaired Welch 95\% sensitivity CIs) and $\gamma $-compensated matched ACE at $\gamma ^*=1.1699, M=1{,}000$/seed (Row 7, Notebooks 21--22). Full suite in Appendix~\ref {app:full_tables}, Table~\ref {tab:ace_intervention_full}}{table.caption.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Architecture Generality: Plaid-1B Response Surface and Iso-Contour Audit}{7}{subsection.5.2}\protected@file@percent }
-\@LN{494}{6}
-\@LN{495}{6}
-\@LN{496}{6}
-\@LN{497}{6}
-\@LN{498}{6}
-\@LN{499}{6}
-\@LN{500}{6}
-\@LN{501}{6}
-\@LN{502}{6}
-\@LN{503}{6}
-\@LN{504}{6}
-\@LN{505}{6}
-\@LN{506}{6}
-\@LN{507}{6}
-\@LN{508}{6}
-\def\@LN@column{1}
-\@LN{509}{6}
-\@LN{510}{6}
-\@LN{511}{6}
-\@LN{512}{6}
-\@LN{513}{6}
-\@LN{514}{6}
-\@LN{515}{6}
-\@LN{516}{6}
-\@LN{517}{6}
-\@LN{518}{6}
-\@LN{519}{6}
-\@LN{520}{6}
-\@LN{521}{6}
-\@LN{522}{6}
-\@LN{523}{6}
-\@LN{524}{6}
-\@LN{525}{6}
-\@LN{526}{6}
-\@LN{527}{6}
-\@LN{528}{6}
-\@LN{529}{6}
-\@LN{530}{6}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Mechanistic Probing: Matched ACE and Control Attractors}{7}{section.6}\protected@file@percent }
 \newlabel{sec:ace}{{6}{7}{Mechanistic Probing: Matched ACE and Control Attractors}{section.6}{}}
-\@LN{531}{6}
-\@LN{532}{6}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}The Self-Conditioning Attractor and Uncompensated ACE}{7}{subsection.6.1}\protected@file@percent }
-\@LN{533}{6}
-\@LN{534}{6}
-\@LN{535}{6}
-\@LN{536}{6}
-\@LN{537}{6}
-\@LN{538}{6}
-\@LN{539}{6}
-\@LN{540}{6}
-\@LN{541}{6}
-\@LN{542}{6}
-\@LN{543}{6}
+\citation{li2022diffusionlm,dieleman2022cdcd,gulrajani2023plaid,lovelace2023ld4lg,hu2026elf,jiang2026textldm,guo2026coladlm}
+\citation{lou2024sedd,sahoo2024mdlm,zheng2025masked,sahoo2025duo,wang2025remdm}
+\citation{pynadath2025candi,zhou2025ccdd}
+\citation{holtzman2020curious,caccia2020language,nadeem2020systematic,basu2021mirostat,xu2022learning}
+\citation{pynadath2026generative}
 \citation{franca2026hacking}
+\citation{willems1995context}
+\citation{zheng2023judging}
 \citation{zhang2026selfcond}
+\citation{chen2023analog}
 \citation{ho2022classifier}
 \citation{friedman2023vendi}
-\citation{pillutla2021mauve}
-\citation{caccia2020language}
-\def\@LN@column{2}
-\@LN{544}{7}
-\@LN{545}{7}
-\@LN{546}{7}
-\@LN{547}{7}
-\@LN{548}{7}
-\@LN{549}{7}
+\citation{pillutla2021mauve,pimentel2023usefulness}
+\citation{zhu2018texygen,caccia2020language}
+\citation{brown2020language}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2}$\gamma $-Compensated Matched ACE and Random Direction Null}{8}{subsection.6.2}\protected@file@percent }
-\@LN{550}{7}
-\@LN{551}{7}
-\@LN{552}{7}
-\@LN{553}{7}
-\@LN{554}{7}
-\@LN{555}{7}
-\@LN{556}{7}
-\@LN{557}{7}
-\@LN{558}{7}
-\@LN{559}{7}
-\@LN{560}{7}
-\@LN{561}{7}
-\@LN{562}{7}
-\@LN{563}{7}
-\@LN{564}{7}
-\@LN{565}{7}
-\@LN{566}{7}
-\@LN{567}{7}
-\@LN{568}{7}
-\@LN{569}{7}
-\@LN{570}{7}
-\@LN{571}{7}
-\@LN{572}{7}
-\@LN{573}{7}
-\@LN{574}{7}
-\@LN{575}{7}
-\@LN{576}{7}
-\@LN{577}{7}
-\@LN{578}{7}
-\@LN{579}{7}
-\@LN{580}{7}
-\@LN{581}{7}
-\@LN{582}{7}
-\@LN{583}{7}
-\@LN{584}{7}
-\@LN{585}{7}
-\@LN{586}{7}
-\@LN{587}{7}
-\@LN{588}{7}
-\@LN{589}{7}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Related Work and Practical Recommendations}{8}{section.7}\protected@file@percent }
 \newlabel{sec:related_work}{{7}{8}{Related Work and Practical Recommendations}{section.7}{}}
-\@LN{590}{7}
-\@writefile{toc}{\contentsline {paragraph}{Perplexity Hacking and Self-Conditioning Dynamics.}{8}{section*.9}\protected@file@percent }
-\@LN{591}{7}
-\@LN{592}{7}
-\def\@LN@column{1}
-\@LN{593}{7}
-\@LN{594}{7}
-\@LN{595}{7}
-\@LN{596}{7}
-\@LN{597}{7}
-\@LN{598}{7}
-\@LN{599}{7}
-\@LN{600}{7}
-\@LN{601}{7}
-\@LN{602}{7}
-\@LN{603}{7}
-\@LN{604}{7}
-\@LN{605}{7}
-\@LN{606}{7}
-\@LN{607}{7}
-\@LN{608}{7}
-\@LN{609}{7}
-\@LN{610}{7}
+\@writefile{toc}{\contentsline {paragraph}{Diffusion Language Models and Decoding Frontiers.}{8}{section*.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Guidance, Diversity Metrics, and Benchmarking Recommendations.}{8}{section*.10}\protected@file@percent }
-\@LN{611}{7}
-\@LN{612}{7}
-\@LN{613}{7}
-\@LN{614}{7}
-\@LN{615}{7}
-\@LN{616}{7}
-\@LN{617}{7}
-\@LN{618}{7}
-\@LN{619}{7}
-\@LN{620}{7}
-\@LN{621}{7}
-\@LN{622}{7}
-\@LN{623}{7}
-\@LN{624}{7}
-\@LN{625}{7}
-\@LN{626}{7}
-\@LN{627}{7}
 \newlabel{sec:end_of_main}{{7}{8}{Guidance, Diversity Metrics, and Benchmarking Recommendations}{section*.10}{}}
-\@LN{628}{7}
 \bibdata{references}
-\bibcite{caccia2020language}{{1}{2020}{{Caccia et~al.}}{{Caccia, Caccia, Fedus, Larochelle, Pineau, and Charlin}}}
-\bibcite{franca2026hacking}{{2}{2026}{{Franca and Tong}}{{}}}
-\bibcite{friedman2023vendi}{{3}{2023}{{Friedman and Dieng}}{{}}}
-\bibcite{gulrajani2023plaid}{{4}{2023}{{Gulrajani and Hashimoto}}{{}}}
-\bibcite{ho2022classifier}{{5}{2022}{{Ho and Salimans}}{{}}}
-\bibcite{hu2026elf}{{6}{2026}{{Hu et~al.}}{{Hu, Qiu, Lu, Zhao, Li, Kim, Andreas, and He}}}
-\bibcite{li2022diffusionlm}{{7}{2022}{{Li et~al.}}{{Li, Thickstun, Gulrajani, Liang, and Hashimoto}}}
-\bibcite{lipman2023flow}{{8}{2023}{{Lipman et~al.}}{{Lipman, Chen, Ben-Hamu, Nickel, and Le}}}
-\bibcite{lovelace2023ld4lg}{{9}{2023}{{Lovelace et~al.}}{{Lovelace, Kishore, Wan, Shekhtman, and Weinberger}}}
-\bibcite{pillutla2021mauve}{{10}{2021}{{Pillutla et~al.}}{{Pillutla, Swayamdipta, Zellers, Thickstun, Welleck, Choi, and Harchaoui}}}
-\bibcite{pynadath2026generative}{{11}{2026}{{Pynadath et~al.}}{{Pynadath, Shi, and Zhang}}}
-\bibcite{raffel2020exploring}{{12}{2020}{{Raffel et~al.}}{{Raffel, Shazeer, Roberts, Lee, Narang, Matena, Zhou, Li, and Liu}}}
-\bibcite{sahoo2024mdlm}{{13}{2024}{{Sahoo et~al.}}{{Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu, Rush, and Kuleshov}}}
-\bibcite{schuirmann1987comparison}{{14}{1987}{{Schuirmann}}{{}}}
-\bibcite{zhang2026selfcond}{{15}{2026}{{Zhang et~al.}}{{Zhang, Chen, Qiu, He, Du, and Lan}}}
-\bibcite{zheng2025masked}{{16}{2025}{{Zheng et~al.}}{{Zheng, Chen, Mao, Liu, Zhu, and Zhang}}}
-\def\@LN@column{2}
-\@LN{629}{8}
+\bibcite{basu2021mirostat}{{1}{2021}{{Basu et~al.}}{{Basu, Ramachandran, Keskar, and Varshney}}}
+\bibcite{brown2020language}{{2}{2020}{{Brown et~al.}}{{Brown, Mann, Ryder, Subbiah, Kaplan, Dhariwal, Neelakantan, Shyam, Sastry, Askell et~al.}}}
+\bibcite{caccia2020language}{{3}{2020}{{Caccia et~al.}}{{Caccia, Caccia, Fedus, Larochelle, Pineau, and Charlin}}}
+\bibcite{chen2023analog}{{4}{2023}{{Chen et~al.}}{{Chen, Zhang, and Hinton}}}
+\bibcite{chhun2022hanna}{{5}{2022}{{Chhun et~al.}}{{Chhun, Colombo, Suchanek, and Clavel}}}
+\bibcite{dieleman2022cdcd}{{6}{2022}{{Dieleman et~al.}}{{Dieleman, Sartran, Roshannai, Savinov, Ganin, Richemond, Doucet, Strudel, Dyer, Durkan et~al.}}}
+\bibcite{franca2026hacking}{{7}{2026}{{Franca and Tong}}{{}}}
+\bibcite{friedman2023vendi}{{8}{2023}{{Friedman and Dieng}}{{}}}
+\bibcite{gokaslan2019openwebtext}{{9}{2019}{{Gokaslan and Cohen}}{{}}}
+\bibcite{grattafiori2024llama3}{{10}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten, Vaughan et~al.}}}
+\bibcite{gulrajani2023plaid}{{11}{2023}{{Gulrajani and Hashimoto}}{{}}}
+\bibcite{guo2026coladlm}{{12}{2026}{{Guo et~al.}}{{Guo, Zhao, Zhao, Nie, Zhu, Guo, Wang, Yang, Zhao, Wei, and Zeng}}}
+\bibcite{ho2022classifier}{{13}{2022}{{Ho and Salimans}}{{}}}
+\bibcite{holm1979simple}{{14}{1979}{{Holm}}{{}}}
+\bibcite{holtzman2020curious}{{15}{2020}{{Holtzman et~al.}}{{Holtzman, Buys, Du, Forbes, and Choi}}}
+\bibcite{hu2026elf}{{16}{2026}{{Hu et~al.}}{{Hu, Qiu, Lu, Zhao, Li, Kim, Andreas, and He}}}
 \newlabel{sec:discussion}{{7}{9}{Limitations}{section*.11}{}}
-\@LN{630}{8}
-\@LN{631}{8}
-\@LN{632}{8}
-\@LN{633}{8}
-\@LN{634}{8}
-\@LN{635}{8}
-\@LN{636}{8}
-\@LN{637}{8}
-\@LN{638}{8}
-\@LN{639}{8}
-\@LN{640}{8}
-\@LN{641}{8}
-\@LN{642}{8}
-\@LN{643}{8}
-\@LN{644}{8}
-\@LN{645}{8}
-\@LN{646}{8}
-\@LN{647}{8}
-\@LN{648}{8}
-\@LN{649}{8}
-\@LN{650}{8}
-\@LN{651}{8}
-\@LN{652}{8}
-\@LN{653}{8}
-\@LN{654}{8}
-\@LN{655}{8}
-\@LN{656}{8}
-\@LN{657}{8}
-\@LN{658}{8}
-\@LN{659}{8}
-\@LN{660}{8}
-\@LN{661}{8}
-\@LN{662}{8}
-\@LN{663}{8}
-\@LN{664}{8}
-\@LN{665}{8}
-\@LN{666}{8}
-\@LN{667}{8}
-\@LN{668}{8}
-\@LN{669}{8}
-\@LN{670}{8}
-\@LN{671}{8}
-\@LN{672}{8}
-\@LN{673}{8}
-\@LN{674}{8}
-\@LN{675}{8}
-\@LN{676}{8}
-\@LN{677}{8}
-\def\@LN@column{1}
-\@LN{678}{8}
-\@LN{679}{8}
-\@LN{680}{8}
-\@LN{681}{8}
-\@LN{682}{8}
-\@LN{683}{8}
-\@LN{684}{8}
-\@LN{685}{8}
-\@LN{686}{8}
-\@LN{687}{8}
-\@LN{688}{8}
-\@LN{689}{8}
-\@LN{690}{8}
-\@LN{691}{8}
-\@LN{692}{8}
-\@LN{693}{8}
-\@LN{694}{8}
-\@LN{695}{8}
-\@LN{696}{8}
-\@LN{697}{8}
-\@LN{698}{8}
-\@LN{699}{8}
-\@LN{700}{8}
-\@LN{701}{8}
-\@LN{702}{8}
-\@LN{703}{8}
-\@LN{704}{8}
-\@LN{705}{8}
-\@LN{706}{8}
-\@LN{707}{8}
-\@LN{708}{8}
-\@LN{709}{8}
-\@LN{710}{8}
-\@LN{711}{8}
-\@LN{712}{8}
-\@LN{713}{8}
-\@LN{714}{8}
-\@LN{715}{8}
-\@LN{716}{8}
-\@LN{717}{8}
-\@LN{718}{8}
-\@LN{719}{8}
-\@LN{720}{8}
-\@LN{721}{8}
-\@LN{722}{8}
-\@LN{723}{8}
-\@LN{724}{8}
-\@LN{725}{8}
-\@LN{726}{8}
-\@LN{727}{8}
-\@LN{728}{8}
-\@LN{729}{8}
-\@LN{730}{8}
-\@LN{731}{8}
-\@LN{732}{8}
-\def\@LN@column{2}
-\@LN{733}{9}
-\@LN{734}{9}
-\@LN{735}{9}
-\@LN{736}{9}
-\@LN{737}{9}
-\@LN{738}{9}
-\@LN{739}{9}
-\@LN{740}{9}
-\def\@LN@column{1}
-\def\@LN@column{2}
-\@LN{741}{10}
-\@LN{742}{10}
-\@LN{743}{10}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Statistical Reanalysis, Paired vs.\ Unpaired Seed-Level Audit, and ANOVA}{11}{appendix.A}\protected@file@percent }
-\newlabel{app:stats}{{A}{11}{Statistical Reanalysis, Paired vs.\ Unpaired Seed-Level Audit, and ANOVA}{appendix.A}{}}
-\@LN{744}{10}
-\@LN{745}{10}
-\@LN{746}{10}
-\@LN{747}{10}
-\@LN{748}{10}
-\@LN{749}{10}
-\@LN{750}{10}
-\@LN{751}{10}
-\@LN{752}{10}
-\@LN{753}{10}
-\@LN{754}{10}
-\@LN{755}{10}
-\@LN{756}{10}
-\@LN{757}{10}
-\@LN{758}{10}
-\@LN{759}{10}
-\@LN{760}{10}
-\@LN{761}{10}
-\@LN{762}{10}
-\@LN{763}{10}
-\@LN{764}{10}
-\@LN{765}{10}
-\@LN{766}{10}
-\@LN{767}{10}
-\@LN{768}{10}
-\@LN{769}{10}
-\@LN{770}{10}
-\@LN{771}{10}
-\@LN{772}{10}
-\@LN{773}{10}
-\@LN{774}{10}
-\@LN{775}{10}
-\@LN{776}{10}
-\@LN{777}{10}
-\@LN{778}{10}
-\@LN{779}{10}
-\@LN{780}{10}
-\@LN{781}{10}
-\@LN{782}{10}
-\@LN{783}{10}
-\@LN{784}{10}
-\@LN{785}{10}
-\@LN{786}{10}
-\@LN{787}{10}
-\@LN{788}{10}
-\@LN{789}{10}
-\@LN{790}{10}
-\@LN{791}{10}
-\def\@LN@column{1}
-\@LN{792}{10}
-\@LN{793}{10}
-\@LN{794}{10}
-\@LN{795}{10}
-\@LN{796}{10}
-\@LN{797}{10}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Synchronized CUDA Hardware Benchmarks and 5-Seed Embedding-Space Diversity}{11}{appendix.B}\protected@file@percent }
-\newlabel{app:cuda_semantic}{{B}{11}{Synchronized CUDA Hardware Benchmarks and 5-Seed Embedding-Space Diversity}{appendix.B}{}}
-\@LN{798}{10}
-\@LN{799}{10}
-\@LN{800}{10}
-\@LN{801}{10}
-\@LN{802}{10}
-\@LN{803}{10}
-\@LN{804}{10}
-\@LN{805}{10}
-\@LN{806}{10}
-\@LN{807}{10}
-\@LN{808}{10}
-\@LN{809}{10}
-\@LN{810}{10}
-\@LN{811}{10}
-\@LN{812}{10}
-\@LN{813}{10}
-\@LN{814}{10}
-\@LN{815}{10}
-\@LN{816}{10}
-\@LN{817}{10}
-\@LN{818}{10}
-\@LN{819}{10}
-\@LN{820}{10}
-\@LN{821}{10}
-\@LN{822}{10}
-\@writefile{toc}{\contentsline {paragraph}{Algebraic Upper Bound for \texttt  {ABTT-3} Mean Cosine Distance.}{11}{section*.19}\protected@file@percent }
-\@LN{823}{10}
-\@LN{824}{10}
-\@LN{825}{10}
-\@LN{826}{10}
-\@LN{827}{10}
-\@LN{828}{10}
-\newlabel{eq:abtt_bound}{{2}{11}{Algebraic Upper Bound for \texttt {ABTT-3} Mean Cosine Distance}{equation.2}{}}
-\@LN{829}{10}
-\@LN{830}{10}
-\@LN{831}{10}
-\@LN{832}{10}
-\@LN{833}{10}
+\bibcite{jiang2023mistral7b}{{17}{2023}{{Jiang et~al.}}{{Jiang, Sablayrolles, Mensch, Bamford, Chaplot, de~Las~Casas, Bressand, Lengyel, Lample, Saulnier, Lavaud, Lachaux, Stock, Scao, Lavril, Wang, Lacroix, and El~Sayed}}}
+\bibcite{jiang2026textldm}{{18}{2026}{{Jiang et~al.}}{{Jiang, Ren, Li, Wang, Sun, Yang, Liu, Zhang, Zheng, Zhang, Huang, Duan, and Zuo}}}
+\bibcite{li2016diversity}{{19}{2016}{{Li et~al.}}{{Li, Galley, Brockett, Gao, and Dolan}}}
+\bibcite{li2022diffusionlm}{{20}{2022}{{Li et~al.}}{{Li, Thickstun, Gulrajani, Liang, and Hashimoto}}}
+\bibcite{lipman2023flow}{{21}{2023}{{Lipman et~al.}}{{Lipman, Chen, Ben-Hamu, Nickel, and Le}}}
+\bibcite{lou2024sedd}{{22}{2024}{{Lou et~al.}}{{Lou, Meng, and Ermon}}}
+\bibcite{lovelace2023ld4lg}{{23}{2023}{{Lovelace et~al.}}{{Lovelace, Kishore, Wan, Shekhtman, and Weinberger}}}
+\bibcite{mu2018all}{{24}{2018}{{Mu and Viswanath}}{{}}}
+\bibcite{nadeem2020systematic}{{25}{2020}{{Nadeem et~al.}}{{Nadeem, He, Cho, and Glass}}}
+\bibcite{pillutla2021mauve}{{26}{2021}{{Pillutla et~al.}}{{Pillutla, Swayamdipta, Zellers, Thickstun, Welleck, Choi, and Harchaoui}}}
+\bibcite{pimentel2023usefulness}{{27}{2023}{{Pimentel et~al.}}{{Pimentel, Meister, and Cotterell}}}
+\bibcite{pynadath2025candi}{{28}{2025}{{Pynadath et~al.}}{{Pynadath, Shi, and Zhang}}}
+\bibcite{pynadath2026generative}{{29}{2026}{{Pynadath et~al.}}{{Pynadath, Shi, and Zhang}}}
+\bibcite{radford2019language}{{30}{2019}{{Radford et~al.}}{{Radford, Wu, Child, Luan, Amodei, and Sutskever}}}
+\bibcite{raffel2020exploring}{{31}{2020}{{Raffel et~al.}}{{Raffel, Shazeer, Roberts, Lee, Narang, Matena, Zhou, Li, and Liu}}}
+\bibcite{reimers2019sentence}{{32}{2019}{{Reimers and Gurevych}}{{}}}
+\bibcite{sahoo2024mdlm}{{33}{2024}{{Sahoo et~al.}}{{Sahoo, Arriola, Schiff, Gokaslan, Marroquin, Chiu, Rush, and Kuleshov}}}
+\bibcite{sahoo2025duo}{{34}{2025}{{Sahoo et~al.}}{{Sahoo, Deschenaux, Gokaslan, Wang, Chiu, and Kuleshov}}}
+\bibcite{schuirmann1987comparison}{{35}{1987}{{Schuirmann}}{{}}}
+\bibcite{wang2025remdm}{{36}{2025}{{Wang et~al.}}{{Wang, Schiff, Sahoo, and Kuleshov}}}
+\bibcite{willems1995context}{{37}{1995}{{Willems et~al.}}{{Willems, Shtarkov, and Tjalkens}}}
+\bibcite{xiao2024cpack}{{38}{2024}{{Xiao et~al.}}{{Xiao, Liu, Zhang, Muennighoff, Lian, and Nie}}}
+\bibcite{xu2022learning}{{39}{2022}{{Xu et~al.}}{{Xu, Liu, Yan, Cai, Li, and Li}}}
+\bibcite{yang2025qwen25}{{40}{2024}{{Yang et~al.}}{{Yang, Yang, Zhang, Hui, Zheng, Yu, Li, Liu, Huang, Wei et~al.}}}
+\bibcite{zhang2026selfcond}{{41}{2026}{{Zhang et~al.}}{{Zhang, Chen, Qiu, He, Du, and Lan}}}
+\bibcite{zheng2025masked}{{42}{2025}{{Zheng et~al.}}{{Zheng, Chen, Mao, Liu, Zhu, and Zhang}}}
+\bibcite{zheng2023judging}{{43}{2023}{{Zheng et~al.}}{{Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li, Li, Xing, Zhang, Gonzalez, and Stoica}}}
+\bibcite{zhou2025ccdd}{{44}{2025}{{Zhou et~al.}}{{Zhou, Yang, Hu, Wang, Zhang, Zhang, Mackey, Jaakkola, Bates, and Zhang}}}
+\bibcite{zhu2018texygen}{{45}{2018}{{Zhu et~al.}}{{Zhu, Lu, Zheng, Guo, Zhang, Wang, and Yu}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Statistical Reanalysis, Paired vs.\ Unpaired Seed-Level Audit, and ANOVA}{12}{appendix.A}\protected@file@percent }
+\newlabel{app:stats}{{A}{12}{Statistical Reanalysis, Paired vs.\ Unpaired Seed-Level Audit, and ANOVA}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Synchronized CUDA Hardware Benchmarks and 5-Seed Embedding-Space Diversity}{12}{appendix.B}\protected@file@percent }
+\newlabel{app:cuda_semantic}{{B}{12}{Synchronized CUDA Hardware Benchmarks and 5-Seed Embedding-Space Diversity}{appendix.B}{}}
+\@writefile{toc}{\contentsline {paragraph}{Algebraic Upper Bound for \texttt  {ABTT-3} Mean Cosine Distance.}{12}{section*.19}\protected@file@percent }
+\newlabel{eq:abtt_bound}{{2}{12}{Algebraic Upper Bound for \texttt {ABTT-3} Mean Cosine Distance}{equation.2}{}}
 \citation{sahoo2024mdlm,zheng2025masked}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Direct uninterpolated configuration pairs in the 56-run exploratory ELF-B factorial grid ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed, $2{,}000$ sequences/cell). Strict pairs satisfy $|\Delta H_{\mathrm  {ps}}| \le 0.010$ nats and relative $|\Delta \text  {Gen-PPL}| \le 4.1\%$; Broad pairs satisfy $|\Delta H_{\mathrm  {ps}}| \le 0.031$ nats. Parentheses report seed-0/seed-1 differences.}}{12}{table.caption.14}\protected@file@percent }
-\newlabel{tab:direct_pairs}{{4}{12}{Direct uninterpolated configuration pairs in the 56-run exploratory ELF-B factorial grid ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed, $2{,}000$ sequences/cell). Strict pairs satisfy $|\Delta H_{\mathrm {ps}}| \le 0.010$ nats and relative $|\Delta \text {Gen-PPL}| \le 4.1\%$; Broad pairs satisfy $|\Delta H_{\mathrm {ps}}| \le 0.031$ nats. Parentheses report seed-0/seed-1 differences}{table.caption.14}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Corpus-level vocabulary divergence ($H_{\mathrm  {pool}}$, $\mathrm  {JSD}_{\pi }$), within-sample \texttt  {rep-4}, corpus \texttt  {distinct-2}, 4-gram Self-BLEU, CTW JCD (bpb), and MAUVE across nine exploratory ELF-B configuration pairs ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed; \textbf  {S1}, \textbf  {Refined-1}, and \textbf  {Refined-2} replicated to $n=5$ seeds/cell in Table~\ref {tab:c1_c3_seed_level}).}}{12}{table.caption.15}\protected@file@percent }
-\newlabel{tab:jcd_selfbleu_pairs}{{5}{12}{Corpus-level vocabulary divergence ($H_{\mathrm {pool}}$, $\mathrm {JSD}_{\pi }$), within-sample \texttt {rep-4}, corpus \texttt {distinct-2}, 4-gram Self-BLEU, CTW JCD (bpb), and MAUVE across nine exploratory ELF-B configuration pairs ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed; \textbf {S1}, \textbf {Refined-1}, and \textbf {Refined-2} replicated to $n=5$ seeds/cell in Table~\ref {tab:c1_c3_seed_level})}{table.caption.15}{}}
-\def\@LN@column{2}
-\@LN{834}{11}
-\@LN{835}{11}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Uncontrolled Langevin Back-Noising ($\gamma $) Sweep and Entropy Collapse}{12}{appendix.C}\protected@file@percent }
-\newlabel{app:gamma_sweep}{{C}{12}{Uncontrolled Langevin Back-Noising (\texorpdfstring {$\gamma $}{gamma}) Sweep and Entropy Collapse}{appendix.C}{}}
-\@LN{836}{11}
-\@LN{837}{11}
-\@LN{838}{11}
-\@LN{839}{11}
-\@LN{840}{11}
-\@LN{841}{11}
-\@LN{842}{11}
-\@LN{843}{11}
-\@LN{844}{11}
-\@LN{845}{11}
-\@LN{846}{11}
-\@LN{847}{11}
-\@LN{848}{11}
-\@LN{849}{11}
-\@LN{850}{11}
-\@LN{851}{11}
-\@LN{852}{11}
-\@LN{853}{11}
-\@LN{854}{11}
-\@LN{855}{11}
-\@LN{856}{11}
-\@LN{857}{11}
-\@LN{858}{11}
-\@LN{859}{11}
-\@writefile{toc}{\contentsline {section}{\numberline {D}Audit of Inference-Time Interventions: ECP and CMLC}{12}{appendix.D}\protected@file@percent }
-\newlabel{app:interventions}{{D}{12}{Audit of Inference-Time Interventions: ECP and CMLC}{appendix.D}{}}
-\@LN{860}{11}
-\@LN{861}{11}
-\@LN{862}{11}
-\@LN{863}{11}
-\@LN{864}{11}
-\def\@LN@column{1}
-\@LN{865}{11}
-\@LN{866}{11}
-\@LN{867}{11}
-\@LN{868}{11}
-\@LN{869}{11}
-\@LN{870}{11}
-\@LN{871}{11}
-\@LN{872}{11}
-\@LN{873}{11}
-\@LN{874}{11}
-\@LN{875}{11}
-\@LN{876}{11}
-\@LN{877}{11}
-\@LN{878}{11}
-\@LN{879}{11}
-\@LN{880}{11}
-\@LN{881}{11}
-\@writefile{toc}{\contentsline {section}{\numberline {E}Model-Scale Frontiers and Cross-Paradigm Discrete Diffusion (MDLM)}{12}{appendix.E}\protected@file@percent }
-\newlabel{app:scale_cross}{{E}{12}{Model-Scale Frontiers and Cross-Paradigm Discrete Diffusion (MDLM)}{appendix.E}{}}
-\@LN{882}{11}
-\@LN{883}{11}
-\@LN{884}{11}
-\@LN{885}{11}
-\@LN{886}{11}
-\@LN{887}{11}
-\@LN{888}{11}
-\@LN{889}{11}
-\@LN{890}{11}
-\@LN{891}{11}
-\@LN{892}{11}
-\@LN{893}{11}
-\@LN{894}{11}
-\@LN{895}{11}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Seed-level TOST test statistics ($t_{1,\mathrm  {low}}, t_{2,\mathrm  {high}}$), Paired Seed-Blocked Common Random Numbers (CRN, $df=4$) primary 95\% CIs vs.\ Unpaired Satterthwaite Welch ($df_{\mathrm  {Satt}}$) sensitivity intervals, Pearson cross-arm correlations $\hat  {r}_{AB}$, Leave-One-Seed-Out (LOSO) ranges, and per-seed differences $\Delta _s = Y_{B,s} - Y_{A,s}$ across all 7 five-seed pairs.}}{13}{table.caption.16}\protected@file@percent }
-\newlabel{tab:c1_c3_seed_level}{{6}{13}{Seed-level TOST test statistics ($t_{1,\mathrm {low}}, t_{2,\mathrm {high}}$), Paired Seed-Blocked Common Random Numbers (CRN, $df=4$) primary 95\% CIs vs.\ Unpaired Satterthwaite Welch ($df_{\mathrm {Satt}}$) sensitivity intervals, Pearson cross-arm correlations $\hat {r}_{AB}$, Leave-One-Seed-Out (LOSO) ranges, and per-seed differences $\Delta _s = Y_{B,s} - Y_{A,s}$ across all 7 five-seed pairs}{table.caption.16}{}}
-\def\@LN@column{2}
-\@LN{896}{12}
-\@LN{897}{12}
-\@LN{898}{12}
-\@LN{899}{12}
-\@LN{900}{12}
-\@LN{901}{12}
-\@writefile{toc}{\contentsline {section}{\numberline {F}Authoritative Experimental Inventory and Reproducibility}{13}{appendix.F}\protected@file@percent }
-\newlabel{app:inventory}{{F}{13}{Authoritative Experimental Inventory and Reproducibility}{appendix.F}{}}
-\@LN{902}{12}
-\@LN{903}{12}
-\@LN{904}{12}
-\@LN{905}{12}
-\@LN{906}{12}
-\@LN{907}{12}
-\@LN{908}{12}
-\@LN{909}{12}
-\@LN{910}{12}
-\@LN{911}{12}
-\@LN{912}{12}
-\def\@LN@column{1}
-\@LN{913}{12}
-\@LN{914}{12}
-\@LN{915}{12}
-\@LN{916}{12}
-\@LN{917}{12}
-\@LN{918}{12}
-\@LN{919}{12}
-\@LN{920}{12}
-\@LN{921}{12}
-\@LN{922}{12}
-\@LN{923}{12}
-\@LN{924}{12}
-\@LN{925}{12}
-\@LN{926}{12}
-\@LN{927}{12}
-\@LN{928}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Direct uninterpolated configuration pairs in the 56-run exploratory ELF-B factorial grid ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed, $2{,}000$ sequences/cell). Strict pairs satisfy $|\Delta H_{\mathrm  {ps}}| \le 0.010$ nats and relative $|\Delta \text  {Gen-PPL}| \le 4.1\%$; Broad pairs satisfy $|\Delta H_{\mathrm  {ps}}| \le 0.031$ nats. Parentheses report seed-0/seed-1 differences.}}{13}{table.caption.14}\protected@file@percent }
+\newlabel{tab:direct_pairs}{{4}{13}{Direct uninterpolated configuration pairs in the 56-run exploratory ELF-B factorial grid ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed, $2{,}000$ sequences/cell). Strict pairs satisfy $|\Delta H_{\mathrm {ps}}| \le 0.010$ nats and relative $|\Delta \text {Gen-PPL}| \le 4.1\%$; Broad pairs satisfy $|\Delta H_{\mathrm {ps}}| \le 0.031$ nats. Parentheses report seed-0/seed-1 differences}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Corpus-level vocabulary divergence ($H_{\mathrm  {pool}}$, $\mathrm  {JSD}_{\pi }$), within-sample \texttt  {rep-4}, corpus \texttt  {distinct-2}, 4-gram Self-BLEU, CTW JCD (bpb), and MAUVE across nine exploratory ELF-B configuration pairs ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed; \textbf  {S1}, \textbf  {Refined-1}, and \textbf  {Refined-2} replicated to $n=5$ seeds/cell in Table~\ref {tab:c1_c3_seed_level}).}}{13}{table.caption.15}\protected@file@percent }
+\newlabel{tab:jcd_selfbleu_pairs}{{5}{13}{Corpus-level vocabulary divergence ($H_{\mathrm {pool}}$, $\mathrm {JSD}_{\pi }$), within-sample \texttt {rep-4}, corpus \texttt {distinct-2}, 4-gram Self-BLEU, CTW JCD (bpb), and MAUVE across nine exploratory ELF-B configuration pairs ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed; \textbf {S1}, \textbf {Refined-1}, and \textbf {Refined-2} replicated to $n=5$ seeds/cell in Table~\ref {tab:c1_c3_seed_level})}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Uncontrolled Langevin Back-Noising ($\gamma $) Sweep and Entropy Collapse}{13}{appendix.C}\protected@file@percent }
+\newlabel{app:gamma_sweep}{{C}{13}{Uncontrolled Langevin Back-Noising (\texorpdfstring {$\gamma $}{gamma}) Sweep and Entropy Collapse}{appendix.C}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Audit of Inference-Time Interventions: ECP and CMLC}{13}{appendix.D}\protected@file@percent }
+\newlabel{app:interventions}{{D}{13}{Audit of Inference-Time Interventions: ECP and CMLC}{appendix.D}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Model-Scale Frontiers and Cross-Paradigm Discrete Diffusion (MDLM)}{13}{appendix.E}\protected@file@percent }
+\newlabel{app:scale_cross}{{E}{13}{Model-Scale Frontiers and Cross-Paradigm Discrete Diffusion (MDLM)}{appendix.E}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Seed-level TOST test statistics ($t_{1,\mathrm  {low}}, t_{2,\mathrm  {high}}$), Paired Seed-Blocked Common Random Numbers (CRN, $df=4$) primary 95\% CIs vs.\ Unpaired Satterthwaite Welch ($df_{\mathrm  {Satt}}$) sensitivity intervals, Pearson cross-arm correlations $\hat  {r}_{AB}$, Leave-One-Seed-Out (LOSO) ranges, and per-seed differences $\Delta _s = Y_{B,s} - Y_{A,s}$ across all 7 five-seed pairs.}}{14}{table.caption.16}\protected@file@percent }
+\newlabel{tab:c1_c3_seed_level}{{6}{14}{Seed-level TOST test statistics ($t_{1,\mathrm {low}}, t_{2,\mathrm {high}}$), Paired Seed-Blocked Common Random Numbers (CRN, $df=4$) primary 95\% CIs vs.\ Unpaired Satterthwaite Welch ($df_{\mathrm {Satt}}$) sensitivity intervals, Pearson cross-arm correlations $\hat {r}_{AB}$, Leave-One-Seed-Out (LOSO) ranges, and per-seed differences $\Delta _s = Y_{B,s} - Y_{A,s}$ across all 7 five-seed pairs}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Authoritative Experimental Inventory and Reproducibility}{14}{appendix.F}\protected@file@percent }
+\newlabel{app:inventory}{{F}{14}{Authoritative Experimental Inventory and Reproducibility}{appendix.F}{}}
 \citation{zhang2026selfcond}
 \citation{zhang2026selfcond}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Conditional response-surface regressions (Panel A, descriptive only, $df_{\mathrm  {seed}}=1$) and seed-blocked ANCOVA (Panel B, $df=4$) across ELF-B and ELF-M.}}{14}{table.caption.17}\protected@file@percent }
-\newlabel{tab:ancova}{{7}{14}{Conditional response-surface regressions (Panel A, descriptive only, $df_{\mathrm {seed}}=1$) and seed-blocked ANCOVA (Panel B, $df=4$) across ELF-B and ELF-M}{table.caption.17}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Practical configuration selection on ELF-B under four $(\text  {Gen-PPL} \le \tau , H_{\mathrm  {ps}} \ge h_0)$ operating budgets. Within every constraint regime containing $\ge 2$ admissible cells, optimizing for minimum local repetition (\texttt  {rep-4}) vs.\ maximum corpus distributional quality (MAUVE or \texttt  {distinct-2}) selects opposite corners of the $(\text  {SC-CFG}, \gamma )$ grid.}}{14}{table.caption.18}\protected@file@percent }
-\newlabel{tab:decisions}{{8}{14}{Practical configuration selection on ELF-B under four $(\text {Gen-PPL} \le \tau , H_{\mathrm {ps}} \ge h_0)$ operating budgets. Within every constraint regime containing $\ge 2$ admissible cells, optimizing for minimum local repetition (\texttt {rep-4}) vs.\ maximum corpus distributional quality (MAUVE or \texttt {distinct-2}) selects opposite corners of the $(\text {SC-CFG}, \gamma )$ grid}{table.caption.18}{}}
-\def\@LN@column{2}
-\@LN{929}{13}
-\@LN{930}{13}
-\@writefile{toc}{\contentsline {section}{\numberline {G}Complete Full-Precision Confirmatory and Cross-Scale Tables}{14}{appendix.G}\protected@file@percent }
-\newlabel{app:full_tables}{{G}{14}{Complete Full-Precision Confirmatory and Cross-Scale Tables}{appendix.G}{}}
-\@LN{931}{13}
-\@LN{932}{13}
-\@LN{933}{13}
-\@LN{934}{13}
-\def\@LN@column{1}
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Hardware-synchronized \texttt  {torch.cuda.Event} GPU timing and Peak VRAM benchmark on ELF-B ($K=32, B=64$, 5 repeats/condition after warm-up), alongside exact reconciliation of the three NFE fields logged in the codebase.}}{15}{table.caption.20}\protected@file@percent }
-\newlabel{tab:cuda_benchmark}{{9}{15}{Hardware-synchronized \texttt {torch.cuda.Event} GPU timing and Peak VRAM benchmark on ELF-B ($K=32, B=64$, 5 repeats/condition after warm-up), alongside exact reconciliation of the three NFE fields logged in the codebase}{table.caption.20}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Five-seed embedding-space Vendi Score ($\mathrm  {VS}_{\cos }$) summary across three pretrained sentence encoders (\texttt  {all-mpnet-base-v2}, \texttt  {all-MiniLM-L6-v2}, \texttt  {BAAI/bge-base-en-v1.5}) under raw unit-normalized embeddings and \texttt  {ABTT-3} ($n=5$ seeds/arm, $M_{\mathrm  {sub}}=250$/seed), separating confirmatory Tier-I pairs (\textbf  {C1}--\textbf  {C3}, Part I) from exploratory Stage-1 pairs (\textbf  {S1, M1}, Part II). Full panel including $\bar  {d}_{\cos }$ in Appendix~\ref {app:full_tables}, Table~\ref {tab:embedding_geometry_full}.}}{15}{table.caption.21}\protected@file@percent }
-\newlabel{tab:embedding_geometry}{{10}{15}{Five-seed embedding-space Vendi Score ($\mathrm {VS}_{\cos }$) summary across three pretrained sentence encoders (\texttt {all-mpnet-base-v2}, \texttt {all-MiniLM-L6-v2}, \texttt {BAAI/bge-base-en-v1.5}) under raw unit-normalized embeddings and \texttt {ABTT-3} ($n=5$ seeds/arm, $M_{\mathrm {sub}}=250$/seed), separating confirmatory Tier-I pairs (\textbf {C1}--\textbf {C3}, Part I) from exploratory Stage-1 pairs (\textbf {S1, M1}, Part II). Full panel including $\bar {d}_{\cos }$ in Appendix~\ref {app:full_tables}, Table~\ref {tab:embedding_geometry_full}}{table.caption.21}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Stage-1 exploratory Seed-0 embedding geometry across six sentence representations ($M_{\mathrm  {sub}}=200$ passages) and Task-1 within-passage half-to-half cosine similarity ($\text  {Half-Sim}$, toks $1\text  {--}128$ vs.\ $129\text  {--}256$) across all nine Stage-1 exploratory pairs.}}{15}{table.caption.22}\protected@file@percent }
-\newlabel{tab:semantic_diversity}{{11}{15}{Stage-1 exploratory Seed-0 embedding geometry across six sentence representations ($M_{\mathrm {sub}}=200$ passages) and Task-1 within-passage half-to-half cosine similarity ($\text {Half-Sim}$, toks $1\text {--}128$ vs.\ $129\text {--}256$) across all nine Stage-1 exploratory pairs}{table.caption.22}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Perplexity--entropy curves across $\text  {SC-CFG} \in \{1,2,3,4\}$ on ELF-B ($K=32$, $n=2$ seeds/cell, $M=1{,}000$ samples/seed). \textbf  {Left:} At matched $H_{\mathrm  {ps}}=5.20$, Gen-PPL spans $1.09$ points ($27.54$--$28.63$). \textbf  {Right:} Higher $\text  {SC-CFG}$ with lower $\gamma $ raises \texttt  {rep-4} ($0.037 \to 0.058$), corpus \texttt  {distinct-2} ($0.280 \to 0.301$), and MAUVE ($0.204 \to 0.407$).}}{16}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:matched_entropy}{{2}{16}{Perplexity--entropy curves across $\text {SC-CFG} \in \{1,2,3,4\}$ on ELF-B ($K=32$, $n=2$ seeds/cell, $M=1{,}000$ samples/seed). \textbf {Left:} At matched $H_{\mathrm {ps}}=5.20$, Gen-PPL spans $1.09$ points ($27.54$--$28.63$). \textbf {Right:} Higher $\text {SC-CFG}$ with lower $\gamma $ raises \texttt {rep-4} ($0.037 \to 0.058$), corpus \texttt {distinct-2} ($0.280 \to 0.301$), and MAUVE ($0.204 \to 0.407$)}{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Uncontrolled Langevin back-noising sweep ($\gamma \in [0, 3.0]$ across $\text  {SC-CFG}\in \{1,2,3,4\}$, 56 runs, $n=2$ seeds/cell, $M=1{,}000$ samples/seed) on ELF-B. \textbf  {(a)} Increasing $\gamma $ drives raw Gen-PPL monotonically below the OpenWebText reference line ($17.18$; reaching $16.70$ at $\gamma =3.0, \text  {SC-CFG}=3.0$), but \textbf  {(b)} plotting the same 56 runs against per-sample entropy $H_{\mathrm  {ps}}$ reveals that all four guidance scales collapse onto a shared trajectory (quadratic $R^2 = 0.989$) driven by entropy contraction.}}{16}{figure.caption.26}\protected@file@percent }
-\newlabel{fig:collapse}{{3}{16}{Uncontrolled Langevin back-noising sweep ($\gamma \in [0, 3.0]$ across $\text {SC-CFG}\in \{1,2,3,4\}$, 56 runs, $n=2$ seeds/cell, $M=1{,}000$ samples/seed) on ELF-B. \textbf {(a)} Increasing $\gamma $ drives raw Gen-PPL monotonically below the OpenWebText reference line ($17.18$; reaching $16.70$ at $\gamma =3.0, \text {SC-CFG}=3.0$), but \textbf {(b)} plotting the same 56 runs against per-sample entropy $H_{\mathrm {ps}}$ reveals that all four guidance scales collapse onto a shared trajectory (quadratic $R^2 = 0.989$) driven by entropy contraction}{figure.caption.26}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Trajectory interventions plotted in the $(\text  {Gen-PPL}, H_{\mathrm  {ps}})$ plane on ELF-B. Both ECP finals ($t_{\mathrm  {on}}=0.50$, 3 seeds) and controls lie directly on the unmodified ELF baseline frontier ($\le 0.2\%$ residual at matched entropy), while the three lower/in-range CMLC adaptive early-exit variants are strictly Pareto-dominated in the 2D $(\text  {Gen-PPL}, H_{\mathrm  {ps}})$ plane ($+36.3\%$ to $+160.1\%$) and the fourth (\texttt  {+ commit}, Gen-PPL $230.90$) lies above the 16-step baseline entropy range ($H_{\mathrm  {ps}}=5.542$ nats).}}{17}{figure.caption.28}\protected@file@percent }
-\newlabel{fig:interventions}{{4}{17}{Trajectory interventions plotted in the $(\text {Gen-PPL}, H_{\mathrm {ps}})$ plane on ELF-B. Both ECP finals ($t_{\mathrm {on}}=0.50$, 3 seeds) and controls lie directly on the unmodified ELF baseline frontier ($\le 0.2\%$ residual at matched entropy), while the three lower/in-range CMLC adaptive early-exit variants are strictly Pareto-dominated in the 2D $(\text {Gen-PPL}, H_{\mathrm {ps}})$ plane ($+36.3\%$ to $+160.1\%$) and the fourth (\texttt {+ commit}, Gen-PPL $230.90$) lies above the 16-step baseline entropy range ($H_{\mathrm {ps}}=5.542$ nats)}{figure.caption.28}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Cross-paradigm step-budget trajectories ($N \in \{8,32,64\}$) for ELF-B ($\gamma \in \{0, 1.0, 1.5\}$) and discrete MDLM in the $(\text  {Gen-PPL}, H_{\mathrm  {pool}})$ plane.}}{17}{figure.caption.33}\protected@file@percent }
-\newlabel{fig:cross_paradigm}{{5}{17}{Cross-paradigm step-budget trajectories ($N \in \{8,32,64\}$) for ELF-B ($\gamma \in \{0, 1.0, 1.5\}$) and discrete MDLM in the $(\text {Gen-PPL}, H_{\mathrm {pool}})$ plane}{figure.caption.33}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Back-noising sweep ($\gamma \in [0, 3.0]$) on ELF-B at $\text  {SC-CFG}=3.0$ ($K=32$ steps, $n=2$ seeds, $M=1{,}000$ sequences/seed), compared against OpenWebText reference subsample (\texttt  {R0\_owt\_ref}).}}{18}{table.caption.24}\protected@file@percent }
-\newlabel{tab:gamma_sweep}{{12}{18}{Back-noising sweep ($\gamma \in [0, 3.0]$) on ELF-B at $\text {SC-CFG}=3.0$ ($K=32$ steps, $n=2$ seeds, $M=1{,}000$ sequences/seed), compared against OpenWebText reference subsample (\texttt {R0\_owt\_ref})}{table.caption.24}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Raw $\gamma =0$ Generative Perplexity vs.\ linear interpolations at matched per-sample entropies $H_{\mathrm  {ps}} \in \{5.15, 5.20\}$ nats across $\text  {SC-CFG} \in \{1, 2, 3, 4\}$ on ELF-B ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed).}}{18}{table.caption.25}\protected@file@percent }
-\newlabel{tab:matched_entropy_app}{{13}{18}{Raw $\gamma =0$ Generative Perplexity vs.\ linear interpolations at matched per-sample entropies $H_{\mathrm {ps}} \in \{5.15, 5.20\}$ nats across $\text {SC-CFG} \in \{1, 2, 3, 4\}$ on ELF-B ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed)}{table.caption.25}{}}
-\def\@LN@column{2}
-\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Evaluation of Encoder-Conditioned Projection (ECP) and Confidence-Modulated Latent Caching (CMLC) on ELF-B against matched-entropy baseline trajectories and ablation controls.}}{19}{table.caption.27}\protected@file@percent }
-\newlabel{tab:interventions}{{14}{19}{Evaluation of Encoder-Conditioned Projection (ECP) and Confidence-Modulated Latent Caching (CMLC) on ELF-B against matched-entropy baseline trajectories and ablation controls}{table.caption.27}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces ELF-M (342.5M backbone, $K=64$) exploratory Pair M1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=5$ complete blocks, $df=4$, $M=1{,}000$/seed; Pair M1 passes Tier-I equivalence on Gen-PPL at $p_{\mathrm  {TOST,I}}=0.0052$, fails strict Tier-I on $H_{\mathrm  {ps}}$ at $\Delta H_{\mathrm  {ps}}=-0.0210$~nats vs.\ $\pm 0.015$~nats bound [$p_{\mathrm  {TOST,I}}=0.9889$], and satisfies only the post-hoc exploratory Tier-II tolerance $\pm 0.025$~nats at $p_{\mathrm  {TOST,II,paired}}=0.0354$). Full panels in Appendix~\ref {app:full_tables}, Tables~\ref {tab:elfm_m1_full}--\ref {tab:elfl_l1_full}.}}{19}{table.caption.29}\protected@file@percent }
-\newlabel{tab:elfm_m1}{{15}{19}{ELF-M (342.5M backbone, $K=64$) exploratory Pair M1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=5$ complete blocks, $df=4$, $M=1{,}000$/seed; Pair M1 passes Tier-I equivalence on Gen-PPL at $p_{\mathrm {TOST,I}}=0.0052$, fails strict Tier-I on $H_{\mathrm {ps}}$ at $\Delta H_{\mathrm {ps}}=-0.0210$~nats vs.\ $\pm 0.015$~nats bound [$p_{\mathrm {TOST,I}}=0.9889$], and satisfies only the post-hoc exploratory Tier-II tolerance $\pm 0.025$~nats at $p_{\mathrm {TOST,II,paired}}=0.0354$). Full panels in Appendix~\ref {app:full_tables}, Tables~\ref {tab:elfm_m1_full}--\ref {tab:elfl_l1_full}}{table.caption.29}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces ELF-L (652.1M backbone, $6.2\times $ scale, $K=64$) Pair L1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=3$ complete blocks $df=2$; 5-seed paired contrast $df=4$). Full multi-column panel in Appendix~\ref {app:full_tables}, Table~\ref {tab:elfl_l1_full}.}}{19}{table.caption.30}\protected@file@percent }
-\newlabel{tab:elfl_l1}{{16}{19}{ELF-L (652.1M backbone, $6.2\times $ scale, $K=64$) Pair L1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=3$ complete blocks $df=2$; 5-seed paired contrast $df=4$). Full multi-column panel in Appendix~\ref {app:full_tables}, Table~\ref {tab:elfl_l1_full}}{table.caption.30}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Model-scale comparison across ELF-B (104.6M, 32 steps), ELF-M (342.5M, 64 steps), and ELF-L (652.1M, 64 steps) along $\text  {SC-CFG}=3$ $\gamma $-sweeps.}}{20}{table.caption.31}\protected@file@percent }
-\newlabel{tab:scale}{{17}{20}{Model-scale comparison across ELF-B (104.6M, 32 steps), ELF-M (342.5M, 64 steps), and ELF-L (652.1M, 64 steps) along $\text {SC-CFG}=3$ $\gamma $-sweeps}{table.caption.31}{}}
-\def\@LN@column{2}
-\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Cross-paradigm comparison between continuous-latent ELF-B (104.6M backbone) and discrete Masked Diffusion Language Models (MDLM, 130M backbone / 170M total) across step budgets $N \in \{4, 8, 16, 32, 64\}$.}}{21}{table.caption.32}\protected@file@percent }
-\newlabel{tab:cross_paradigm}{{18}{21}{Cross-paradigm comparison between continuous-latent ELF-B (104.6M backbone) and discrete Masked Diffusion Language Models (MDLM, 130M backbone / 170M total) across step budgets $N \in \{4, 8, 16, 32, 64\}$}{table.caption.32}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Full confirmatory operating-point equivalence (Panel A: all 13 columns including paired CRN 95\% CIs, unpaired Welch sensitivity intervals, Leave-One-Seed-Out ranges, and Hedges' $g$) and secondary distributional divergence (Panel B) across pairs \textbf  {C1}--\textbf  {C3} on ELF-B ($K=32, M=1{,}000$/seed) and exploratory pairs on ELF-M.}}{21}{table.caption.34}\protected@file@percent }
-\newlabel{tab:confirmatory_tost_full}{{19}{21}{Full confirmatory operating-point equivalence (Panel A: all 13 columns including paired CRN 95\% CIs, unpaired Welch sensitivity intervals, Leave-One-Seed-Out ranges, and Hedges' $g$) and secondary distributional divergence (Panel B) across pairs \textbf {C1}--\textbf {C3} on ELF-B ($K=32, M=1{,}000$/seed) and exploratory pairs on ELF-M}{table.caption.34}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Full ELF-M (342.5M, $K=64$) factorial results across 11 cells (29 runs, $M=1{,}000$/seed) and complete seed-blocked ANOVA contrasts ($df=4$).}}{22}{table.caption.35}\protected@file@percent }
-\newlabel{tab:elfm_m1_full}{{20}{22}{Full ELF-M (342.5M, $K=64$) factorial results across 11 cells (29 runs, $M=1{,}000$/seed) and complete seed-blocked ANOVA contrasts ($df=4$)}{table.caption.35}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Full multi-seed $2\times 2$ factorial on \textbf  {ELF-L (652.1M backbone)} ($K=64$, $M=500$/seed across seeds $201\text  {--}205$) and cross-scale $2\times 2$ seed-blocked contrasts across ELF-B, ELF-M, and ELF-L.}}{22}{table.caption.36}\protected@file@percent }
-\newlabel{tab:elfl_l1_full}{{21}{22}{Full multi-seed $2\times 2$ factorial on \textbf {ELF-L (652.1M backbone)} ($K=64$, $M=500$/seed across seeds $201\text {--}205$) and cross-scale $2\times 2$ seed-blocked contrasts across ELF-B, ELF-M, and ELF-L}{table.caption.36}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Full 5-seed embedding-space diversity evaluation across three pretrained sentence encoders (\texttt  {all-mpnet-base-v2}, \texttt  {all-MiniLM-L6-v2}, \texttt  {BAAI/bge-base-en-v1.5}) separated into Panel A (Raw unit-normalized embeddings) and Panel B (\texttt  {ABTT-3} top-3 PC removal), and partitioned into Part I (Confirmatory Held-Out ELF-B Pairs \textbf  {C1}--\textbf  {C3}) and Part II (Exploratory Stage-1 Pairs \textbf  {S1, M1}).}}{23}{table.caption.37}\protected@file@percent }
-\newlabel{tab:embedding_geometry_full}{{22}{23}{Full 5-seed embedding-space diversity evaluation across three pretrained sentence encoders (\texttt {all-mpnet-base-v2}, \texttt {all-MiniLM-L6-v2}, \texttt {BAAI/bge-base-en-v1.5}) separated into Panel A (Raw unit-normalized embeddings) and Panel B (\texttt {ABTT-3} top-3 PC removal), and partitioned into Part I (Confirmatory Held-Out ELF-B Pairs \textbf {C1}--\textbf {C3}) and Part II (Exploratory Stage-1 Pairs \textbf {S1, M1})}{table.caption.37}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Full eight-condition mechanistic evaluation of the Attractor-Contrast-Escape (ACE)~\citep  {zhang2026selfcond} self-conditioning feedback projection across all three ablation and control panels on ELF-B (seeds $201\text  {--}205$, $n=5$ seeds/condition).}}{23}{table.caption.38}\protected@file@percent }
-\newlabel{tab:ace_intervention_full}{{23}{23}{Full eight-condition mechanistic evaluation of the Attractor-Contrast-Escape (ACE)~\citep {zhang2026selfcond} self-conditioning feedback projection across all three ablation and control panels on ELF-B (seeds $201\text {--}205$, $n=5$ seeds/condition)}{table.caption.38}{}}
-\gdef \@abspage@last{23}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Conditional response-surface regressions (Panel A, descriptive only, $df_{\mathrm  {seed}}=1$) and seed-blocked ANCOVA (Panel B, $df=4$) across ELF-B and ELF-M.}}{15}{table.caption.17}\protected@file@percent }
+\newlabel{tab:ancova}{{7}{15}{Conditional response-surface regressions (Panel A, descriptive only, $df_{\mathrm {seed}}=1$) and seed-blocked ANCOVA (Panel B, $df=4$) across ELF-B and ELF-M}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Practical configuration selection on ELF-B under four $(\text  {Gen-PPL} \le \tau , H_{\mathrm  {ps}} \ge h_0)$ operating budgets. Within every constraint regime containing $\ge 2$ admissible cells, optimizing for minimum local repetition (\texttt  {rep-4}) vs.\ maximum corpus distributional quality (MAUVE or \texttt  {distinct-2}) selects opposite corners of the $(\text  {SC-CFG}, \gamma )$ grid.}}{15}{table.caption.18}\protected@file@percent }
+\newlabel{tab:decisions}{{8}{15}{Practical configuration selection on ELF-B under four $(\text {Gen-PPL} \le \tau , H_{\mathrm {ps}} \ge h_0)$ operating budgets. Within every constraint regime containing $\ge 2$ admissible cells, optimizing for minimum local repetition (\texttt {rep-4}) vs.\ maximum corpus distributional quality (MAUVE or \texttt {distinct-2}) selects opposite corners of the $(\text {SC-CFG}, \gamma )$ grid}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Complete Full-Precision Confirmatory and Cross-Scale Tables}{15}{appendix.G}\protected@file@percent }
+\newlabel{app:full_tables}{{G}{15}{Complete Full-Precision Confirmatory and Cross-Scale Tables}{appendix.G}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Hardware-synchronized \texttt  {torch.cuda.Event} GPU timing and Peak VRAM benchmark on ELF-B ($K=32, B=64$, 5 repeats/condition after warm-up), alongside exact reconciliation of the three NFE fields logged in the codebase.}}{16}{table.caption.20}\protected@file@percent }
+\newlabel{tab:cuda_benchmark}{{9}{16}{Hardware-synchronized \texttt {torch.cuda.Event} GPU timing and Peak VRAM benchmark on ELF-B ($K=32, B=64$, 5 repeats/condition after warm-up), alongside exact reconciliation of the three NFE fields logged in the codebase}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Five-seed embedding-space Vendi Score ($\mathrm  {VS}_{\cos }$) summary across three pretrained sentence encoders (\texttt  {all-mpnet-base-v2}, \texttt  {all-MiniLM-L6-v2}, \texttt  {BAAI/bge-base-en-v1.5}) under raw unit-normalized embeddings and \texttt  {ABTT-3} ($n=5$ seeds/arm, $M_{\mathrm  {sub}}=250$/seed), separating confirmatory Tier-I pairs (\textbf  {C1}--\textbf  {C3}, Part I) from exploratory Stage-1 pairs (\textbf  {S1, M1}, Part II). Full panel including $\bar  {d}_{\cos }$ in Appendix~\ref {app:full_tables}, Table~\ref {tab:embedding_geometry_full}.}}{16}{table.caption.21}\protected@file@percent }
+\newlabel{tab:embedding_geometry}{{10}{16}{Five-seed embedding-space Vendi Score ($\mathrm {VS}_{\cos }$) summary across three pretrained sentence encoders (\texttt {all-mpnet-base-v2}, \texttt {all-MiniLM-L6-v2}, \texttt {BAAI/bge-base-en-v1.5}) under raw unit-normalized embeddings and \texttt {ABTT-3} ($n=5$ seeds/arm, $M_{\mathrm {sub}}=250$/seed), separating confirmatory Tier-I pairs (\textbf {C1}--\textbf {C3}, Part I) from exploratory Stage-1 pairs (\textbf {S1, M1}, Part II). Full panel including $\bar {d}_{\cos }$ in Appendix~\ref {app:full_tables}, Table~\ref {tab:embedding_geometry_full}}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Stage-1 exploratory Seed-0 embedding geometry across six sentence representations ($M_{\mathrm  {sub}}=200$ passages) and Task-1 within-passage half-to-half cosine similarity ($\text  {Half-Sim}$, toks $1\text  {--}128$ vs.\ $129\text  {--}256$) across all nine Stage-1 exploratory pairs.}}{16}{table.caption.22}\protected@file@percent }
+\newlabel{tab:semantic_diversity}{{11}{16}{Stage-1 exploratory Seed-0 embedding geometry across six sentence representations ($M_{\mathrm {sub}}=200$ passages) and Task-1 within-passage half-to-half cosine similarity ($\text {Half-Sim}$, toks $1\text {--}128$ vs.\ $129\text {--}256$) across all nine Stage-1 exploratory pairs}{table.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Perplexity--entropy curves across $\text  {SC-CFG} \in \{1,2,3,4\}$ on ELF-B ($K=32$, $n=2$ seeds/cell, $M=1{,}000$ samples/seed). \textbf  {Left:} At matched $H_{\mathrm  {ps}}=5.20$, Gen-PPL spans $1.09$ points ($27.54$--$28.63$). \textbf  {Right:} Higher $\text  {SC-CFG}$ with lower $\gamma $ raises \texttt  {rep-4} ($0.037 \to 0.058$), corpus \texttt  {distinct-2} ($0.280 \to 0.301$), and MAUVE ($0.204 \to 0.407$).}}{17}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:matched_entropy}{{2}{17}{Perplexity--entropy curves across $\text {SC-CFG} \in \{1,2,3,4\}$ on ELF-B ($K=32$, $n=2$ seeds/cell, $M=1{,}000$ samples/seed). \textbf {Left:} At matched $H_{\mathrm {ps}}=5.20$, Gen-PPL spans $1.09$ points ($27.54$--$28.63$). \textbf {Right:} Higher $\text {SC-CFG}$ with lower $\gamma $ raises \texttt {rep-4} ($0.037 \to 0.058$), corpus \texttt {distinct-2} ($0.280 \to 0.301$), and MAUVE ($0.204 \to 0.407$)}{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Uncontrolled Langevin back-noising sweep ($\gamma \in [0, 3.0]$ across $\text  {SC-CFG}\in \{1,2,3,4\}$, 56 runs, $n=2$ seeds/cell, $M=1{,}000$ samples/seed) on ELF-B. \textbf  {(a)} Increasing $\gamma $ drives raw Gen-PPL monotonically below the OpenWebText reference line ($17.18$; reaching $16.70$ at $\gamma =3.0, \text  {SC-CFG}=3.0$), but \textbf  {(b)} plotting the same 56 runs against per-sample entropy $H_{\mathrm  {ps}}$ reveals that all four guidance scales collapse onto a shared trajectory (quadratic $R^2 = 0.989$) driven by entropy contraction.}}{17}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:collapse}{{3}{17}{Uncontrolled Langevin back-noising sweep ($\gamma \in [0, 3.0]$ across $\text {SC-CFG}\in \{1,2,3,4\}$, 56 runs, $n=2$ seeds/cell, $M=1{,}000$ samples/seed) on ELF-B. \textbf {(a)} Increasing $\gamma $ drives raw Gen-PPL monotonically below the OpenWebText reference line ($17.18$; reaching $16.70$ at $\gamma =3.0, \text {SC-CFG}=3.0$), but \textbf {(b)} plotting the same 56 runs against per-sample entropy $H_{\mathrm {ps}}$ reveals that all four guidance scales collapse onto a shared trajectory (quadratic $R^2 = 0.989$) driven by entropy contraction}{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Trajectory interventions plotted in the $(\text  {Gen-PPL}, H_{\mathrm  {ps}})$ plane on ELF-B. Both ECP finals ($t_{\mathrm  {on}}=0.50$, 3 seeds) and controls lie directly on the unmodified ELF baseline frontier ($\le 0.2\%$ residual at matched entropy), while the three lower/in-range CMLC adaptive early-exit variants are strictly Pareto-dominated in the 2D $(\text  {Gen-PPL}, H_{\mathrm  {ps}})$ plane ($+36.3\%$ to $+160.1\%$) and the fourth (\texttt  {+ commit}, Gen-PPL $230.90$) lies above the 16-step baseline entropy range ($H_{\mathrm  {ps}}=5.542$ nats).}}{18}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:interventions}{{4}{18}{Trajectory interventions plotted in the $(\text {Gen-PPL}, H_{\mathrm {ps}})$ plane on ELF-B. Both ECP finals ($t_{\mathrm {on}}=0.50$, 3 seeds) and controls lie directly on the unmodified ELF baseline frontier ($\le 0.2\%$ residual at matched entropy), while the three lower/in-range CMLC adaptive early-exit variants are strictly Pareto-dominated in the 2D $(\text {Gen-PPL}, H_{\mathrm {ps}})$ plane ($+36.3\%$ to $+160.1\%$) and the fourth (\texttt {+ commit}, Gen-PPL $230.90$) lies above the 16-step baseline entropy range ($H_{\mathrm {ps}}=5.542$ nats)}{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Cross-paradigm step-budget trajectories ($N \in \{8,32,64\}$) for ELF-B ($\gamma \in \{0, 1.0, 1.5\}$) and discrete MDLM in the $(\text  {Gen-PPL}, H_{\mathrm  {pool}})$ plane.}}{18}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:cross_paradigm}{{5}{18}{Cross-paradigm step-budget trajectories ($N \in \{8,32,64\}$) for ELF-B ($\gamma \in \{0, 1.0, 1.5\}$) and discrete MDLM in the $(\text {Gen-PPL}, H_{\mathrm {pool}})$ plane}{figure.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Back-noising sweep ($\gamma \in [0, 3.0]$) on ELF-B at $\text  {SC-CFG}=3.0$ ($K=32$ steps, $n=2$ seeds, $M=1{,}000$ sequences/seed), compared against OpenWebText reference subsample (\texttt  {R0\_owt\_ref}).}}{19}{table.caption.24}\protected@file@percent }
+\newlabel{tab:gamma_sweep}{{12}{19}{Back-noising sweep ($\gamma \in [0, 3.0]$) on ELF-B at $\text {SC-CFG}=3.0$ ($K=32$ steps, $n=2$ seeds, $M=1{,}000$ sequences/seed), compared against OpenWebText reference subsample (\texttt {R0\_owt\_ref})}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Raw $\gamma =0$ Generative Perplexity vs.\ linear interpolations at matched per-sample entropies $H_{\mathrm  {ps}} \in \{5.15, 5.20\}$ nats across $\text  {SC-CFG} \in \{1, 2, 3, 4\}$ on ELF-B ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed).}}{19}{table.caption.25}\protected@file@percent }
+\newlabel{tab:matched_entropy_app}{{13}{19}{Raw $\gamma =0$ Generative Perplexity vs.\ linear interpolations at matched per-sample entropies $H_{\mathrm {ps}} \in \{5.15, 5.20\}$ nats across $\text {SC-CFG} \in \{1, 2, 3, 4\}$ on ELF-B ($n=2$ seeds/cell, $M=1{,}000$ sequences/seed)}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Evaluation of Encoder-Conditioned Projection (ECP) and Confidence-Modulated Latent Caching (CMLC) on ELF-B against matched-entropy baseline trajectories and ablation controls.}}{20}{table.caption.27}\protected@file@percent }
+\newlabel{tab:interventions}{{14}{20}{Evaluation of Encoder-Conditioned Projection (ECP) and Confidence-Modulated Latent Caching (CMLC) on ELF-B against matched-entropy baseline trajectories and ablation controls}{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces ELF-M (342.5M backbone, $K=64$) exploratory Pair M1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=5$ complete blocks, $df=4$, $M=1{,}000$/seed; Pair M1 passes Tier-I equivalence on Gen-PPL at $p_{\mathrm  {TOST,I}}=0.0052$, fails strict Tier-I on $H_{\mathrm  {ps}}$ at $\Delta H_{\mathrm  {ps}}=-0.0210$~nats vs.\ $\pm 0.015$~nats bound [$p_{\mathrm  {TOST,I}}=0.9889$], and satisfies only the post-hoc exploratory Tier-II tolerance $\pm 0.025$~nats at $p_{\mathrm  {TOST,II,paired}}=0.0354$). Full panels in Appendix~\ref {app:full_tables}, Tables~\ref {tab:elfm_m1_full}--\ref {tab:elfl_l1_full}.}}{20}{table.caption.29}\protected@file@percent }
+\newlabel{tab:elfm_m1}{{15}{20}{ELF-M (342.5M backbone, $K=64$) exploratory Pair M1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=5$ complete blocks, $df=4$, $M=1{,}000$/seed; Pair M1 passes Tier-I equivalence on Gen-PPL at $p_{\mathrm {TOST,I}}=0.0052$, fails strict Tier-I on $H_{\mathrm {ps}}$ at $\Delta H_{\mathrm {ps}}=-0.0210$~nats vs.\ $\pm 0.015$~nats bound [$p_{\mathrm {TOST,I}}=0.9889$], and satisfies only the post-hoc exploratory Tier-II tolerance $\pm 0.025$~nats at $p_{\mathrm {TOST,II,paired}}=0.0354$). Full panels in Appendix~\ref {app:full_tables}, Tables~\ref {tab:elfm_m1_full}--\ref {tab:elfl_l1_full}}{table.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces ELF-L (652.1M backbone, $6.2\times $ scale, $K=64$) Pair L1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=3$ complete blocks $df=2$; 5-seed paired contrast $df=4$). Full multi-column panel in Appendix~\ref {app:full_tables}, Table~\ref {tab:elfl_l1_full}.}}{20}{table.caption.30}\protected@file@percent }
+\newlabel{tab:elfl_l1}{{16}{20}{ELF-L (652.1M backbone, $6.2\times $ scale, $K=64$) Pair L1 evaluation and seed-blocked $2\times 2$ factorial main effects ($n=3$ complete blocks $df=2$; 5-seed paired contrast $df=4$). Full multi-column panel in Appendix~\ref {app:full_tables}, Table~\ref {tab:elfl_l1_full}}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Model-scale comparison across ELF-B (104.6M, 32 steps), ELF-M (342.5M, 64 steps), and ELF-L (652.1M, 64 steps) along $\text  {SC-CFG}=3$ $\gamma $-sweeps.}}{21}{table.caption.31}\protected@file@percent }
+\newlabel{tab:scale}{{17}{21}{Model-scale comparison across ELF-B (104.6M, 32 steps), ELF-M (342.5M, 64 steps), and ELF-L (652.1M, 64 steps) along $\text {SC-CFG}=3$ $\gamma $-sweeps}{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Cross-paradigm comparison between continuous-latent ELF-B (104.6M backbone) and discrete Masked Diffusion Language Models (MDLM, 130M backbone / 170M total) across step budgets $N \in \{4, 8, 16, 32, 64\}$.}}{22}{table.caption.32}\protected@file@percent }
+\newlabel{tab:cross_paradigm}{{18}{22}{Cross-paradigm comparison between continuous-latent ELF-B (104.6M backbone) and discrete Masked Diffusion Language Models (MDLM, 130M backbone / 170M total) across step budgets $N \in \{4, 8, 16, 32, 64\}$}{table.caption.32}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Full confirmatory operating-point equivalence (Panel A: all 13 columns including paired CRN 95\% CIs, unpaired Welch sensitivity intervals, Leave-One-Seed-Out ranges, and Hedges' $g$) and secondary distributional divergence (Panel B) across pairs \textbf  {C1}--\textbf  {C3} on ELF-B ($K=32, M=1{,}000$/seed) and exploratory pairs on ELF-M.}}{22}{table.caption.34}\protected@file@percent }
+\newlabel{tab:confirmatory_tost_full}{{19}{22}{Full confirmatory operating-point equivalence (Panel A: all 13 columns including paired CRN 95\% CIs, unpaired Welch sensitivity intervals, Leave-One-Seed-Out ranges, and Hedges' $g$) and secondary distributional divergence (Panel B) across pairs \textbf {C1}--\textbf {C3} on ELF-B ($K=32, M=1{,}000$/seed) and exploratory pairs on ELF-M}{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Full ELF-M (342.5M, $K=64$) factorial results across 11 cells (29 runs, $M=1{,}000$/seed) and complete seed-blocked ANOVA contrasts ($df=4$).}}{23}{table.caption.35}\protected@file@percent }
+\newlabel{tab:elfm_m1_full}{{20}{23}{Full ELF-M (342.5M, $K=64$) factorial results across 11 cells (29 runs, $M=1{,}000$/seed) and complete seed-blocked ANOVA contrasts ($df=4$)}{table.caption.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Full multi-seed $2\times 2$ factorial on \textbf  {ELF-L (652.1M backbone)} ($K=64$, $M=500$/seed across seeds $201\text  {--}205$) and cross-scale $2\times 2$ seed-blocked contrasts across ELF-B, ELF-M, and ELF-L.}}{23}{table.caption.36}\protected@file@percent }
+\newlabel{tab:elfl_l1_full}{{21}{23}{Full multi-seed $2\times 2$ factorial on \textbf {ELF-L (652.1M backbone)} ($K=64$, $M=500$/seed across seeds $201\text {--}205$) and cross-scale $2\times 2$ seed-blocked contrasts across ELF-B, ELF-M, and ELF-L}{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Full 5-seed embedding-space diversity evaluation across three pretrained sentence encoders (\texttt  {all-mpnet-base-v2}, \texttt  {all-MiniLM-L6-v2}, \texttt  {BAAI/bge-base-en-v1.5}) separated into Panel A (Raw unit-normalized embeddings) and Panel B (\texttt  {ABTT-3} top-3 PC removal), and partitioned into Part I (Confirmatory Held-Out ELF-B Pairs \textbf  {C1}--\textbf  {C3}) and Part II (Exploratory Stage-1 Pairs \textbf  {S1, M1}).}}{24}{table.caption.37}\protected@file@percent }
+\newlabel{tab:embedding_geometry_full}{{22}{24}{Full 5-seed embedding-space diversity evaluation across three pretrained sentence encoders (\texttt {all-mpnet-base-v2}, \texttt {all-MiniLM-L6-v2}, \texttt {BAAI/bge-base-en-v1.5}) separated into Panel A (Raw unit-normalized embeddings) and Panel B (\texttt {ABTT-3} top-3 PC removal), and partitioned into Part I (Confirmatory Held-Out ELF-B Pairs \textbf {C1}--\textbf {C3}) and Part II (Exploratory Stage-1 Pairs \textbf {S1, M1})}{table.caption.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Full eight-condition mechanistic evaluation of the Attractor-Contrast-Escape (ACE)~\citep  {zhang2026selfcond} self-conditioning feedback projection across all three ablation and control panels on ELF-B (seeds $201\text  {--}205$, $n=5$ seeds/condition).}}{24}{table.caption.38}\protected@file@percent }
+\newlabel{tab:ace_intervention_full}{{23}{24}{Full eight-condition mechanistic evaluation of the Attractor-Contrast-Escape (ACE)~\citep {zhang2026selfcond} self-conditioning feedback projection across all three ablation and control panels on ELF-B (seeds $201\text {--}205$, $n=5$ seeds/condition)}{table.caption.38}{}}
+\citation{li2022diffusionlm,dieleman2022cdcd,gulrajani2023plaid}
+\citation{raffel2020exploring,lovelace2023ld4lg,hu2026elf,jiang2026textldm,guo2026coladlm}
+\citation{lipman2023flow}
+\citation{chen2023analog}
+\citation{ho2022classifier}
+\citation{lou2024sedd,sahoo2024mdlm}
+\citation{zheng2025masked}
+\citation{sahoo2025duo}
+\citation{wang2025remdm}
+\citation{pynadath2025candi}
+\citation{zhou2025ccdd}
+\citation{holtzman2020curious}
+\citation{caccia2020language}
+\citation{nadeem2020systematic}
+\citation{basu2021mirostat}
+\citation{xu2022learning}
+\citation{pynadath2026generative}
+\citation{franca2026hacking}
+\citation{radford2019language}
+\citation{zhang2026selfcond}
+\citation{schuirmann1987comparison}
+\citation{holm1979simple}
+\citation{li2016diversity}
+\citation{zhu2018texygen}
+\citation{willems1995context}
+\citation{franca2026hacking}
+\citation{pillutla2021mauve}
+\citation{pimentel2023usefulness}
+\citation{friedman2023vendi}
+\citation{reimers2019sentence,xiao2024cpack}
+\citation{mu2018all}
+\citation{brown2020language}
+\citation{gokaslan2019openwebtext}
+\citation{zheng2023judging}
+\citation{chhun2022hanna}
+\citation{yang2025qwen25,grattafiori2024llama3,jiang2023mistral7b}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Extended Related Work}{25}{appendix.H}\protected@file@percent }
+\newlabel{app:extended_related_work}{{H}{25}{Extended Related Work}{appendix.H}{}}
+\@writefile{toc}{\contentsline {paragraph}{Continuous-Latent, Discrete, and Hybrid Diffusion/Flow Language Models.}{25}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quality--Diversity Frontiers, Degeneration, and Attractor Dynamics.}{25}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Distributional, Lexical, Geometric, and Judge-Based Evaluation.}{25}{section*.41}\protected@file@percent }
+\gdef \@abspage@last{26}

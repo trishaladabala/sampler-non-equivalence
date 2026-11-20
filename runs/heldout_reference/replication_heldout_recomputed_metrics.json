@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-11-06T14:31:33Z",
+  "n_evaluated_runs": 6,
+  "reference_docs": 1000,
+  "runs": {
+    "p4_elfb_s32_g0.5_sc3.0_seed4": {
+      "run_id": "p4_elfb_s32_g0.5_sc3.0_seed4",
+      "n_samples": 1000,
+      "mauve_heldout": 0.03533029793309632,
+      "ctw_jcd_heldout": 0.13337102721236294
+    },
+    "p4_elfb_s32_g1.0_sc4.0_seed4": {
+      "run_id": "p4_elfb_s32_g1.0_sc4.0_seed4",
+      "n_samples": 1000,
+      "mauve_heldout": 0.036806914038311725,
+      "ctw_jcd_heldout": 0.13719165859896587
+    },
+    "p4_elfb_s32_g1.25_sc1.0_seed4": {
+      "run_id": "p4_elfb_s32_g1.25_sc1.0_seed4",
+      "n_samples": 1000,
+      "mauve_heldout": 0.02806685200841213,
+      "ctw_jcd_heldout": 0.13780443709934032
+    },
+    "p4_elfb_s32_g1.5_sc4.0_seed4": {
+      "run_id": "p4_elfb_s32_g1.5_sc4.0_seed4",
+      "n_samples": 1000,
+      "mauve_heldout": 0.029639043940520804,
+      "ctw_jcd_heldout": 0.1486951501925593
+    },
+    "p4_elfb_s32_g1.75_sc1.0_seed4": {
+      "run_id": "p4_elfb_s32_g1.75_sc1.0_seed4",
+      "n_samples": 1000,
+      "mauve_heldout": 0.031902618888742185,
+      "ctw_jcd_heldout": 0.15515522424812156
+    },
+    "p4_elfb_s32_g2.0_sc1.0_seed4": {
+      "run_id": "p4_elfb_s32_g2.0_sc1.0_seed4",
+      "n_samples": 1000,
+      "mauve_heldout": 0.023652979627121012,
+      "ctw_jcd_heldout": 0.17107032767775165
+    }
+  }
+}
