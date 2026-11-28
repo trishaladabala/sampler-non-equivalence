@@ -10,7 +10,7 @@ venv/
 .DS_Store
 ._*
 
-# LaTeX build artifacts (keep main.pdf and main.aux for manuscript checker)
+# LaTeX build artifacts
 *.bbl
 *.blg
 *.fdb_latexmk
@@ -19,3 +19,57 @@ venv/
 *.out
 *.synctex.gz
 *.toc
+
+# Paper / Report Sources & Build Artifacts
+Minor_Project/
+Minor_Project.pdf
+ELF_Sampler_Non_Equivalence_Report.tex
+main.tex
+main.pdf
+main.aux
+main.bbl
+main.log
+main.out
+acl.sty
+acl_natbib.bst
+references.bib
+enumitem.sty
+report_sections/
+report_sections.zip
+paper_figures/
+tables/
+critical_review.md
+scripts/generate_architecture_diagrams.py
+scripts/generate_fig1.py
+scripts/extract_fig1_excerpts.py
+notebooks/NOTEBOOK_TO_RESULTS_AND_PAPER_MAP.md
+notebooks/22_acl_remediation_reruns.ipynb
+notebooks/archive_stage1/
+notebooks/stage1_colab_roadmaps/
+
+# Preregistration / Internal Review Logs
+prereg/
+reports/
+
+# Human evaluation
+human_eval/
+notebooks/04_human_eval_power_prep_and_analysis.ipynb
+notebooks/15_final_human_evaluation.ipynb
+
+# LLM judge
+runs/llm_judge_panel/
+runs/llm_judge_panel_v2/
+
+# Tests
+tests/
+efm_pipeline/smoke_test.py
+
+# Verification / audit / manuscript-check scripts
+analysis/check_manuscript.py
+analysis/final_consolidation_audit.py
+analysis/second_stage_validation.py
+analysis/iso_frontier_sensitivity.py
+analysis/critical_foundation_reanalysis.py
+efm_pipeline/elf_interface_audit.py
+scripts/check_log.py
+RESULT_MAP.csv

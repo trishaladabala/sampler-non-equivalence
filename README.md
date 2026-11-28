@@ -1,76 +1,61 @@
-# Same Perplexity, Same Entropy, Different Text: Operating-Point Non-Equivalence of Sampler Controls in a Continuous-Latent Flow Language Model
+# Beyond Perplexity: Characterizing Sampler Non-Equivalence in Continuous-Latent Language Models
 
-**Target Venue:** ACL 2027 Main Conference (ACL Rolling Review / ARR Double-Blind Submission)  
-**Compiled Manuscript:** `main.pdf` (`main.tex`, `acl.sty`, `references.bib`)  
-**Traceability Matrix:** `RESULT_MAP.csv` (143 verified claims, tables, and figures: 115 numerical claims, 23 tables, 5 figures) & `run_manifest.json` (280 raw run directories)
+**Authors:** Adabala Trishal, Bangaru Krishna Sanjay  
+**Supervisor:** Dr. Pooja Singh (Department of Computer Science and Engineering, Shiv Nadar Institute of Eminence, Delhi NCR)  
+**Repository:** https://github.com/trishaladabala/sampler-non-equivalence
 
 ---
 
 ## 1. Scientific Overview
 
-Unconditional generation from diffusion and continuous-latent flow language models is commonly evaluated along a two-dimensional frontier of **generative perplexity (Gen-PPL)** under an external autoregressive evaluator (`gpt2-large`) and **mean within-sample unigram entropy ($H_{\text{ps}}$)**. Using the pretrained Embedded Language Flow (ELF) family (ELF-B 105M, ELF-M 342M, and ELF-L 652M) alongside discrete Masked Diffusion Language Models (MDLM 170M), this repository investigates whether a $(\text{Gen-PPL}, H_{\text{ps}}, \text{NFE})$ operating point uniquely identifies the generated text distribution.
+Unconditional text generation from continuous-latent flow language models is commonly evaluated along a frontier of **generative perplexity (`Gen-PPL`)** under an external autoregressive evaluator (`gpt2-large`), **per-sample unigram entropy ($H_{\mathrm{ps}}$)**, and the **number of function evaluations (`NFE`)**. Using pretrained Embedded Language Flow (`ELF`) checkpoints on OpenWebText, this repository investigates whether matching $(\mathrm{Gen\text{-}PPL}, H_{\mathrm{ps}}, \mathrm{NFE})$ uniquely identifies a generated text distribution, or whether distinct inference-time sampler controls produce systematically different structural outcomes at the same primary operating point.
 
-Across 280 experiment run directories (including a balanced $4 \times 7 \times 2$ factorial grid on ELF-B, targeted intermediate-$\gamma$ runs, and a 13-run multi-seed factorial on ELF-M), we establish three core findings:
+We focus on two inference-time controls at fixed $\mathrm{NFE} = K + 1$: **self-conditioning classifier-free guidance (`SC-CFG`, $s$)** and **Langevin back-noising ($\gamma$)**. Our main findings are:
 
-1. **Operating-Point Non-Equivalence of $(\text{SC-CFG}, \gamma)$:** Matching $\text{Gen-PPL}$, $H_{\text{ps}}$, and exact per-sample function evaluations ($\text{NFE}_{\text{sample}} = K + 1$) between low-guidance/high-back-noising ($\text{SC-CFG}=1$, high $\gamma$) and high-guidance/low-back-noising ($\text{SC-CFG}\in\{3,4\}$, low $\gamma$) leaves a highly reproducible trade-off between within-sequence repetition and cross-sequence diversity. Across all 6 strictly matched pairs (`M1`, `S1`–`S3`, `Refined-1/2`), higher $\text{SC-CFG}$ paired with lower $\gamma$ significantly increases within-sample 4-gram repetition (`rep-4`, seed-level $df=2$ Welch $t$-test $p_{\text{Holm}} \le 0.0385$ in 6/6 pairs) while simultaneously increasing pooled corpus entropy ($H_{\text{pool}}$), token-weighted inter-sample Jensen–Shannon divergence ($\mathrm{JSD}_{\pi} = H_{\text{pool}} - H_{\text{ps,weighted}}$), corpus `distinct-2`, and `MAUVE`, and reducing 4-gram `Self-BLEU` and byte-level Context-Tree Weighting Jeffreys Coding Divergence (`CTW JCD`).
-2. **Mechanistic Resolution via Design-Based Two-Way Factorial ANOVA:** In the balanced non-collapsed $4 \times 6 \times 2$ ELF-B grid ($\gamma \le 2.0$), $\text{SC-CFG}$ accounts for **$66.1\%$** of total variance in within-sample `rep-4`, whereas $\gamma$ accounts for **$85.2\%$** of total variance in corpus `distinct-2` (**$91.1\%$** across all 56 runs) and **$92.5\%$** in `MAUVE`. Although increasing $\text{SC-CFG}$ at fixed $\gamma$ mildly reduces corpus diversity (main effect $-0.029$), $\gamma$ contracts cross-sample mode coverage over $3\times$ more steeply per unit of $(\text{Gen-PPL}, H_{\text{ps}})$ reduction, explaining why trading $\gamma$ for $\text{SC-CFG}$ along an iso-$(\text{Gen-PPL}, H_{\text{ps}})$ contour preserves corpus diversity while amplifying local phrase loops.
-3. **Diagnostic Audit of Inference-Time Interventions (ECP & CMLC):** Evaluating Encoder-Conditioned Projection (ECP) and Confidence-Modulated Latent Caching (CMLC) at matched entropy shows that apparent raw Gen-PPL reductions are artifacts of entropy contraction ($\le 0.2\%$ residual at matched $H_{\text{ps}}$ in 3-seed finals).
+1. **Entropy Collapse & Factorial Dissociation on `ELF-B`:** Across a 56-run `ELF-B` factorial grid, $\log(\mathrm{Gen\text{-}PPL})$ collapses onto $H_{\mathrm{ps}}$ ($R^2 = 0.9892$), contracting a 2.375-fold raw perplexity range to a $3.39\%$ spread at matched entropy. Factorial ANOVA shows that `SC-CFG` governs within-sequence 4-gram repetition (`rep-4`), whereas $\gamma$ governs corpus-level lexical diversity.
+2. **Confirmed Operating-Point Non-Equivalence on `ELF-B`:** Using three-stream Common Random Numbers (CRN), hierarchical Holm–Bonferroni gatekeeping, and Two One-Sided Tests (TOST), we evaluate three calibrated `ELF-B` pairs (`C1`–`C3`) across a 5-seed exploratory pilot ($\mathrm{df}=4$) and a 20-seed replication ($\mathrm{df}=19$, 120 runs). Both cohorts pass Tier-I joint equivalence on `Gen-PPL` and $H_{\mathrm{ps}}$ ($p_{\mathrm{Holm}} \le 3.40 \times 10^{-8}$), yet diverge consistently across all 20 replication seeds ($p_{\mathrm{perm}} = 1.91 \times 10^{-6}$): higher guidance paired with lower $\gamma$ increases `rep-4` ($+1.10$ to $+2.11\text{ pp}$) and token-weighted inter-sample Jensen–Shannon divergence ($\mathrm{JSD}_{\pi}$, $+0.073$ to $+0.132\text{ nats}$) while reducing `Self-BLEU-4` and byte-level Context-Tree Weighting Jeffreys Coding Divergence (`CTW JCD`).
+3. **Decontamination & Iso-Frontier Geometry:** After 75-shard 13-gram decontamination against Clean Reference A, `MAUVE` differences become non-significant ($p \ge 0.315$), showing that initial `MAUVE` gains largely tracked training-overlap alignment, while `rep-4`, $\mathrm{JSD}_{\pi}$, `CTW JCD`, and Vendi scores remain robust. Out-of-sample iso-frontier line integrals predict held-out `rep-4` ($2.5\%$–$5.1\%$ error) and polynomial-smoothed $\mathrm{JSD}_{\pi}$ ($6.1\%$–$6.7\%$ error), but linear tangent integration breaks down on nonlinear `MAUVE` (up to $66.0\%$ error).
+4. **Cross-Architecture Boundary Conditions & Interventions:** Formal operating-point non-equivalence is established strictly for unconditional `ELF-B` generation on OpenWebText. `ELF-M` fails Tier-I equivalence on $H_{\mathrm{ps}}$ ($p = 0.989$), `ELF-L` is operating-point unmatched, `Plaid-1B` fails the 2D equivalence gate (`NO-GO`), and `MDLM-130M` comparisons are exploratory on pooled entropy. On inference-time interventions, $\gamma$-compensated Matched ACE yields preliminary $n=5$ pilot evidence of modest `rep-4` reduction ($p_{\mathrm{emp}} = 0.048$ against 20 off-frontier nulls), whereas ECP and CMLC remain frontier-bound.
 
 ---
 
-## 2. Repository Hierarchy & Traceability
-
-```text
-model/checkpoint -> experiment configuration -> independent run/seed -> generated samples -> metrics -> statistical analysis -> table/figure -> manuscript claim
-```
+## 2. Repository Structure
 
 | Path | Role |
 |---|---|
-| `main.tex`, `main.pdf`, `acl.sty`, `references.bib` | ACL 2027 double-blind anonymized two-column manuscript ($\le 8$ pages main body + Limitations, Ethical Considerations, References, and 4 Appendices). |
-| `RESULT_MAP.csv` | Automated claim-to-artifact traceability map (115 numerical claims `R01`–`R115`, 23 tables `TAB01`–`TAB23`, 5 figures `FIG1`–`FIG5`). |
-| `run_manifest.json` | Machine-readable inventory of all 280 raw run directories, models, checkpoints, and exact NFE accounting. |
-| `analysis/statistical_reanalysis.py` | End-to-end statistical reanalysis script: verifies metric identities (`JSD_pi`, `rep-4`, `CTW JCD`, `NFE`), computes TOST 90% CI equivalence margins, seed-level ($df=2$) Holm–Bonferroni & BH-FDR $p$-values, design-based $4 \times 7 \times 2$ & $4 \times 6 \times 2$ two-way ANOVA, and cell-means linear/quadratic response surfaces (`analysis/out/reanalysis_stats.json`). |
-| `analysis/frontier_analysis.py` | Rebuilds `results_db.csv` and `analysis/out/key_numbers.json` from raw `summary.json` files. |
-| `analysis/integrate_followup_runs.py` | Integrates E1 (ELF-M factorial), E2 (ELF-B extended corpus metrics), and E3 (ELF-B intermediate-$\gamma$ runs) into `analysis/out/control_path_stats.json` and generates `tables/tab_elfm_factorial.tex` and `tables/tab_jcd_selfbleu_pairs.tex`. |
-| `analysis/make_figures_tables.py` | Generates all remaining LaTeX tables (`tables/*.tex`) and publication figures (`paper_figures/*.pdf`). |
-| `analysis/check_manuscript.py` | Strict verification gate checking all 115 numerical claims, 27 acceptance guards, 23 tables, 5 figures, positioning statements, and banned legacy strings. |
-| `experiments/decisive_followup.py` | Ready-to-run script for optional GPU follow-up experiments (`--mode audit` on CPU; `--mode gpu` on CUDA for 5-seed matched-pair expansion, second evaluator `Llama-3.2-1B` / `gpt2-xl`, and blinded human-eval pair export). |
-| `human_eval/PROTOCOL.md`, `human_eval/analyze_human_eval.py` | Double-blind human evaluation protocol and exact binomial/McNemar/mixed-effects analysis script. |
 | `ELF/` | Pretrained ELF codebase, model definitions, conditioning layers, and sampling utilities. |
-| `elfx/` | Core evaluation, sampling, frontier interpolation, and TOST diagnostics library. |
-| `frontier_audit/` | Standalone diagnostic package for iso-frontier sensitivity and TOST gatekeeping. |
-| `notebooks/` | Standalone reproduction and evaluation Jupyter notebooks (03–21). |
-| `tests/` | Comprehensive CPU test suite (170 CPU tests: 148 unittests + 22 estimator tests). |
+| `elfx/` | Core evaluation, sampling, frontier interpolation, non-identifiability, and TOST diagnostics library. |
+| `frontier_audit/` | Standalone diagnostic package for iso-frontier sensitivity and TOST gatekeeping (`cli.py`, `core.py`, `tost.py`). |
+| `efm_pipeline/` | Variable-length / expansion flow matching prototype pipeline (`efm_model.py`, `expand_op.py`, `insertion_head.py`, `train_efm.py`). |
+| `experiments/` | Experiment runners (`decisive_followup.py`, `non_identifiability_suite.py`). |
+| `analysis/` | Statistical analysis, frontier reconstruction, and figure/table generation scripts (`frontier_analysis.py`, `statistical_reanalysis.py`, `integrate_followup_runs.py`, `make_figures_tables.py`, etc.). |
+| `scripts/` | Helper scripts for figure generation and log/notebook utilities. |
+| `notebooks/` | Reproduction and evaluation Jupyter notebooks. |
+| `results/`, `runs/` | Preserved raw and aggregated experimental outputs. |
+| `reproduce_all.sh`, `Makefile`, `requirements.txt` | Environment setup and end-to-end reproduction entry points. |
 
 ---
 
-## 3. Reproducing the Analysis, Tables, Figures, and Manuscript (CPU)
+## 3. Setup & Reproducing the Analysis
 
-All statistical analyses, tables, figures, unit tests, and PDF compilation run deterministically on CPU from the preserved raw experiment artifacts in `content/drive/MyDrive/elf_research/runs/` and `followup_artifacts/`:
+Install dependencies:
 
 ```bash
-# 1. Regenerate the primary results database and frontier analysis
+pip install -r requirements.txt
+```
+
+Run the core CPU analysis and figure/table generation scripts from preserved run artifacts:
+
+```bash
+# 1. Rebuild the primary results database and frontier analysis
 python3 analysis/frontier_analysis.py
 
-# 2. Integrate E1/E2/E3 follow-up artifacts and regenerate control-path statistics
+# 2. Integrate follow-up artifacts and compute control-path statistics
 python3 analysis/integrate_followup_runs.py
 
-# 3. Run the comprehensive ACL 2027 statistical reanalysis (TOST, ANOVA, Holm-Bonferroni, NFE audit)
+# 3. Run statistical reanalysis (TOST, ANOVA, Holm-Bonferroni, NFE accounting)
 python3 analysis/statistical_reanalysis.py
 
-# 4. Regenerate all LaTeX tables (tables/*.tex) and figures (paper_figures/*.pdf)
+# 4. Regenerate publication tables and figures
 python3 analysis/make_figures_tables.py
-
-# 5. Run the complete CPU test suite (170 CPU tests: 148 unittest + 22 estimator tests)
-python3 -m unittest discover -s tests
-python3 tests/run_tests.py
-
-# 6. Verify manuscript consistency and regenerate RESULT_MAP.csv (115 numerical claims, 27 acceptance guards, 23 tables, 5 figures, 0 errors)
-python3 analysis/check_manuscript.py
-
-# 7. Compile the anonymized ACL 2027 two-column PDF
-pdflatex -interaction=nonstopmode main.tex
-bibtex main
-pdflatex -interaction=nonstopmode main.tex
-pdflatex -interaction=nonstopmode main.tex
 ```
